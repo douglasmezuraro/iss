@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PSS.Models.PurchaseOrder>
+@using PSS.Utils.Constants
+
+@{
+    ViewBag.Title = View.Index;
+}
+
+<h2>@View.Index</h2>
+
+<p>
+    @Html.ActionLink(View.Create, "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.ActionLink(View.Edit, "Edit", new { id = item.Id }) |
+                @Html.ActionLink(View.Details, "Details", new { id = item.Id }) |
+                @Html.ActionLink(View.Delete, "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
