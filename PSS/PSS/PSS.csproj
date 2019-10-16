@@ -204,6 +204,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\Context.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -213,12 +214,14 @@
     <Compile Include="Controllers\ProvidersController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
     <Compile Include="Controllers\SaleOrdersController.cs" />
+    <Compile Include="Controllers\UnitsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Freight.cs" />
@@ -323,6 +326,12 @@
     <Content Include="Views\PurchaseOrders\Details.cshtml" />
     <Content Include="Views\PurchaseOrders\Edit.cshtml" />
     <Content Include="Views\PurchaseOrders\Index.cshtml" />
+    <Content Include="Views\Units\Create.cshtml" />
+    <Content Include="Views\Units\Delete.cshtml" />
+    <Content Include="Views\Units\Details.cshtml" />
+    <Content Include="Views\Units\Edit.cshtml" />
+    <Content Include="Views\Units\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

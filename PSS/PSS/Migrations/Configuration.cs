@@ -5,6 +5,7 @@ namespace PSS.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<SGCO.Context.Context>
     {
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
@@ -14,33 +15,36 @@ namespace PSS.Migrations
         protected override void Seed(SGCO.Context.Context context)
         {
             context.States.AddOrUpdate(state => state.Id,
-                new State { UF = "AC", Name = "Acre", IsActive = true },
-                new State { UF = "AL", Name = "Alagoas", IsActive = true },
-                new State { UF = "AP", Name = "Amapá", IsActive = true },
-                new State { UF = "AM", Name = "Amazonas", IsActive = true },
-                new State { UF = "BA", Name = "Bahia", IsActive = true },
-                new State { UF = "CE", Name = "Ceará", IsActive = true },
-                new State { UF = "DF", Name = "Distrito Federal", IsActive = true },
-                new State { UF = "ES", Name = "Espírito Santo", IsActive = true },
-                new State { UF = "GO", Name = "Goiás", IsActive = true },
-                new State { UF = "MA", Name = "Maranhão", IsActive = true },
-                new State { UF = "MT", Name = "Mato Grosso", IsActive = true },
-                new State { UF = "MS", Name = "Mato Grosso do Sul", IsActive = true },
-                new State { UF = "MG", Name = "Minas Gerais", IsActive = true },
-                new State { UF = "PA", Name = "Pará", IsActive = true },
-                new State { UF = "PB", Name = "Paraíba", IsActive = true },
-                new State { UF = "PR", Name = "Paraná", IsActive = true },
-                new State { UF = "PE", Name = "Pernambuco", IsActive = true },
-                new State { UF = "PI", Name = "Piauí", IsActive = true },
-                new State { UF = "RJ", Name = "Rio de Janeiro", IsActive = true },
-                new State { UF = "RN", Name = "Rio Grande do Norte", IsActive = true },
-                new State { UF = "RS", Name = "Rio Grande do Sul", IsActive = true },
-                new State { UF = "RO", Name = "Rondônia", IsActive = true },
-                new State { UF = "RR", Name = "Roraima", IsActive = true },
-                new State { UF = "SC", Name = "Santa Catarina", IsActive = true },
-                new State { UF = "SP", Name = "São Paulo", IsActive = true },
-                new State { UF = "SE", Name = "Sergipe", IsActive = true },
-                new State { UF = "TO", Name = "Tocantins", IsActive = true });
+                new State { Id = 01, UF = "AC", Name = "Acre", IsActive = true },
+                new State { Id = 02, UF = "AL", Name = "Alagoas", IsActive = true },
+                new State { Id = 03, UF = "AP", Name = "Amapá", IsActive = true },
+                new State { Id = 04, UF = "AM", Name = "Amazonas", IsActive = true },
+                new State { Id = 05, UF = "BA", Name = "Bahia", IsActive = true },
+                new State { Id = 06, UF = "CE", Name = "Ceará", IsActive = true },
+                new State { Id = 07, UF = "DF", Name = "Distrito Federal", IsActive = true },
+                new State { Id = 08, UF = "ES", Name = "Espírito Santo", IsActive = true },
+                new State { Id = 09, UF = "GO", Name = "Goiás", IsActive = true },
+                new State { Id = 10, UF = "MA", Name = "Maranhão", IsActive = true },
+                new State { Id = 11, UF = "MT", Name = "Mato Grosso", IsActive = true },
+                new State { Id = 12, UF = "MS", Name = "Mato Grosso do Sul", IsActive = true },
+                new State { Id = 13, UF = "MG", Name = "Minas Gerais", IsActive = true },
+                new State { Id = 14, UF = "PA", Name = "Pará", IsActive = true },
+                new State { Id = 15, UF = "PB", Name = "Paraíba", IsActive = true },
+                new State { Id = 16, UF = "PR", Name = "Paraná", IsActive = true },
+                new State { Id = 17, UF = "PE", Name = "Pernambuco", IsActive = true },
+                new State { Id = 18, UF = "PI", Name = "Piauí", IsActive = true },
+                new State { Id = 19, UF = "RJ", Name = "Rio de Janeiro", IsActive = true },
+                new State { Id = 20, UF = "RN", Name = "Rio Grande do Norte", IsActive = true },
+                new State { Id = 21, UF = "RS", Name = "Rio Grande do Sul", IsActive = true },
+                new State { Id = 22, UF = "RO", Name = "Rondônia", IsActive = true },
+                new State { Id = 23, UF = "RR", Name = "Roraima", IsActive = true },
+                new State { Id = 24, UF = "SC", Name = "Santa Catarina", IsActive = true },
+                new State { Id = 25, UF = "SP", Name = "São Paulo", IsActive = true },
+                new State { Id = 26, UF = "SE", Name = "Sergipe", IsActive = true },
+                new State { Id = 27, UF = "TO", Name = "Tocantins", IsActive = true });
+
+            context.Cities.AddOrUpdate(city => city.Id,
+                new City { Id = 1, Name = "Maringá", StateId = 16, IsActive = true });
 
             context.Genders.AddOrUpdate(gender => gender.Id,
                 new Gender { Id = 1, Description = "Homem", IsActive = true },
