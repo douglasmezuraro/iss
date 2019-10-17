@@ -12,7 +12,6 @@ namespace PSS.Controllers
     {
         private Context db = new Context();
 
-        // GET: Users
         public ActionResult Index()
         {
             User loggedUser = (User)Session["User"];
@@ -37,36 +36,35 @@ namespace PSS.Controllers
             }
         }
 
-        // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
+
             user.City = db.Cities.Find(user.CityId);
             user.Gender = db.Genders.Find(user.GenderId);
             user.UserType = db.UserTypes.Find(user.UserTypeId);
+
             return View(user);
         }
 
-        // GET: Users/Create
         public ActionResult Create()
         {
             ViewBag.CityId = new SelectList(db.Cities, "Id", "Name");
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Description");
             ViewBag.UserTypeId = new SelectList(db.UserTypes, "Id", "Description");
+
             return View();
         }
 
-        // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,LastName,CPF,Phone,Email,Birth,Password,UserTypeId,GenderId,Address,Number,PostalCode,Complement,Reference,CityId,IsActive")] User user)
@@ -76,36 +74,37 @@ namespace PSS.Controllers
                 user.IsActive = true;
                 db.Users.Add(user);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
             ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", user.CityId);
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Description", user.GenderId);
             ViewBag.UserTypeId = new SelectList(db.UserTypes, "Id", "Description", user.UserTypeId);
+
             return View(user);
         }
 
-        // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", user.CityId);
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Description", user.GenderId);
             ViewBag.UserTypeId = new SelectList(db.UserTypes, "Id", "Description", user.UserTypeId);
+
             return View(user);
         }
 
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,LastName,CPF,Phone,Email,Birth,Password,UserTypeId,GenderId,Address,Number,PostalCode,Complement,Reference,CityId,IsActive")] User user)
@@ -115,33 +114,37 @@ namespace PSS.Controllers
                 user.IsActive = true;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+
             ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", user.CityId);
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Description", user.GenderId);
             ViewBag.UserTypeId = new SelectList(db.UserTypes, "Id", "Description", user.UserTypeId);
+
             return View(user);
         }
 
-        // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
+
             user.City = db.Cities.Find(user.CityId);
             user.Gender = db.Genders.Find(user.GenderId);
             user.UserType = db.UserTypes.Find(user.UserTypeId);
+
             return View(user);
         }
 
-        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -150,6 +153,7 @@ namespace PSS.Controllers
             user.IsActive = false;
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
