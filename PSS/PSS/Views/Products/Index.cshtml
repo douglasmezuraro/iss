@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<PSS.Models.Product>
 @using PSS.Utils.Constants
+@using PSS.Models
 
 @{
     ViewBag.Title = View.Index;
@@ -64,6 +65,9 @@
             @Html.ActionLink(View.Edit, "Edit", new { id = item.Id }) |
             @Html.ActionLink(View.Details, "Details", new { id = item.Id }) |
             @Html.ActionLink(View.Delete, "Delete", new { id = item.Id })
+        </td>
+        <td>
+            @Html.ActionLink("Adicionar ao carrinho", "AddToCart", "Cart", new Item { ProductId = item.Id, Quantity = 1, IsActive = true }, null) 
         </td>
     </tr>
     }
