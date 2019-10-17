@@ -13,5 +13,6 @@
         public const string BackToList = "Voltar para lista";
         public const string ConfirmDelete = "Você tem certeza que deseja deletar esse registro?";
         public const string Login = "Login";
+        public const string AddToCart = "Adicionar ao carrinho";
     }
 }

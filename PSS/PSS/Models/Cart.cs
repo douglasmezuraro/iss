@@ -3,6 +3,7 @@ using System.ComponentModel;
 
 namespace PSS.Models
 {
+    [DisplayName("Carrinho de compras")]
     public class Cart
     {
         [DisplayName("Items")]

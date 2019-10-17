@@ -15,7 +15,7 @@ namespace PSS.Models
         public int ProductId { get; set; }
 
         [DisplayName("Produto")]
-        public Product Product { get; set; }
+        public Product Product { get; set; } = new Product();
 
         [DisplayName("Preço total de venda")]
         public double TotalSalePrice

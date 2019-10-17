@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +9,7 @@ namespace PSS.Models
     public abstract class Order : Base
     {
         [DisplayName("Valor total")]
-        public double? TotalValue { get; set; }
+        public abstract double TotalValue { get; }
 
         [DisplayName("Data")]
         public DateTime? Date { get; set; }
@@ -29,12 +29,12 @@ namespace PSS.Models
         public User User { get; set; }
 
         [DisplayName("Frete")]
-        public ICollection<Freight> Freights { get; set; }
+        public ICollection<Freight> Freights { get; set; } = new List<Freight>();
 
         [DisplayName("Carrinho")]
-        public ICollection<Item> Items { get; set; }
+        public ICollection<Item> Items { get; set; } = new List<Item>();
 
         [DisplayName("Pagamento")]
-        public ICollection<Installment> Installments { get; set; }
+        public ICollection<Installment> Installments { get; set; } = new List<Installment>();
     }
 }

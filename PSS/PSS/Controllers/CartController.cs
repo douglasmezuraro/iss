@@ -27,7 +27,7 @@ namespace PSS.Controllers
 
         public ActionResult AddToCart(Item item)
         {
-            var _item = GetCart().Items.FirstOrDefault(i => i.Product.Id == item.Product.Id);
+            var _item = GetCart().Items.FirstOrDefault(i => i.ProductId == item.ProductId);
 
             if (_item == null)
             {
@@ -80,7 +80,7 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Item item)
         {
-            var _item = GetCart().Items.First(i => i.Product.Id == item.Product.Id);
+            var _item = GetCart().Items.First(i => i.Product.Id == item.ProductId);
             _item.Quantity = item.Quantity;
 
             return RedirectToAction("Index");
