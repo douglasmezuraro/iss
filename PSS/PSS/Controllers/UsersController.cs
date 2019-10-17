@@ -21,7 +21,7 @@ namespace PSS.Controllers
                 var users = db.Users.Include(u => u.City)
                                     .Include(u => u.Gender)
                                     .Include(u => u.UserType)
-                                    .Where(u => u.IsActive == true);
+                                    .Where(u => u.IsActive);
 
                 if (loggedUser.UserTypeId == UserType.Client)
                 {
@@ -58,9 +58,9 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name");
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Description");
-            ViewBag.UserTypeId = new SelectList(db.UserTypes, "Id", "Description");
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name");
+            ViewBag.GenderId = new SelectList(db.Genders.Where(g => g.IsActive), "Id", "Description");
+            ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description");
 
             return View();
         }
@@ -78,9 +78,9 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", user.CityId);
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Description", user.GenderId);
-            ViewBag.UserTypeId = new SelectList(db.UserTypes, "Id", "Description", user.UserTypeId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
+            ViewBag.GenderId = new SelectList(db.Genders.Where(g => g.IsActive), "Id", "Description", user.GenderId);
+            ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description", user.UserTypeId);
 
             return View(user);
         }
@@ -98,9 +98,9 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", user.CityId);
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Description", user.GenderId);
-            ViewBag.UserTypeId = new SelectList(db.UserTypes, "Id", "Description", user.UserTypeId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
+            ViewBag.GenderId = new SelectList(db.Genders.Where(g => g.IsActive), "Id", "Description", user.GenderId);
+            ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description", user.UserTypeId);
 
             return View(user);
         }
@@ -118,9 +118,9 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", user.CityId);
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Description", user.GenderId);
-            ViewBag.UserTypeId = new SelectList(db.UserTypes, "Id", "Description", user.UserTypeId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
+            ViewBag.GenderId = new SelectList(db.Genders.Where(g => g.IsActive), "Id", "Description", user.GenderId);
+            ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description", user.UserTypeId);
 
             return View(user);
         }

@@ -13,7 +13,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var manufacturers = db.Manufacturers.Include(m => m.City).Where(m => m.IsActive == true);
+            var manufacturers = db.Manufacturers.Include(m => m.City).Where(m => m.IsActive);
 
             return View(manufacturers.ToList());
         }
@@ -38,7 +38,7 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name");
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name");
             return View();
         }
 
@@ -55,7 +55,7 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", manufacturer.CityId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", manufacturer.CityId);
 
             return View(manufacturer);
         }
@@ -73,7 +73,7 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", manufacturer.CityId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", manufacturer.CityId);
 
             return View(manufacturer);
         }
@@ -91,7 +91,7 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", manufacturer.CityId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", manufacturer.CityId);
 
             return View(manufacturer);
         }

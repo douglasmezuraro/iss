@@ -14,8 +14,8 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var cities = db.Cities.Include(c => c.State).Where(c => c.IsActive == true);
-            return View(cities.ToList().Where(c => c.IsActive == true));
+            var cities = db.Cities.Include(c => c.State).Where(c => c.IsActive);
+            return View(cities.ToList().Where(c => c.IsActive));
         }
 
         public ActionResult Details(int? id)
@@ -38,7 +38,7 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.StateId = new SelectList(db.States, "Id", "Name");
+            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name");
             return View();
         }
 
@@ -55,7 +55,7 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StateId = new SelectList(db.States, "Id", "Name", city.StateId);
+            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name", city.StateId);
 
             return View(city);
         }
@@ -73,7 +73,7 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.StateId = new SelectList(db.States, "Id", "Name", city.StateId);
+            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name", city.StateId);
 
             return View(city);
         }
@@ -90,7 +90,7 @@ namespace PSS.Controllers
 
                 return RedirectToAction("Index");
             }
-            ViewBag.StateId = new SelectList(db.States, "Id", "Name", city.StateId);
+            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name", city.StateId);
 
             return View(city);
         }

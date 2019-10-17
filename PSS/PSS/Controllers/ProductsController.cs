@@ -17,7 +17,7 @@ namespace PSS.Controllers
                                       .Include(p => p.Manufacturer)
                                       .Include(p => p.Provider)
                                       .Include(p => p.Unit)
-                                      .Where(p => p.IsActive == true);
+                                      .Where(p => p.IsActive);
 
             return View(products.ToList());
         }
@@ -45,10 +45,10 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "ShortName");
-            ViewBag.ProviderId = new SelectList(db.Providers, "Id", "ShortName");
-            ViewBag.UnitId = new SelectList(db.Units, "Id", "Description");
+            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.IsActive), "Id", "Name");
+            ViewBag.ManufacturerId = new SelectList(db.Manufacturers.Where(m => m.IsActive), "Id", "ShortName");
+            ViewBag.ProviderId = new SelectList(db.Providers.Where(p => p.IsActive), "Id", "ShortName");
+            ViewBag.UnitId = new SelectList(db.Units.Where(u => u.IsActive), "Id", "Description");
 
             return View();
         }
@@ -66,10 +66,10 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "ShortName", product.ManufacturerId);
-            ViewBag.ProviderId = new SelectList(db.Providers, "Id", "ShortName", product.ProviderId);
-            ViewBag.UnitId = new SelectList(db.Units, "Id", "Description", product.UnitId);
+            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.IsActive), "Id", "Name", product.CategoryId);
+            ViewBag.ManufacturerId = new SelectList(db.Manufacturers.Where(m => m.IsActive), "Id", "ShortName", product.ManufacturerId);
+            ViewBag.ProviderId = new SelectList(db.Providers.Where(p => p.IsActive), "Id", "ShortName", product.ProviderId);
+            ViewBag.UnitId = new SelectList(db.Units.Where(u => u.IsActive), "Id", "Description", product.UnitId);
 
             return View(product);
         }
@@ -87,10 +87,10 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "ShortName", product.ManufacturerId);
-            ViewBag.ProviderId = new SelectList(db.Providers, "Id", "ShortName", product.ProviderId);
-            ViewBag.UnitId = new SelectList(db.Units, "Id", "Description", product.UnitId);
+            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.IsActive), "Id", "Name", product.CategoryId);
+            ViewBag.ManufacturerId = new SelectList(db.Manufacturers.Where(m => m.IsActive), "Id", "ShortName", product.ManufacturerId);
+            ViewBag.ProviderId = new SelectList(db.Providers.Where(p => p.IsActive), "Id", "ShortName", product.ProviderId);
+            ViewBag.UnitId = new SelectList(db.Units.Where(u => u.IsActive), "Id", "Description", product.UnitId);
 
             return View(product);
         }
@@ -108,10 +108,10 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "ShortName", product.ManufacturerId);
-            ViewBag.ProviderId = new SelectList(db.Providers, "Id", "ShortName", product.ProviderId);
-            ViewBag.UnitId = new SelectList(db.Units, "Id", "Description", product.UnitId);
+            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.IsActive), "Id", "Name", product.CategoryId);
+            ViewBag.ManufacturerId = new SelectList(db.Manufacturers.Where(m => m.IsActive), "Id", "ShortName", product.ManufacturerId);
+            ViewBag.ProviderId = new SelectList(db.Providers.Where(p => p.IsActive ), "Id", "ShortName", product.ProviderId);
+            ViewBag.UnitId = new SelectList(db.Units.Where(u => u.IsActive), "Id", "Description", product.UnitId);
 
             return View(product);
         }

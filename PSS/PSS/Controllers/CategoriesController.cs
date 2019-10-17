@@ -14,7 +14,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Categories.ToList().Where(c => c.IsActive == true));
+            return View(db.Categories.ToList().Where(c => c.IsActive));
         }
 
         public ActionResult Details(int? id)
