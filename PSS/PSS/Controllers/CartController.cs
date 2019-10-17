@@ -72,24 +72,30 @@ namespace PSS.Controllers
             }
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var item = GetCart().Items.FirstOrDefault(i => i.Product.Id == id);
+
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(item);
         }
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            GetCart().Items.Remove(GetCart().Items.FirstOrDefault(i => i.Product.Id == id));
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,0 +1,49 @@
+﻿@model PSS.Models.Item
+@using PSS.Utils.Constants
+
+@{
+    ViewBag.Title = View.Delete;
+}
+
+<h2>@View.Delete</h2>
+
+<h3>@View.ConfirmDelete</h3>
+<div>
+    <h4>@Html.DisplayNameForModel()</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ShortDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ShortDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@View.Delete" class="btn btn-default" /> |
+            @Html.ActionLink(View.BackToList, "Index")
+        </div>
+    }
+</div>
