@@ -60,24 +60,31 @@ namespace PSS.Controllers
             return View(item);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var item = GetCart().Items.First(i => i.Product.Id == id);
+
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(item);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Item item)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var _item = GetCart().Items.First(i => i.Product.Id == item.Product.Id);
+            _item.Quantity = item.Quantity;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int? id)
