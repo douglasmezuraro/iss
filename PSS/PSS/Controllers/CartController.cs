@@ -28,9 +28,17 @@ namespace PSS.Controllers
 
         public ActionResult AddToCart(Item item)
         {
-            item.Product = db.Products.Find(item.ProductId);
+            var _item = GetCart().Items.FirstOrDefault(i => i.Product.Id == item.Product.Id);
 
-            GetCart().Items.Add(item);
+            if (_item == null)
+            {
+                item.Product = db.Products.Find(item.ProductId);
+                GetCart().Items.Add(item);
+            }
+            else
+            {
+                _item.Quantity += item.Quantity;
+            }
 
             return RedirectToAction("Index", "Products");
         }
