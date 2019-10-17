@@ -12,5 +12,8 @@ namespace PSS.Models
         [MinLength(DescriptionMinLength), MaxLength(DescriptionMaxLength)]
         [DisplayName("Nome")]
         public string Name { get; set; }
+
+        [DisplayName("Perecível?")]
+        public bool Perishable { get; set; }
     }
 }

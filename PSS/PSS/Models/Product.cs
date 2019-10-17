@@ -35,9 +35,6 @@ namespace PSS.Models
         [DisplayName("Peso (KG)")]
         public double Weight { get; set; }
 
-        [DisplayName("Perecível?")]
-        public bool Perishable { get; set; }
-
         [DisplayName("Validade")]       
         public DateTime? Expiration { get; set; }
 
