@@ -1,0 +1,44 @@
+﻿@model PSS.Models.Item
+@using PSS.Utils.Constants
+
+@{
+    ViewBag.Title = View.Details;
+}
+
+<h2>@View.Details</h2>
+
+<div>
+    <h4>@Html.DisplayNameForModel()</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ShortDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ShortDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink(View.Edit, "Edit", new { id = Model.Product.Id }) |
+    @Html.ActionLink(View.BackToList, "Index")
+</p>

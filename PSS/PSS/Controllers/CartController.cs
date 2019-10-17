@@ -11,37 +11,46 @@ namespace PSS.Controllers
     {
         private Context db = new Context();
 
-        public ActionResult Index()
+        private Cart GetCart()
         {
             if (Session["Cart"] == null)
             {
                 Session["Cart"] = new Cart();
             }
 
-            var cart = (Cart)Session["Cart"];
+            return (Cart)Session["Cart"];
+        }
 
-            return View(cart.Items.ToList());
+        public ActionResult Index()
+        {
+            return View(GetCart().Items.ToList());
         }
 
         public ActionResult AddToCart(Item item)
         {
-            if (Session["Cart"] == null)
-            {
-                Session["Cart"] = new Cart();
-            }
-
             item.Product = db.Products.Find(item.ProductId);
-            var cart = (Cart)Session["Cart"];
-            cart.Items.Add(item);
+
+            GetCart().Items.Add(item);
 
             return RedirectToAction("Index", "Products");
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
-        }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            var item = GetCart().Items.FirstOrDefault(p => p.Product.Id == id);
+
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(item);
+        }
 
         public ActionResult Edit(int id)
         {
