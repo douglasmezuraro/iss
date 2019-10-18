@@ -9,9 +9,7 @@ namespace PSS.Models
     [DisplayName("Tipo de usuário")]    
     public class UserType : Base 
     {
-        public const int Admin = 1;
-        public const int Client = 2;
-        public const int Visitor = 3;
+        public enum UserTypeEnum { Admin = 1, Client, Visitor };
 
         [Required]
         [MinLength(DescriptionMinLength), MaxLength(DescriptionMaxLength)]

@@ -1,6 +1,7 @@
 ﻿@model PSS.Models.PurchaseOrder
 @using PSS.Utils.Constants
 @using PSS.Models
+@using PSS.Utils
 
 @{
     ViewBag.Title = View.Create;
@@ -40,28 +41,25 @@
                         </th>
                     </tr>
 
-                    @if (Session["Cart"] != null)
+                    @foreach (var item in Global.Cart.Items)
                     {
-                        foreach (var item in ((Cart)Session["Cart"]).Items)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Product.Id)
-                                </td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product.Id)
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Product.ShortDescription)
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product.ShortDescription)
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Quantity)
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TotalPurchasePrice)
-                                </td>
-                            </tr>
-                        }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalPurchasePrice)
+                            </td>
+                        </tr>
                     }
                 </table>
             </div>

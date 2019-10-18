@@ -5,6 +5,7 @@ using System.Net;
 using System.Web.Mvc;
 using PSS.Models;
 using SGCO.Context;
+using PSS.Utils;
 
 namespace PSS.Controllers
 {
@@ -14,18 +15,16 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            User loggedUser = (User)Session["User"];
-
-            if (loggedUser != null)
+            if (Global.User != null)
             {
                 var users = db.Users.Include(u => u.City)
                                     .Include(u => u.Gender)
                                     .Include(u => u.UserType)
                                     .Where(u => u.IsActive);
 
-                if (loggedUser.UserTypeId == UserType.Client)
+                if (Global.User.UserTypeId == (int)UserType.UserTypeEnum.Client)
                 {
-                    return View(users.ToList().Where(u => u.Id == loggedUser.Id));
+                    return View(users.ToList().Where(u => u.Id == Global.User.Id));
                 }
 
                 return View(users.ToList());
@@ -166,17 +165,20 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(User user)
         {
-            var model = db.Users.Where(u => u.Email.Equals(user.Email)
-                                    && u.Password.Equals(user.Password)).FirstOrDefault();
+            var model = db.Users.Where(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password)).FirstOrDefault();
 
-            Session["User"] = model;
-
+            if (model != null)
+            {
+                model.UserType = db.UserTypes.Find(model.UserTypeId);
+                Global.User = model;
+            }
+            
             return RedirectToAction("index");
         }
 
         public ActionResult Logoff()
         {
-            Session["User"] = null;
+            Global.User = null;
             return RedirectToAction("index");
         }
 

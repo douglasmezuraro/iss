@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using PSS.Utils
+@using PSS.Models
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,19 +21,25 @@
                 </button>
                 @Html.ActionLink("Início", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            
+
             <div class="navbar-collapse collapse">
-                @if (Session["User"] != null)
+                @if (Global.User != null)
                 {
                     <ul id="Links" class="nav navbar-nav">
+
                         <li>@Html.ActionLink("Usuários", "Index", "Users")</li>
-                        <li>@Html.ActionLink("Cidades", "Index", "Cities")</li>
-                        <li>@Html.ActionLink("Categorias", "Index", "Categories")</li>
-                        <li>@Html.ActionLink("Fornecedores", "Index", "Providers")</li>
-                        <li>@Html.ActionLink("Fabricantes", "Index", "Manufacturers")</li>
+                      
+                        @if (Global.User.UserType.Id == (int)UserType.UserTypeEnum.Admin)
+                        {
+                            <li>@Html.ActionLink("Cidades", "Index", "Cities")</li>
+                            <li>@Html.ActionLink("Categorias", "Index", "Categories")</li>
+                            <li>@Html.ActionLink("Fornecedores", "Index", "Providers")</li>
+                            <li>@Html.ActionLink("Fabricantes", "Index", "Manufacturers")</li>
+                            <li>@Html.ActionLink("Unidades", "Index", "Units")</li>
+                        }
+
                         <li>@Html.ActionLink("Produtos", "Index", "Products")</li>
                         <li>@Html.ActionLink("Pedidos", "Index", "Orders")</li>
-                        <li>@Html.ActionLink("Unidades", "Index", "Units")</li>
                         <li>@Html.ActionLink("Carrinho de compras", "Index", "Cart")</li>
                     </ul>
                 }

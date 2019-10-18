@@ -8,11 +8,11 @@ namespace PSS.Utils
     {
         public Controller CreateController(User user)
         {
-            switch (user.UserTypeId)
+            switch ((UserType.UserTypeEnum)user.UserTypeId)
             {
-                case UserType.Admin   : return new PurchaseOrdersController(); 
-                case UserType.Client  : return new SaleOrdersController();               
-                case UserType.Visitor : return new SaleOrdersController();         
+                case UserType.UserTypeEnum.Admin   : return new PurchaseOrdersController(); 
+                case UserType.UserTypeEnum.Client  : return new SaleOrdersController();               
+                case UserType.UserTypeEnum.Visitor : return new SaleOrdersController();         
                 default : return new HomeController(); 
             }
         }

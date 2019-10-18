@@ -246,6 +246,7 @@
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Constants\View.cs" />
+    <Compile Include="Utils\Global.cs" />
     <Compile Include="Utils\OrderControllerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
