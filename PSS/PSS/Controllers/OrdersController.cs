@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using PSS.Models;
 using PSS.Utils;
 
 namespace PSS.Controllers
@@ -8,9 +7,7 @@ namespace PSS.Controllers
     {
         public ActionResult Index()
         {
-            var user = (User)Session["User"];
-            var factory = new OrderControllerFactory();
-            var controller = factory.CreateController(user);
+            var controller = new OrderControllerFactory().CreateController();
 
             return RedirectToAction("Index", controller.ToString());
         }
