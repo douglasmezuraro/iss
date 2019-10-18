@@ -136,6 +136,11 @@ namespace PSS.Controllers
             return "PurchaseOrders";
         }
 
+        public ActionResult FinalizeOrder()
+        {
+            return Create();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
