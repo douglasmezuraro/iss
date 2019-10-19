@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using PSS.Utils.Constants;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,7 +10,7 @@ namespace PSS.Models
     public class City : Base
     {
         [Required]
-        [MaxLength(DescriptionMaxLength)]
+        [MaxLength(General.DESCRIPTION_MAX_LENGTH)]
         [DisplayName("Nome")]
         public string Name { get; set; }
 

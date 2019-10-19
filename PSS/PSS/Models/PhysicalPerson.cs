@@ -1,4 +1,4 @@
-﻿using System;
+﻿using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,23 +7,23 @@ namespace PSS.Models
     public abstract class PhysicalPerson : Person
     {
         [Required]
-        [MinLength(DescriptionMinLength), MaxLength(DescriptionMaxLength)]
+        [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
         [DisplayName("Nome")]
         public string Name { get; set; }
 
         [Required]
-        [MinLength(DescriptionMinLength), MaxLength(DescriptionMaxLength)]
+        [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
         [DisplayName("Sobrenome")]
         public string LastName { get; set; }
 
         [Required]
-        [MinLength(14), MaxLength(14)]
+        [MinLength(General.CPF_LENGTH), MaxLength(General.CPF_LENGTH)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:###.###.###-##}")]
         public string CPF { get; set; }
 
         [Required]
         [DisplayName("Nascimento")]
-        public DateTime? Birth { get; set; }
+        public System.DateTime? Birth { get; set; }
 
         [Required]
         [DisplayName("Gênero")]

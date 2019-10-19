@@ -1,4 +1,4 @@
-﻿using System;
+﻿using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,8 +10,8 @@ namespace PSS.Models
     public class Unit : Base
     {
         [Required]
-        [MinLength(DescriptionMinLength), MaxLength(DescriptionMaxLength)]
+        [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
         [DisplayName("Descrição")]
-        public String Description { get; set; }
+        public string Description { get; set; }
     }
 }

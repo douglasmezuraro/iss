@@ -1,4 +1,4 @@
-﻿using System;
+﻿using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,12 +10,12 @@ namespace PSS.Models
     public class Product : Base
     {
         [Required]
-        [MinLength(DescriptionMinLength), MaxLength(DescriptionMaxLength)]
+        [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
         [DisplayName("Descrição resumida")]
         public string ShortDescription { get; set; }
 
         [Required]
-        [MinLength(DescriptionMinLength), MaxLength(DescriptionMaxLength)]
+        [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
         [DisplayName("Descrição completa")]
         public string FullDescription { get; set; }
 
@@ -36,7 +36,7 @@ namespace PSS.Models
         public double Weight { get; set; }
 
         [DisplayName("Validade")]       
-        public DateTime? Expiration { get; set; }
+        public System.DateTime? Expiration { get; set; }
 
         [Required]
         [DisplayName("Categoria")]
