@@ -14,13 +14,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Product.Id)
+            @Html.DisplayNameFor(m => m.Product.Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Product.ShortDescription)
+            @Html.DisplayNameFor(m => m.Product.ShortDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Quantity)
+            @Html.DisplayNameFor(m => m.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Price)
         </th>
         <th></th>
     </tr>
@@ -29,13 +32,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.Id)
+                @Html.DisplayFor(m => item.Product.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.ShortDescription)
+                @Html.DisplayFor(m => item.Product.ShortDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
+                @Html.DisplayFor(m => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Price)
             </td>
             <td>
                 @Html.ActionLink(View.Edit, "Edit", new { id = item.Product.Id }) |

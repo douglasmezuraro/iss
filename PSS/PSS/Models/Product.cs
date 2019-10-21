@@ -1,4 +1,5 @@
-﻿using PSS.Utils.Constants;
+﻿using PSS.Utils;
+using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -65,5 +66,9 @@ namespace PSS.Models
 
         [DisplayName("Unidade")]
         public Unit Unit { get; set; }
+
+        [NotMapped]
+        [ScaffoldColumn(false)]
+        public double Price => Global.User.UserTypeId == (int)UserType.UserTypeEnum.Admin ? PurchasePrice : SalePrice;
     }
 }

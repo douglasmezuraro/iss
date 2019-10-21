@@ -14,8 +14,8 @@ namespace PSS.Models
         public DateTime DeliveryDate { get; set; }
 
         [Required]
-        [DisplayName("Valor")]
-        public double Value { get; set; }
+        [DisplayName("Preço")]
+        public double Price { get; set; }
 
         [Required]
         [DisplayName("Tipo de frete")]

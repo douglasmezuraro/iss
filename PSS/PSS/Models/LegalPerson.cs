@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using PSS.Utils.Constants;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace PSS.Models
@@ -15,7 +16,7 @@ namespace PSS.Models
 
         [Required]
         [DisplayName("CNPJ")]
-        [MinLength(18), MaxLength(18)]
+        [MinLength(General.CNPJ_LENTH), MaxLength(General.CNPJ_LENTH)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:##.###.###/####-##}")]
         public string CNPJ { get; set; }
     }

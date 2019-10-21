@@ -1,4 +1,5 @@
 using PSS.Utils;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -20,8 +21,8 @@ namespace PSS.Models
             }
         }
 
-        [DisplayName("Valor total")]
-        public abstract double TotalValue { get; }
+        [DisplayName("Prelo total")]
+        public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Product.Price) + Installments.Sum(i => i.Value);
 
         [DisplayName("Data")]
         public System.DateTime? Date { get; set; }
@@ -41,7 +42,7 @@ namespace PSS.Models
         public User User { get; set; }
 
         [DisplayName("Frete")]
-        public ICollection<Freight> Freights { get; } = new List<Freight>();
+        public Freight Freight { get; } = new Freight();
 
         [DisplayName("Carrinho")]
         public ICollection<Item> Items { get; } = new List<Item>();

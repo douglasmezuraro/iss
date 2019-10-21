@@ -15,7 +15,8 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var purchaseOrders = db.PurchaseOrders.Include(p => p.OrderStatus).Include(p => p.User).Include(p => p.Items);
+            var purchaseOrders = db.PurchaseOrders.Include(p => p.OrderStatus).Include(p => p.User).Include(p => p.Items.Select(i => i.Product)).Where(p => p.IsActive);
+        
             return View(purchaseOrders.ToList());
         }
 
@@ -37,8 +38,8 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses, "Id", "Description");
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Password");
+            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses.Where(o => o.IsActive), "Id", "Description");
+            ViewBag.UserId = new SelectList(db.Users.Where(u => u.IsActive), "Id", "Password");
 
             return View();
         }
@@ -62,8 +63,8 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses, "Id", "Description", purchaseOrder.OrderStatusId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Password", purchaseOrder.UserId);
+            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses.Where(o => o.IsActive), "Id", "Description", purchaseOrder.OrderStatusId);
+            ViewBag.UserId = new SelectList(db.Users.Where(u => u.IsActive), "Id", "Password", purchaseOrder.UserId);
 
             return View(purchaseOrder);
         }
@@ -81,8 +82,8 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses, "Id", "Description", purchaseOrder.OrderStatusId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Password", purchaseOrder.UserId);
+            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses.Where(o => o.IsActive), "Id", "Description", purchaseOrder.OrderStatusId);
+            ViewBag.UserId = new SelectList(db.Users.Where(u => u.IsActive), "Id", "Password", purchaseOrder.UserId);
 
             return View(purchaseOrder);
         }
@@ -99,8 +100,8 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses, "Id", "Description", purchaseOrder.OrderStatusId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Password", purchaseOrder.UserId);
+            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses.Where(o => o.IsActive), "Id", "Description", purchaseOrder.OrderStatusId);
+            ViewBag.UserId = new SelectList(db.Users.Where(u => u.IsActive), "Id", "Password", purchaseOrder.UserId);
 
             return View(purchaseOrder);
         }
@@ -126,8 +127,17 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PurchaseOrder purchaseOrder = db.PurchaseOrders.Find(id);
-            db.PurchaseOrders.Remove(purchaseOrder);
+            PurchaseOrder order = db.PurchaseOrders.Find(id);
+
+            order.IsActive = false;
+            db.Entry(order).State = EntityState.Modified;
+
+            foreach (var item in order.Items)
+            {
+                item.IsActive = false;
+                db.Entry(item).State = EntityState.Modified;
+            }    
+ 
             db.SaveChanges();
 
             return RedirectToAction("Index");

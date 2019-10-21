@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using PSS.Utils.Constants;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,7 +10,7 @@ namespace PSS.Models
     public class User : PhysicalPerson
     {
         [Required]
-        [MinLength(1), MaxLength(16)]
+        [MinLength(General.PASSWORD_MIN_LENGTH), MaxLength(General.PASSWORD_MAX_LENGTH)]
         [PasswordPropertyText(true)]
         [DisplayName("Senha")]
         public string Password { get; set; }
