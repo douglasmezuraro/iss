@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+using PSS.Utils;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using PSS.Models;
 using SGCO.Context;
@@ -18,7 +15,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var purchaseOrders = db.PurchaseOrders.Include(p => p.OrderStatus).Include(p => p.User);
+            var purchaseOrders = db.PurchaseOrders.Include(p => p.OrderStatus).Include(p => p.User).Include(p => p.Items);
             return View(purchaseOrders.ToList());
         }
 
@@ -52,6 +49,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
+                purchaseOrder.FinalizeOrder();
+
+                foreach (var item in purchaseOrder.Items)
+                {
+                    db.Entry(item.Product).State = EntityState.Modified;
+                }
+          
                 db.PurchaseOrders.Add(purchaseOrder);
                 db.SaveChanges();
 

@@ -9,6 +9,8 @@ namespace PSS.Models
     [DisplayName("Status do pedido")]
     public class OrderStatus : Base
     {
+        public enum Enum { Undefined, InProgress, Finished, InSeparation, OutForDelivery, Delivered }
+
         [Required]
         [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
         [DisplayName("Descrição")]

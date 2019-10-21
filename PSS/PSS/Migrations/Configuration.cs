@@ -63,11 +63,11 @@ namespace PSS.Migrations
                 new PaymentType { Id = 4, Description = "Cartão de débito", IsActive = true });
 
             context.OrderStatuses.AddOrUpdate(orderStatus => orderStatus.Id,
-                new OrderStatus { Id = 1, Description = "Não finalizado", IsActive = true },
-                new OrderStatus { Id = 2, Description = "Finalizado", IsActive = true },
-                new OrderStatus { Id = 3, Description = "Em separação", IsActive = true },
-                new OrderStatus { Id = 4, Description = "Saída para entrega", IsActive = true },
-                new OrderStatus { Id = 5, Description = "Entregue", IsActive = true });
+                new OrderStatus { Id = 1, Description = "Não finalizado" },
+                new OrderStatus { Id = 2, Description = "Finalizado" },
+                new OrderStatus { Id = 3, Description = "Em separação" },
+                new OrderStatus { Id = 4, Description = "Saída para entrega" },
+                new OrderStatus { Id = 5, Description = "Entregue" });
 
             context.FreightTypes.AddOrUpdate(freightType => freightType.Id,
                 new FreightType { Id = 1, Description = "Sedex", IsActive = true },

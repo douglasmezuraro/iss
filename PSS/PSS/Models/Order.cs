@@ -1,3 +1,4 @@
+using PSS.Utils;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +8,18 @@ namespace PSS.Models
     [DisplayName("Pedido")]
     public abstract class Order : Base
     {
+        public Order()
+        {
+            UserId = Global.User.Id;
+            Date = System.DateTime.Now;
+            OrderStatusId = (int)OrderStatus.Enum.InProgress;
+
+            foreach (var Item in Global.Cart.Items)
+            {
+                Items.Add(Item);
+            }
+        }
+
         [DisplayName("Valor total")]
         public abstract double TotalValue { get; }
 
@@ -28,14 +41,18 @@ namespace PSS.Models
         public User User { get; set; }
 
         [DisplayName("Frete")]
-        public ICollection<Freight> Freights { get; set; } = new List<Freight>();
+        public ICollection<Freight> Freights { get; } = new List<Freight>();
 
         [DisplayName("Carrinho")]
-        public ICollection<Item> Items { get; set; } = new List<Item>();
+        public ICollection<Item> Items { get; } = new List<Item>();
 
         [DisplayName("Pagamento")]
-        public ICollection<Installment> Installments { get; set; } = new List<Installment>();
+        public ICollection<Installment> Installments { get; } = new List<Installment>();
 
-        public abstract void FinalizeOrder();
+        public virtual void FinalizeOrder()
+        {
+            OrderStatusId = (int)OrderStatus.Enum.Finished;
+            Global.Cart.Items.Clear();
+        }
     }
 }

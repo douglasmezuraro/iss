@@ -15,19 +15,12 @@ namespace PSS.Models
         public int ProductId { get; set; }
 
         [DisplayName("Produto")]
-        public Product Product { get; set; } = new Product();
+        public Product Product { get; set; }
 
         [DisplayName("Preço total de venda")]
-        public double TotalSalePrice
-        {
-            get { return Product == null ? 0 : Quantity * Product.SalePrice; }
-        }
+        public double TotalSalePrice => Product == null ? 0 : Quantity * Product.SalePrice;
 
         [DisplayName("Preço total de compra")]
-        public double TotalPurchasePrice
-        {
-            get { return Product == null ? 0 : Quantity * Product.PurchasePrice; }
-        }
-
+        public double TotalPurchasePrice => Product == null ? 0 : Quantity * Product.PurchasePrice;
     }
 }

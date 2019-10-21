@@ -8,6 +8,6 @@ namespace PSS.Models
         public int Id { get; set; }
 
         [ScaffoldColumn(false)]
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
