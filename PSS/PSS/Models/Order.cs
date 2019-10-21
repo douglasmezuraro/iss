@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +11,7 @@ namespace PSS.Models
         public abstract double TotalValue { get; }
 
         [DisplayName("Data")]
-        public DateTime? Date { get; set; }
+        public System.DateTime? Date { get; set; }
 
         [Required]
         [DisplayName("Status")]
@@ -36,5 +35,7 @@ namespace PSS.Models
 
         [DisplayName("Pagamento")]
         public ICollection<Installment> Installments { get; set; } = new List<Installment>();
+
+        public abstract void FinalizeOrder();
     }
 }

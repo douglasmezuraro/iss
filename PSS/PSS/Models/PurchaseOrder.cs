@@ -11,5 +11,13 @@ namespace PSS.Models
         {
             get { return Items.Sum(item => item.TotalPurchasePrice) + Installments.Sum(installment => installment.Value); }
         }
+
+        public override void FinalizeOrder()
+        {
+            foreach(var item in Items)
+            {
+                item.Product.Stock -= item.Quantity;
+            }            
+        }
     }
 }
