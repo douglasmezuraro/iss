@@ -21,7 +21,7 @@ namespace PSS.Models
             }
         }
 
-        [DisplayName("Prelo total")]
+        [DisplayName("Preço total")]
         public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Product.Price) + Installments.Sum(i => i.Price);
 
         [DisplayName("Data")]
