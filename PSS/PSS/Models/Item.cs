@@ -8,7 +8,7 @@ namespace PSS.Models
     {
         [Required]
         [DisplayName("Quantidade")]
-        public double Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [Required]
         [DisplayName("Price")]

@@ -25,7 +25,7 @@ namespace PSS.Models
 
         [Required]
         [DisplayName("Estoque")]
-        public double Stock { get; set; }
+        public int Stock { get; set; }
 
         [Required]
         [DisplayName("Peso (KG)")]
