@@ -17,10 +17,12 @@ namespace PSS.Models
 
         [Required]
         [DisplayName("Preço de compra")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         public double PurchasePrice { get; set; }
 
         [Required]
         [DisplayName("Preço de venda")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         public double SalePrice { get; set; }
 
         [Required]
@@ -29,6 +31,7 @@ namespace PSS.Models
 
         [Required]
         [DisplayName("Peso (KG)")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         public double Weight { get; set; }
 
         [DisplayName("Validade")]       
@@ -64,6 +67,7 @@ namespace PSS.Models
 
         [NotMapped]
         [ScaffoldColumn(false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         public double Price => Global.User.UserTypeId == (int)UserType.UserTypeEnum.Admin ? PurchasePrice : SalePrice;
     }
 }

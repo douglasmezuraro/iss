@@ -1,4 +1,5 @@
 using PSS.Utils;
+using PSS.Utils.Constants;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace PSS.Models
         }
 
         [DisplayName("Preço total")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Product.Price) + Installments.Sum(i => i.Price);
 
         [DisplayName("Data")]

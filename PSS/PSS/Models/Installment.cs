@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using PSS.Utils.Constants;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,6 +11,7 @@ namespace PSS.Models
     {
         [Required]
         [DisplayName("Preço")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         public double Price { get; set; }
 
         [Required]

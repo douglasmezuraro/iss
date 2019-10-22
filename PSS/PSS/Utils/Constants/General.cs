@@ -9,5 +9,7 @@
         public const byte CNPJ_LENTH = 18;
         public const byte PASSWORD_MIN_LENGTH = 1;
         public const byte PASSWORD_MAX_LENGTH = 16;
+
+        public const string REAL_VALUE_MASK = "{0:n2}";
     }
 }
