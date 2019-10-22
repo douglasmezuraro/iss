@@ -1,0 +1,43 @@
+﻿@model PSS.Models.State
+@using PSS.Utils.Constants
+
+@{
+    ViewBag.Title = View.Details;
+}
+
+<h2>@View.Details</h2>
+
+<div>
+    <h4>@Html.DisplayNameForModel()</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UF)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(View.Edit, "Edit", new { id = Model.Id }) |
+    @Html.ActionLink(View.BackToList, "Index")
+</p>
