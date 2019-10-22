@@ -11,7 +11,7 @@ namespace PSS.Models
         public int Quantity { get; set; }
 
         [Required]
-        [DisplayName("Price")]
+        [DisplayName("Preço")]
         public double Price => Product == null ? 0 : Product.Price * Quantity;
 
         [Required]
