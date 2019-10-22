@@ -14,6 +14,7 @@ namespace PSS.Migrations
 
         protected override void Seed(SGCO.Context.Context context)
         {
+            SeedCountries(context);
             SeedStates(context);
             SeedCities(context);
             SeedGenders(context);
@@ -28,36 +29,42 @@ namespace PSS.Migrations
             SeedProducts(context);
         }
 
+        private void SeedCountries(SGCO.Context.Context context)
+        {
+            context.Countries.AddOrUpdate(c => c.Id,
+                new Country { Id = 01, Name = "Brasil" });
+        }
+
         private void SeedStates(SGCO.Context.Context context)
         {
             context.States.AddOrUpdate(s => s.Id,
-                new State { Id = 01, UF = "AC", Name = "Acre" },
-                new State { Id = 02, UF = "AL", Name = "Alagoas" },
-                new State { Id = 03, UF = "AP", Name = "Amapá" },
-                new State { Id = 04, UF = "AM", Name = "Amazonas" },
-                new State { Id = 05, UF = "BA", Name = "Bahia" },
-                new State { Id = 06, UF = "CE", Name = "Ceará" },
-                new State { Id = 07, UF = "DF", Name = "Distrito Federal" },
-                new State { Id = 08, UF = "ES", Name = "Espírito Santo" },
-                new State { Id = 09, UF = "GO", Name = "Goiás" },
-                new State { Id = 10, UF = "MA", Name = "Maranhão" },
-                new State { Id = 11, UF = "MT", Name = "Mato Grosso" },
-                new State { Id = 12, UF = "MS", Name = "Mato Grosso do Sul" },
-                new State { Id = 13, UF = "MG", Name = "Minas Gerais" },
-                new State { Id = 14, UF = "PA", Name = "Pará" },
-                new State { Id = 15, UF = "PB", Name = "Paraíba" },
-                new State { Id = 16, UF = "PR", Name = "Paraná" },
-                new State { Id = 17, UF = "PE", Name = "Pernambuco" },
-                new State { Id = 18, UF = "PI", Name = "Piauí" },
-                new State { Id = 19, UF = "RJ", Name = "Rio de Janeiro" },
-                new State { Id = 20, UF = "RN", Name = "Rio Grande do Norte" },
-                new State { Id = 21, UF = "RS", Name = "Rio Grande do Sul" },
-                new State { Id = 22, UF = "RO", Name = "Rondônia" },
-                new State { Id = 23, UF = "RR", Name = "Roraima" },
-                new State { Id = 24, UF = "SC", Name = "Santa Catarina" },
-                new State { Id = 25, UF = "SP", Name = "São Paulo" },
-                new State { Id = 26, UF = "SE", Name = "Sergipe" },
-                new State { Id = 27, UF = "TO", Name = "Tocantins" });
+                new State { Id = 01, UF = "AC", CountryId = 01, Name = "Acre" },
+                new State { Id = 02, UF = "AL", CountryId = 01, Name = "Alagoas" },
+                new State { Id = 03, UF = "AP", CountryId = 01, Name = "Amapá" },
+                new State { Id = 04, UF = "AM", CountryId = 01, Name = "Amazonas" },
+                new State { Id = 05, UF = "BA", CountryId = 01, Name = "Bahia" },
+                new State { Id = 06, UF = "CE", CountryId = 01, Name = "Ceará" },
+                new State { Id = 07, UF = "DF", CountryId = 01, Name = "Distrito Federal" },
+                new State { Id = 08, UF = "ES", CountryId = 01, Name = "Espírito Santo" },
+                new State { Id = 09, UF = "GO", CountryId = 01, Name = "Goiás" },
+                new State { Id = 10, UF = "MA", CountryId = 01, Name = "Maranhão" },
+                new State { Id = 11, UF = "MT", CountryId = 01, Name = "Mato Grosso" },
+                new State { Id = 12, UF = "MS", CountryId = 01, Name = "Mato Grosso do Sul" },
+                new State { Id = 13, UF = "MG", CountryId = 01, Name = "Minas Gerais" },
+                new State { Id = 14, UF = "PA", CountryId = 01, Name = "Pará" },
+                new State { Id = 15, UF = "PB", CountryId = 01, Name = "Paraíba" },
+                new State { Id = 16, UF = "PR", CountryId = 01, Name = "Paraná" },
+                new State { Id = 17, UF = "PE", CountryId = 01, Name = "Pernambuco" },
+                new State { Id = 18, UF = "PI", CountryId = 01, Name = "Piauí" },
+                new State { Id = 19, UF = "RJ", CountryId = 01, Name = "Rio de Janeiro" },
+                new State { Id = 20, UF = "RN", CountryId = 01, Name = "Rio Grande do Norte" },
+                new State { Id = 21, UF = "RS", CountryId = 01, Name = "Rio Grande do Sul" },
+                new State { Id = 22, UF = "RO", CountryId = 01, Name = "Rondônia" },
+                new State { Id = 23, UF = "RR", CountryId = 01, Name = "Roraima" },
+                new State { Id = 24, UF = "SC", CountryId = 01, Name = "Santa Catarina" },
+                new State { Id = 25, UF = "SP", CountryId = 01, Name = "São Paulo" },
+                new State { Id = 26, UF = "SE", CountryId = 01, Name = "Sergipe" },
+                new State { Id = 27, UF = "TO", CountryId = 01, Name = "Tocantins" });
         }
 
         private void SeedCities(SGCO.Context.Context context)

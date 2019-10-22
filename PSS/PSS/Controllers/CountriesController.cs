@@ -1,5 +1,4 @@
-﻿using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -8,16 +7,15 @@ using SGCO.Context;
 
 namespace PSS.Controllers
 {
-    public class CitiesController : Controller
+    public class CountriesController : Controller
     {
         private Context db = new Context();
-
+        
         public ActionResult Index()
         {
-            var cities = db.Cities.Include(c => c.State).Include(c => c.State.Country).Where(c => c.IsActive);
-            return View(cities.ToList().Where(c => c.IsActive));
+            return View(db.Countries.Where(c => c.IsActive).ToList());
         }
-
+       
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -25,39 +23,33 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            City city = db.Cities.Find(id);
-            if (city == null)
+            Country country = db.Countries.Find(id);
+            if (country == null)
             {
                 return HttpNotFound();
             }
 
-            city.State = db.States.Find(city.StateId);
-
-            return View(city);
+            return View(country);
         }
 
         public ActionResult Create()
         {
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(City city)
+        public ActionResult Create(Country country)
         {
             if (ModelState.IsValid)
             {
-                city.IsActive = true;
-                db.Cities.Add(city);
+                db.Countries.Add(country);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name", city.StateId);
-
-            return View(city);
+            return View(country);
         }
 
         public ActionResult Edit(int? id)
@@ -67,32 +59,28 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            City city = db.Cities.Find(id);
-            if (city == null)
+            Country country = db.Countries.Find(id);
+            if (country == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name", city.StateId);
-
-            return View(city);
+            return View(country);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(City city)
+        public ActionResult Edit(Country country)
         {
             if (ModelState.IsValid)
             {
-                city.IsActive = true;
-                db.Entry(city).State = EntityState.Modified;
+                db.Entry(country).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name", city.StateId);
 
-            return View(city);
+            return View(country);
         }
 
         public ActionResult Delete(int? id)
@@ -102,23 +90,24 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            City city = db.Cities.Find(id);
-            if (city == null)
+            Country country = db.Countries.Find(id);
+            if (country == null)
             {
                 return HttpNotFound();
             }
 
-            return View(city);
+            return View(country);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            City city = db.Cities.Find(id);
-            city.IsActive = false;
-            db.Entry(city).State = EntityState.Modified;
+            Country country = db.Countries.Find(id);
+            country.IsActive = false;
+            db.Entry(country).State = EntityState.Modified;          
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

@@ -18,5 +18,12 @@ namespace PSS.Models
         [MinLength(General.UF_LENGTH), MaxLength(General.UF_LENGTH)]
         [DisplayName("UF")]
         public string UF { get; set; }
+
+        [Required]
+        [DisplayName("País")]
+        public int CountryId { get; set; }
+
+        [DisplayName("País")]
+        public Country Country { get; set; }
     }
 }

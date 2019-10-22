@@ -207,6 +207,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturersController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Freight.cs" />
     <Compile Include="Models\FreightType.cs" />
     <Compile Include="Models\Gender.cs" />
@@ -337,6 +339,11 @@
     <Content Include="Views\Cart\Details.cshtml" />
     <Content Include="Views\Cart\Delete.cshtml" />
     <Content Include="Views\Cart\Edit.cshtml" />
+    <Content Include="Views\Countries\Create.cshtml" />
+    <Content Include="Views\Countries\Delete.cshtml" />
+    <Content Include="Views\Countries\Details.cshtml" />
+    <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\Countries\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

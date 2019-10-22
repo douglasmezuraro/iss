@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PSS.Models.City>
+﻿@model IEnumerable<PSS.Models.Country>
 @using PSS.Utils.Constants
 
 @{
@@ -15,12 +15,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State.Country)
-        </th>
         <th></th>
     </tr>
 
@@ -28,12 +22,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State.Country.Name)
         </td>
         <td>
             @Html.ActionLink(View.Edit, "Edit", new { id = item.Id }) |
