@@ -40,7 +40,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Perishable,IsActive")] Category category)
+        public ActionResult Create(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Perishable,IsActive")] Category category)
+        public ActionResult Edit(Category category)
         {
             if (ModelState.IsValid)
             {

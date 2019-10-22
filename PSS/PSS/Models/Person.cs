@@ -6,10 +6,12 @@ namespace PSS.Models
     public abstract class Person : Base
     {
         [Required]
+        [Phone]
         [DisplayName("Telefone")]
         public string Phone { get; set; }
 
         [Required]
+        [EmailAddress]
         [DisplayName("E-mail")]
         public string Email { get; set; }
 

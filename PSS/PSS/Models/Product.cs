@@ -12,13 +12,8 @@ namespace PSS.Models
     {
         [Required]
         [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
-        [DisplayName("Descrição resumida")]
-        public string ShortDescription { get; set; }
-
-        [Required]
-        [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
-        [DisplayName("Descrição completa")]
-        public string FullDescription { get; set; }
+        [DisplayName("Descrição")]
+        public string Description { get; set; }
 
         [Required]
         [DisplayName("Preço de compra")]

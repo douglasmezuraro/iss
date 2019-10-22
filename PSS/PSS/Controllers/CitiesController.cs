@@ -44,7 +44,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,StateId,IsActive")] City city)
+        public ActionResult Create(City city)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,StateId,IsActive")] City city)
+        public ActionResult Edit(City city)
         {
             if (ModelState.IsValid)
             {

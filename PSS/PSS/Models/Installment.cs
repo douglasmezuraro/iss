@@ -9,8 +9,8 @@ namespace PSS.Models
     public class Installment : Base
     {
         [Required]
-        [DisplayName("Valor")]
-        public double Value { get; set; }
+        [DisplayName("Preço")]
+        public double Price { get; set; }
 
         [Required]
         [DisplayName("Tipo de pagamento")]

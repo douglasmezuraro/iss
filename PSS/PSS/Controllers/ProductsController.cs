@@ -55,7 +55,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ShortDescription,FullDescription,PurchasePrice,SalePrice,Stock,Weight,Expiration,CategoryId,ManufacturerId,ProviderId,UnitId,IsActive")] Product product)
+        public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ShortDescription,FullDescription,PurchasePrice,SalePrice,Stock,Weight,Expiration,CategoryId,ManufacturerId,ProviderId,UnitId,IsActive")] Product product)
+        public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {

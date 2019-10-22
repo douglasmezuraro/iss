@@ -45,7 +45,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ShortName,FullName,CNPJ,Phone,Email,Address,Number,PostalCode,Complement,Reference,CityId,IsActive")] Provider provider)
+        public ActionResult Create(Provider provider)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ShortName,FullName,CNPJ,Phone,Email,Address,Number,PostalCode,Complement,Reference,CityId,IsActive")] Provider provider)
+        public ActionResult Edit(Provider provider)
         {
             if (ModelState.IsValid)
             {

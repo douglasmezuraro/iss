@@ -1,4 +1,3 @@
-using PSS.Utils;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -46,7 +45,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TotalValue,Date,OrderStatusId,UserId,IsActive")] PurchaseOrder purchaseOrder)
+        public ActionResult Create(PurchaseOrder purchaseOrder)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +89,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TotalValue,Date,OrderStatusId,UserId,IsActive")] PurchaseOrder purchaseOrder)
+        public ActionResult Edit(PurchaseOrder purchaseOrder)
         {
             if (ModelState.IsValid)
             {

@@ -22,7 +22,7 @@ namespace PSS.Models
         }
 
         [DisplayName("Prelo total")]
-        public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Product.Price) + Installments.Sum(i => i.Value);
+        public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Product.Price) + Installments.Sum(i => i.Price);
 
         [DisplayName("Data")]
         public System.DateTime? Date { get; set; }

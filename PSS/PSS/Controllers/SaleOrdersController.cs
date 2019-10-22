@@ -47,7 +47,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TotalValue,Date,OrderStatusId,UserId,IsActive")] SaleOrder saleOrder)
+        public ActionResult Create(SaleOrder saleOrder)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TotalValue,Date,OrderStatusId,UserId,IsActive")] SaleOrder saleOrder)
+        public ActionResult Edit(SaleOrder saleOrder)
         {
             if (ModelState.IsValid)
             {

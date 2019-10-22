@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +10,7 @@ namespace PSS.Models
     {
         [Required]
         [DisplayName("Previsão de entrega")]
-        public DateTime DeliveryDate { get; set; }
+        public System.DateTime DeliveryDate { get; set; }
 
         [Required]
         [DisplayName("Preço")]
