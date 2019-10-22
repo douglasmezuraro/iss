@@ -15,6 +15,6 @@ namespace PSS.Models
         public string Name { get; set; }
 
         [DisplayName("Perecível?")]
-        public bool Perishable { get; set; }
+        public bool IsPerishable { get; set; }
     }
 }

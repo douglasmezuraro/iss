@@ -16,7 +16,7 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Perishable)
+            @Html.DisplayNameFor(model => model.IsPerishable)
         </th>
         <th></th>
     </tr>
@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Perishable)
+                @Html.DisplayFor(modelItem => item.IsPerishable)
             </td>
             <td>
                 @Html.ActionLink(View.Edit, "Edit", new { id = item.Id }) |

@@ -26,11 +26,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Perishable, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IsPerishable, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Perishable)
-                    @Html.ValidationMessageFor(model => model.Perishable, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.IsPerishable)
+                    @Html.ValidationMessageFor(model => model.IsPerishable, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
