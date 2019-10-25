@@ -11,8 +11,8 @@ namespace PSS.Utils
             switch (Global.User.UserType)
             {
                 case UserType.Admin   : return new PurchaseOrdersController(); 
-                case UserType.Client  : return new SaleOrdersController();               
-                case UserType.Visitor : return new SaleOrdersController();         
+                case UserType.Client  : return null; // new SaleOrdersController(); // TODO: Refatorar controlador de pedido de venda
+                case UserType.Visitor : return null; // new SaleOrdersController(); // TODO: Refatorar controlador de pedido de venda
                 default               : return new HomeController(); 
             }
         }

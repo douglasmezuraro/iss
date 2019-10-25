@@ -214,7 +214,6 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProvidersController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
-    <Compile Include="Controllers\SaleOrdersController.cs" />
     <Compile Include="Controllers\StatesController.cs" />
     <Compile Include="Controllers\UnitsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -250,7 +249,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Constants\General.cs" />
     <Compile Include="Utils\Constants\View.cs" />
-    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Global.cs" />
     <Compile Include="Utils\OrderControllerFactory.cs" />
   </ItemGroup>
@@ -322,11 +320,6 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\SaleOrders\Create.cshtml" />
-    <Content Include="Views\SaleOrders\Delete.cshtml" />
-    <Content Include="Views\SaleOrders\Details.cshtml" />
-    <Content Include="Views\SaleOrders\Edit.cshtml" />
-    <Content Include="Views\SaleOrders\Index.cshtml" />
     <Content Include="Views\PurchaseOrders\Create.cshtml" />
     <Content Include="Views\PurchaseOrders\Delete.cshtml" />
     <Content Include="Views\PurchaseOrders\Details.cshtml" />

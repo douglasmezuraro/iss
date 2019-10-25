@@ -1,5 +1,4 @@
 ﻿@using PSS.Utils
-@using PSS.Models
 
 <!DOCTYPE html>
 <html>
@@ -53,8 +52,8 @@
                         </ul>
                     </li>
 
-                    <li>@Html.ActionLink("Pedidos", "Index", "Orders")</li>
                     <li>@Html.ActionLink("Carrinho de compras", "Index", "Cart")</li>
+                    <li>@Html.ActionLink("Pedidos", "Index", "Orders")</li>
                 </ul>
                 }
 
@@ -71,7 +70,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - ISS</p>
+            <p>&copy; @DateTime.Now.Year - Douglas Mezuraro - Implementação de Sistemas de Software</p>
         </footer>
     </div>
 
