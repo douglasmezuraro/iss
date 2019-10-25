@@ -11,9 +11,6 @@ namespace PSS.Models
         Admin,
 
         [Display(Name = "Cliente")]
-        Client,
-
-        [Display(Name = "Visitante")]
-        Visitor
+        Client
     }
 }

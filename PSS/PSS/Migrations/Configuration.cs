@@ -279,52 +279,18 @@ namespace PSS.Migrations
                 new User
                 {
                     Id = 1,
-                    Name = "Admin",
-                    LastName = "User",
-                    CPF = "000.000.000-00",
-                    Birth = System.DateTime.Today,
-                    Gender = Gender.Undefined,
-                    Phone = "(00) 0000-0000",
-                    Email = "admin@admin.com",
-                    Password = "admin",
+                    Name = "Douglas",
+                    LastName = "Mezuraro",
+                    CPF = "101.202.303-40",
+                    Birth = System.DateTime.Parse("18/06/1996"),
+                    Gender = Gender.Male,
+                    Phone = "(44) 99947-7765",
+                    Email = "douglasmez@gmail.com",
+                    Password = "1",
                     UserType = UserType.Admin,
-                    Address = "None",
-                    Number = 0,
-                    PostalCode = "00000-000",
-                    CityId = 28
-                },
-                new User
-                {
-                    Id = 2,
-                    Name = "Client",
-                    LastName = "User",
-                    CPF = "000.000.000-00",
-                    Birth = System.DateTime.Today,
-                    Gender = Gender.Undefined,
-                    Phone = "(00) 0000-0000",
-                    Email = "client@client.com",
-                    Password = "client",
-                    UserType = UserType.Client,
-                    Address = "None",
-                    Number = 0,
-                    PostalCode = "00000-000",
-                    CityId = 28
-                },
-                new User
-                {
-                    Id = 3,
-                    Name = "Visitor",
-                    LastName = "User",
-                    CPF = "000.000.000-00",
-                    Birth = System.DateTime.Today,
-                    Gender = Gender.Undefined,
-                    Phone = "(00) 0000-0000",
-                    Email = "visitor@visitor.com",
-                    Password = "visitor",
-                    UserType = UserType.Visitor,
-                    Address = "None",
-                    Number = 0,
-                    PostalCode = "00000-000",
+                    Address = "Rua Toledo",
+                    Number = 812,
+                    PostalCode = "87053-518",
                     CityId = 28
                 });
         }
