@@ -22,13 +22,22 @@ namespace SGCO.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Installment> Installments { get; set; }
-        public DbSet<Freight> Freights { get; set; }
+        public DbSet<SaleOrderFreight> SaleOrderFreights { get; set; }
+        public DbSet<PurchaseOrderFreight> PurchaseOrderFreights { get; set; }
         public DbSet<SaleOrder> SaleOrders { get; set; }
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            modelBuilder.Properties<System.DateTime>().Configure(c => c.HasColumnType("datetime2"));
+
+            modelBuilder.Entity<PurchaseOrder>().HasRequired(o => o.Freight).WithRequiredPrincipal(f => f.PurchaseOrder);
+            modelBuilder.Entity<SaleOrder>().HasRequired(o => o.Freight).WithRequiredPrincipal(f => f.SaleOrder);
+            //modelBuilder.Entity<PurchaseOrderFreight>().HasRequired(f => f.PurchaseOrder).WithRequiredPrincipal(o => o.Freight);
+
+
             base.OnModelCreating(modelBuilder);
         }
 

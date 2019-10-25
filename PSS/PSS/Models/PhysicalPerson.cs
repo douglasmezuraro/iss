@@ -23,11 +23,11 @@ namespace PSS.Models
 
         [Required]
         [DisplayName("Nascimento")]
-        public System.DateTime? Birth { get; set; }
+        public System.DateTime Birth { get; set; }
 
         [Required]
         [DisplayName("Gênero")]
-        public int? GenderId { get; set; }
+        public int GenderId { get; set; }
 
         [DisplayName("Gênero")]
         public Gender Gender { get; set; }

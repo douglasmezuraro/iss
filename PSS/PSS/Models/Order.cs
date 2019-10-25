@@ -12,8 +12,6 @@ namespace PSS.Models
     {
         public Order()
         {
-            UserId = Global.User.Id;
-            Date = System.DateTime.Now;
             OrderStatusId = (int)OrderStatus.Enum.InProgress;
 
             foreach (var Item in Global.Cart.Items)
@@ -43,9 +41,6 @@ namespace PSS.Models
         [DisplayName("Usuário")]
         public User User { get; set; }
 
-        [DisplayName("Frete")]
-        public Freight Freight { get; } = new Freight();
-
         [DisplayName("Carrinho")]
         public ICollection<Item> Items { get; } = new List<Item>();
 
@@ -54,6 +49,8 @@ namespace PSS.Models
 
         public virtual void FinalizeOrder()
         {
+            UserId = Global.User.Id;
+            Date = System.DateTime.Now.Date;
             OrderStatusId = (int)OrderStatus.Enum.Finished;
             Global.Cart.Items.Clear();
         }

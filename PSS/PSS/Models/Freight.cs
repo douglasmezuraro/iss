@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSS.Models
 {
-    [Table("Freights")]
     [DisplayName("Frete")]
     public class Freight : Base
     {
@@ -23,6 +22,18 @@ namespace PSS.Models
         public int FreightTypeId { get; set; }
 
         [DisplayName("Tipo de frete")]
-        public FreightType FreightType { get; set; }
+        public FreightType FreightType { get; set; } 
+    }
+
+    [Table("PurchaseOrderFreights")]
+    public class PurchaseOrderFreight : Freight
+    {
+        public virtual PurchaseOrder PurchaseOrder { get; set; }
+    }
+
+    [Table("SaleOrderFreights")]
+    public class SaleOrderFreight : Freight
+    {
+        public virtual SaleOrder SaleOrder { get; set; }
     }
 }

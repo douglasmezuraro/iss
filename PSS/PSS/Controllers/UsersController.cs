@@ -70,7 +70,6 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.IsActive = true;
                 db.Users.Add(user);
                 db.SaveChanges();
 

@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel;
-using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSS.Models
 {
+    [Table("SaleOrders")]
     [DisplayName("Pedido de venda")]
     public class SaleOrder : Order
     {
+        public SaleOrderFreight Freight { get; set; } = new SaleOrderFreight();
+
         public override void FinalizeOrder()
         {
             base.FinalizeOrder();

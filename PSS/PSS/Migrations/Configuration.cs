@@ -27,6 +27,7 @@ namespace PSS.Migrations
             SeedManufacturers(context);
             SeedProviders(context);
             SeedProducts(context);
+            SeedUsers(context);
         }
 
         private void SeedCountries(SGCO.Context.Context context)
@@ -316,6 +317,62 @@ namespace PSS.Migrations
                     ManufacturerId = 4,
                     ProviderId = 1,
                     UnitId = 1
+                });
+        }
+
+        private void SeedUsers(SGCO.Context.Context context)
+        {
+            context.Users.AddOrUpdate(u => u.Id,
+                new User
+                {
+                    Id = 1,
+                    Name = "Admin",
+                    LastName = "User",
+                    CPF = "000.000.000-00",
+                    Birth = System.DateTime.Today,
+                    GenderId = 3,
+                    Phone = "(00) 0000-0000",
+                    Email = "admin@admin.com",
+                    Password = "admin",
+                    UserTypeId = 1,
+                    Address = "None",
+                    Number = 0,
+                    PostalCode = "00000-000",
+                    CityId = 28
+                },
+                new User
+                {
+                    Id = 2,
+                    Name = "Client",
+                    LastName = "User",
+                    CPF = "000.000.000-00",
+                    Birth = System.DateTime.Today,
+                    GenderId = 3,
+                    Phone = "(00) 0000-0000",
+                    Email = "client@client.com",
+                    Password = "client",
+                    UserTypeId = 2,
+                    Address = "None",
+                    Number = 0,
+                    PostalCode = "00000-000",
+                    CityId = 28
+                },
+                new User
+                {
+                    Id = 3,
+                    Name = "Visitor",
+                    LastName = "User",
+                    CPF = "000.000.000-00",
+                    Birth = System.DateTime.Today,
+                    GenderId = 3,
+                    Phone = "(00) 0000-0000",
+                    Email = "visitor@visitor.com",
+                    Password = "visitor",
+                    UserTypeId = 3,
+                    Address = "None",
+                    Number = 0,
+                    PostalCode = "00000-000",
+                    CityId = 28
                 });
         }
     }

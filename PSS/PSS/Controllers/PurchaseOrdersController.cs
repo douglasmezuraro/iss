@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -11,10 +12,13 @@ namespace PSS.Controllers
     {
         private Context db = new Context();
 
-
         public ActionResult Index()
         {
-            var purchaseOrders = db.PurchaseOrders.Include(p => p.OrderStatus).Include(p => p.User).Include(p => p.Items.Select(i => i.Product)).Where(p => p.IsActive);
+            var purchaseOrders = db.PurchaseOrders.Include(p => p.OrderStatus)
+                                                  .Include(p => p.User)
+                                              //    .Include(p => p.Freight)
+                                                  .Include(p => p.Items.Select(i => i.Product))
+                                                  .Where(p => p.IsActive);
         
             return View(purchaseOrders.ToList());
         }
@@ -26,19 +30,23 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PurchaseOrder purchaseOrder = db.PurchaseOrders.Find(id);
-            if (purchaseOrder == null)
+            PurchaseOrder order = db.PurchaseOrders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
 
-            return View(purchaseOrder);
+            order.Freight = db.PurchaseOrderFreights.Find(order.Id);
+            order.Freight.FreightType = db.FreightTypes.Find(order.Freight.FreightTypeId);
+            order.User = db.Users.Find(order.UserId);
+            order.OrderStatus = db.OrderStatuses.Find(order.OrderStatusId);     
+
+            return View(order);
         }
 
         public ActionResult Create()
         {
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses.Where(o => o.IsActive), "Id", "Description");
-            ViewBag.UserId = new SelectList(db.Users.Where(u => u.IsActive), "Id", "Password");
+            ViewBag.FreightTypeId = new SelectList(db.FreightTypes.Where(f => f.IsActive), "Id", "Description");
 
             return View();
         }
@@ -57,13 +65,28 @@ namespace PSS.Controllers
                 }
           
                 db.PurchaseOrders.Add(purchaseOrder);
-                db.SaveChanges();
+                purchaseOrder.Freight.FreightTypeId = int.Parse(Request.Form.Get("FreightTypeId")); // gambs
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var errors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in errors.ValidationErrors)
+                        {
+                            // get the error message 
+                            string errorMessage = validationError.ErrorMessage;
+                        }
+                    }
+                }
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses.Where(o => o.IsActive), "Id", "Description", purchaseOrder.OrderStatusId);
-            ViewBag.UserId = new SelectList(db.Users.Where(u => u.IsActive), "Id", "Password", purchaseOrder.UserId);
+            ViewBag.FreightTypeId = new SelectList(db.FreightTypes.Where(c => c.IsActive), "Id", "Description", purchaseOrder.Freight.FreightTypeId);
 
             return View(purchaseOrder);
         }
@@ -81,8 +104,7 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses.Where(o => o.IsActive), "Id", "Description", purchaseOrder.OrderStatusId);
-            ViewBag.UserId = new SelectList(db.Users.Where(u => u.IsActive), "Id", "Password", purchaseOrder.UserId);
+            ViewBag.FreightTypeId = new SelectList(db.FreightTypes.Where(c => c.IsActive), "Id", "Description", purchaseOrder.Freight.FreightTypeId);
 
             return View(purchaseOrder);
         }
@@ -99,8 +121,7 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses.Where(o => o.IsActive), "Id", "Description", purchaseOrder.OrderStatusId);
-            ViewBag.UserId = new SelectList(db.Users.Where(u => u.IsActive), "Id", "Password", purchaseOrder.UserId);
+            ViewBag.FreightTypeId = new SelectList(db.FreightTypes.Where(c => c.IsActive), "Id", "Description", purchaseOrder.Freight.FreightTypeId);
 
             return View(purchaseOrder);
         }
