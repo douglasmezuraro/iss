@@ -21,7 +21,6 @@ namespace PSS.Migrations
             SeedUserTypes(context);
             SeedPaymentTypes(context);
             SeedOrderStatuses(context);
-            SeedFreightTypes(context);
             SeedUnits(context);
             SeedCategories(context);
             SeedManufacturers(context);
@@ -136,13 +135,6 @@ namespace PSS.Migrations
                 new OrderStatus { Id = 3, Description = "Em separação" },
                 new OrderStatus { Id = 4, Description = "Saída para entrega" },
                 new OrderStatus { Id = 5, Description = "Entregue" });
-        }
-
-        private void SeedFreightTypes(SGCO.Context.Context context)
-        {
-            context.FreightTypes.AddOrUpdate(f => f.Id,
-                new FreightType { Id = 1, Description = "Correios" },           
-                new FreightType { Id = 2, Description = "Transportadora" });
         }
 
         private void SeedUnits(SGCO.Context.Context context)

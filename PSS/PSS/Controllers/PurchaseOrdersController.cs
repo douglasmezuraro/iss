@@ -37,7 +37,6 @@ namespace PSS.Controllers
             }
 
             order.Freight = db.PurchaseOrderFreights.Find(order.Id);
-            order.Freight.FreightType = db.FreightTypes.Find(order.Freight.FreightTypeId);
             order.User = db.Users.Find(order.UserId);
             order.OrderStatus = db.OrderStatuses.Find(order.OrderStatusId);     
 
@@ -46,8 +45,6 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.FreightTypeId = new SelectList(db.FreightTypes.Where(f => f.IsActive), "Id", "Description");
-
             return View();
         }
 
@@ -64,8 +61,7 @@ namespace PSS.Controllers
                     db.Entry(item.Product).State = EntityState.Modified;
                 }
           
-                db.PurchaseOrders.Add(purchaseOrder);
-                purchaseOrder.Freight.FreightTypeId = int.Parse(Request.Form.Get("FreightTypeId")); // gambs
+                db.PurchaseOrders.Add(purchaseOrder);              
 
                 try
                 {
@@ -77,7 +73,6 @@ namespace PSS.Controllers
                     {
                         foreach (var validationError in errors.ValidationErrors)
                         {
-                            // get the error message 
                             string errorMessage = validationError.ErrorMessage;
                         }
                     }
@@ -85,8 +80,6 @@ namespace PSS.Controllers
 
                 return RedirectToAction("Index");
             }
-
-            ViewBag.FreightTypeId = new SelectList(db.FreightTypes.Where(c => c.IsActive), "Id", "Description", purchaseOrder.Freight.FreightTypeId);
 
             return View(purchaseOrder);
         }
@@ -104,8 +97,6 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.FreightTypeId = new SelectList(db.FreightTypes.Where(c => c.IsActive), "Id", "Description", purchaseOrder.Freight.FreightTypeId);
-
             return View(purchaseOrder);
         }
 
@@ -120,8 +111,6 @@ namespace PSS.Controllers
 
                 return RedirectToAction("Index");
             }
-
-            ViewBag.FreightTypeId = new SelectList(db.FreightTypes.Where(c => c.IsActive), "Id", "Description", purchaseOrder.Freight.FreightTypeId);
 
             return View(purchaseOrder);
         }

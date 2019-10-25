@@ -19,9 +19,6 @@ namespace PSS.Models
 
         [Required]
         [DisplayName("Tipo de frete")]
-        public int FreightTypeId { get; set; }
-
-        [DisplayName("Tipo de frete")]
         public FreightType FreightType { get; set; } 
     }
 
