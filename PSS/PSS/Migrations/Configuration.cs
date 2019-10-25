@@ -17,7 +17,6 @@ namespace PSS.Migrations
             SeedCountries(context);
             SeedStates(context);
             SeedCities(context);
-            SeedGenders(context);
             SeedUserTypes(context);           
             SeedUnits(context);
             SeedCategories(context);
@@ -98,14 +97,6 @@ namespace PSS.Migrations
                 new City { Id = 28, StateId = 16, Name = "Maringá" },
                 new City { Id = 29, StateId = 25, Name = "São Bernardo do Campo" },
                 new City { Id = 30, StateId = 25, Name = "Presidente Prudente" });
-        }
-
-        private void SeedGenders(SGCO.Context.Context context)
-        {
-            context.Genders.AddOrUpdate(g => g.Id,
-                new Gender { Id = 1, Description = "Homem" },
-                new Gender { Id = 2, Description = "Mulher" },
-                new Gender { Id = 3, Description = "Indefinido" });
         }
 
         private void SeedUserTypes(SGCO.Context.Context context)
@@ -301,7 +292,7 @@ namespace PSS.Migrations
                     LastName = "User",
                     CPF = "000.000.000-00",
                     Birth = System.DateTime.Today,
-                    GenderId = 3,
+                    Gender = Gender.Undefined,
                     Phone = "(00) 0000-0000",
                     Email = "admin@admin.com",
                     Password = "admin",
@@ -318,7 +309,7 @@ namespace PSS.Migrations
                     LastName = "User",
                     CPF = "000.000.000-00",
                     Birth = System.DateTime.Today,
-                    GenderId = 3,
+                    Gender = Gender.Undefined,
                     Phone = "(00) 0000-0000",
                     Email = "client@client.com",
                     Password = "client",
@@ -335,7 +326,7 @@ namespace PSS.Migrations
                     LastName = "User",
                     CPF = "000.000.000-00",
                     Birth = System.DateTime.Today,
-                    GenderId = 3,
+                    Gender = Gender.Undefined,
                     Phone = "(00) 0000-0000",
                     Email = "visitor@visitor.com",
                     Password = "visitor",

@@ -18,7 +18,6 @@ namespace PSS.Controllers
             if (Global.User != null)
             {
                 var users = db.Users.Include(u => u.City)
-                                    .Include(u => u.Gender)
                                     .Include(u => u.UserType)
                                     .Where(u => u.IsActive);
 
@@ -49,7 +48,6 @@ namespace PSS.Controllers
             }
 
             user.City = db.Cities.Find(user.CityId);
-            user.Gender = db.Genders.Find(user.GenderId);
             user.UserType = db.UserTypes.Find(user.UserTypeId);
 
             return View(user);
@@ -58,7 +56,6 @@ namespace PSS.Controllers
         public ActionResult Create()
         {
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name");
-            ViewBag.GenderId = new SelectList(db.Genders.Where(g => g.IsActive), "Id", "Description");
             ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description");
 
             return View();
@@ -77,7 +74,6 @@ namespace PSS.Controllers
             }
 
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
-            ViewBag.GenderId = new SelectList(db.Genders.Where(g => g.IsActive), "Id", "Description", user.GenderId);
             ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description", user.UserTypeId);
 
             return View(user);
@@ -97,7 +93,6 @@ namespace PSS.Controllers
             }
 
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
-            ViewBag.GenderId = new SelectList(db.Genders.Where(g => g.IsActive), "Id", "Description", user.GenderId);
             ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description", user.UserTypeId);
 
             return View(user);
@@ -117,7 +112,6 @@ namespace PSS.Controllers
             }
 
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
-            ViewBag.GenderId = new SelectList(db.Genders.Where(g => g.IsActive), "Id", "Description", user.GenderId);
             ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description", user.UserTypeId);
 
             return View(user);
@@ -137,7 +131,6 @@ namespace PSS.Controllers
             }
 
             user.City = db.Cities.Find(user.CityId);
-            user.Gender = db.Genders.Find(user.GenderId);
             user.UserType = db.UserTypes.Find(user.UserTypeId);
 
             return View(user);
