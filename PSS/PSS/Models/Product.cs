@@ -68,6 +68,6 @@ namespace PSS.Models
         [NotMapped]
         [ScaffoldColumn(false)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
-        public double Price => Global.User.UserTypeId == (int)UserType.UserTypeEnum.Admin ? PurchasePrice : SalePrice;
+        public double Price => Global.User.UserType == UserType.Admin ? PurchasePrice : SalePrice;
     }
 }

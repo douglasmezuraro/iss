@@ -17,9 +17,6 @@ namespace PSS.Models
 
         [Required]
         [DisplayName("Tipo de usuário")]
-        public int? UserTypeId { get; set; }
-
-        [DisplayName("Tipo de usuário")]
         public UserType UserType { get; set; }
     }
 }

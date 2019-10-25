@@ -16,8 +16,7 @@ namespace PSS.Migrations
         {
             SeedCountries(context);
             SeedStates(context);
-            SeedCities(context);
-            SeedUserTypes(context);           
+            SeedCities(context);            
             SeedUnits(context);
             SeedCategories(context);
             SeedManufacturers(context);
@@ -97,14 +96,6 @@ namespace PSS.Migrations
                 new City { Id = 28, StateId = 16, Name = "Maringá" },
                 new City { Id = 29, StateId = 25, Name = "São Bernardo do Campo" },
                 new City { Id = 30, StateId = 25, Name = "Presidente Prudente" });
-        }
-
-        private void SeedUserTypes(SGCO.Context.Context context)
-        {
-            context.UserTypes.AddOrUpdate(u => u.Id,
-                new UserType { Id = 1, Description = "Administrador" },
-                new UserType { Id = 2, Description = "Cliente" },
-                new UserType { Id = 3, Description = "Visitante" });
         }
 
         private void SeedUnits(SGCO.Context.Context context)
@@ -296,7 +287,7 @@ namespace PSS.Migrations
                     Phone = "(00) 0000-0000",
                     Email = "admin@admin.com",
                     Password = "admin",
-                    UserTypeId = 1,
+                    UserType = UserType.Admin,
                     Address = "None",
                     Number = 0,
                     PostalCode = "00000-000",
@@ -313,7 +304,7 @@ namespace PSS.Migrations
                     Phone = "(00) 0000-0000",
                     Email = "client@client.com",
                     Password = "client",
-                    UserTypeId = 2,
+                    UserType = UserType.Client,
                     Address = "None",
                     Number = 0,
                     PostalCode = "00000-000",
@@ -330,7 +321,7 @@ namespace PSS.Migrations
                     Phone = "(00) 0000-0000",
                     Email = "visitor@visitor.com",
                     Password = "visitor",
-                    UserTypeId = 3,
+                    UserType = UserType.Visitor,
                     Address = "None",
                     Number = 0,
                     PostalCode = "00000-000",

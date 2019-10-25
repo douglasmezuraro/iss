@@ -17,11 +17,9 @@ namespace PSS.Controllers
         {
             if (Global.User != null)
             {
-                var users = db.Users.Include(u => u.City)
-                                    .Include(u => u.UserType)
-                                    .Where(u => u.IsActive);
+                var users = db.Users.Include(u => u.City).Where(u => u.IsActive);
 
-                if (Global.User.UserTypeId == (int)UserType.UserTypeEnum.Client)
+                if (Global.User.UserType == UserType.Client)
                 {
                     return View(users.ToList().Where(u => u.Id == Global.User.Id));
                 }
@@ -48,7 +46,6 @@ namespace PSS.Controllers
             }
 
             user.City = db.Cities.Find(user.CityId);
-            user.UserType = db.UserTypes.Find(user.UserTypeId);
 
             return View(user);
         }
@@ -56,7 +53,6 @@ namespace PSS.Controllers
         public ActionResult Create()
         {
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name");
-            ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description");
 
             return View();
         }
@@ -74,7 +70,6 @@ namespace PSS.Controllers
             }
 
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
-            ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description", user.UserTypeId);
 
             return View(user);
         }
@@ -93,7 +88,6 @@ namespace PSS.Controllers
             }
 
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
-            ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description", user.UserTypeId);
 
             return View(user);
         }
@@ -112,7 +106,6 @@ namespace PSS.Controllers
             }
 
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
-            ViewBag.UserTypeId = new SelectList(db.UserTypes.Where(u => u.IsActive), "Id", "Description", user.UserTypeId);
 
             return View(user);
         }
@@ -131,7 +124,6 @@ namespace PSS.Controllers
             }
 
             user.City = db.Cities.Find(user.CityId);
-            user.UserType = db.UserTypes.Find(user.UserTypeId);
 
             return View(user);
         }
@@ -161,7 +153,6 @@ namespace PSS.Controllers
 
             if (model != null)
             {
-                model.UserType = db.UserTypes.Find(model.UserTypeId);
                 Global.User = model;
             }
             
