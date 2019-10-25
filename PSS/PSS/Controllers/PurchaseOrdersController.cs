@@ -14,8 +14,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var purchaseOrders = db.PurchaseOrders.Include(p => p.OrderStatus)
-                                                  .Include(p => p.User)
+            var purchaseOrders = db.PurchaseOrders.Include(p => p.User)
                                               //    .Include(p => p.Freight)
                                                   .Include(p => p.Items.Select(i => i.Product))
                                                   .Where(p => p.IsActive);
