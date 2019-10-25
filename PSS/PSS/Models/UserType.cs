@@ -4,16 +4,16 @@ namespace PSS.Models
 {
     public enum UserType
     {
-        [Display(Description = "Indefinido")]
+        [Display(Name = "Indefinido")]
         Undefined,
 
-        [Display(Description = "Administrador")]
+        [Display(Name = "Administrador")]
         Admin,
 
-        [Display(Description = "Cliente")]
+        [Display(Name = "Cliente")]
         Client,
 
-        [Display(Description = "Visitante")]
+        [Display(Name = "Visitante")]
         Visitor
     }
 }

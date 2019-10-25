@@ -4,22 +4,22 @@ namespace PSS.Models
 {
     public enum OrderStatus
     {
-        [Display(Description = "Indefinido")]
+        [Display(Name = "Indefinido")]
         Undefined,
 
-        [Display(Description = "Em progresso")]
+        [Display(Name = "Em progresso")]
         InProgress,
 
-        [Display(Description = "Finalizado")]
+        [Display(Name = "Finalizado")]
         Finished,
 
-        [Display(Description = "Em separação")]
+        [Display(Name = "Em separação")]
         InSeparation,
 
-        [Display(Description = "Sáida para entrega")]
+        [Display(Name = "Sáida para entrega")]
         OutForDelivery,
 
-        [Display(Description = "Entregue")]
+        [Display(Name = "Entregue")]
         Delivered
     }
 }

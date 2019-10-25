@@ -4,13 +4,13 @@ namespace PSS.Models
 {
     public enum Gender
     {
-        [Display(Description = "Indefinido")]
+        [Display(Name = "Indefinido")]
         Undefined,
 
-        [Display(Description = "Mulher")]
+        [Display(Name = "Mulher")]
         Female,
 
-        [Display(Description = "Homem")]
+        [Display(Name = "Homem")]
         Male
     }
 }

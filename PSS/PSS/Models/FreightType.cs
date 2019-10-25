@@ -8,9 +8,9 @@ namespace PSS.Models
         Undefined,
 
         [Display(Name = "Correios")]
-        Correios,
+        PostOffice,
 
         [Display(Name = "Transportadora")]
-        Transportadora
+        ShippingCompany
     }
 }

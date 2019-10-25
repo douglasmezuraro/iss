@@ -4,19 +4,19 @@ namespace PSS.Models
 {
     public enum PaymentType
     {
-        [Display(Description = "Indefinido")]
+        [Display(Name = "Indefinido")]
         Undefined,
 
-        [Display(Description = "Dinheiro")]
+        [Display(Name = "Dinheiro")]
         Money,
 
-        [Display(Description = "Cheque")]
+        [Display(Name = "Cheque")]
         Check,
 
-        [Display(Description = "Cartão de Crédito")]
+        [Display(Name = "Cartão de Crédito")]
         CreditCard,
 
-        [Display(Description = "Cartão de Débito")]
+        [Display(Name = "Cartão de Débito")]
         DebitCard
     }
 }
