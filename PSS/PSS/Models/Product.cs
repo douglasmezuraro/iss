@@ -68,6 +68,7 @@ namespace PSS.Models
         [NotMapped]
         [ScaffoldColumn(false)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
+        [DisplayName("Preço unitário")]
         public double Price => Global.User.UserType == UserType.Admin ? PurchasePrice : SalePrice;
     }
 }

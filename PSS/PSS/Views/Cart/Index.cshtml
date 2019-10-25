@@ -14,10 +14,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(m => m.Product.Id)
+            @Html.DisplayNameFor(m => m.Product.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(m => m.Product.Description)
+            @Html.DisplayNameFor(m => m.Product.Category)
         </th>
         <th>
             @Html.DisplayNameFor(m => m.Quantity)
@@ -32,10 +32,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(m => item.Product.Id)
+                @Html.DisplayFor(m => item.Product.Description)
             </td>
             <td>
-                @Html.DisplayFor(m => item.Product.Description)
+                @Html.DisplayFor(m => item.Product.Category.Name)
             </td>
             <td>
                 @Html.DisplayFor(m => item.Quantity)

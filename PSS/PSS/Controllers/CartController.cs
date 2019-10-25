@@ -18,16 +18,19 @@ namespace PSS.Controllers
 
         public ActionResult AddToCart(Item item)
         {
-            var _item = Global.Cart.Items.FirstOrDefault(i => i.ProductId == item.ProductId);
+            var model = Global.Cart.Items.FirstOrDefault(i => i.ProductId == item.ProductId);
 
-            if (_item == null)
+            if (model == null)
             {
                 item.Product = db.Products.Find(item.ProductId);
+                item.Product.Category = db.Categories.Find(item.Product.CategoryId);
+                item.Product.Unit = db.Units.Find(item.Product.UnitId);             
+
                 Global.Cart.Items.Add(item);
             }
             else
             {
-                _item.Quantity += item.Quantity;
+                model.Quantity += item.Quantity;
             }
 
             return RedirectToAction("Index", "Products");
@@ -71,8 +74,8 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Item item)
         {
-            var _item = Global.Cart.Items.First(i => i.Product.Id == item.ProductId);
-            _item.Quantity = item.Quantity;
+            var model = Global.Cart.Items.First(i => i.Product.Id == item.ProductId);
+            model.Quantity = item.Quantity;
 
             return RedirectToAction("Index");
         }
