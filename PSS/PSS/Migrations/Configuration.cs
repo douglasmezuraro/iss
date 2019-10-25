@@ -20,7 +20,6 @@ namespace PSS.Migrations
             SeedGenders(context);
             SeedUserTypes(context);
             SeedPaymentTypes(context);
-            SeedOrderStatuses(context);
             SeedUnits(context);
             SeedCategories(context);
             SeedManufacturers(context);
@@ -125,16 +124,6 @@ namespace PSS.Migrations
                 new PaymentType { Id = 2, Description = "Cheque" },
                 new PaymentType { Id = 3, Description = "Cartão de crédito" },
                 new PaymentType { Id = 4, Description = "Cartão de débito" });
-        }
-
-        private void SeedOrderStatuses(SGCO.Context.Context context)
-        {
-            context.OrderStatuses.AddOrUpdate(o => o.Id,
-                new OrderStatus { Id = 1, Description = "Não finalizado" },
-                new OrderStatus { Id = 2, Description = "Finalizado" },
-                new OrderStatus { Id = 3, Description = "Em separação" },
-                new OrderStatus { Id = 4, Description = "Saída para entrega" },
-                new OrderStatus { Id = 5, Description = "Entregue" });
         }
 
         private void SeedUnits(SGCO.Context.Context context)

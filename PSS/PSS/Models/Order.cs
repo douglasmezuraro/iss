@@ -12,7 +12,7 @@ namespace PSS.Models
     {
         public Order()
         {
-            OrderStatusId = (int)OrderStatus.Enum.InProgress;
+            OrderStatus = OrderStatus.InProgress;
 
             foreach (var Item in Global.Cart.Items)
             {
@@ -28,9 +28,6 @@ namespace PSS.Models
         public System.DateTime? Date { get; set; }
 
         [Required]
-        [DisplayName("Status")]
-        public int OrderStatusId { get; set; }
-
         [DisplayName("Status")]
         public OrderStatus OrderStatus { get; set; }
 
@@ -51,7 +48,7 @@ namespace PSS.Models
         {
             UserId = Global.User.Id;
             Date = System.DateTime.Now.Date;
-            OrderStatusId = (int)OrderStatus.Enum.Finished;
+            OrderStatus = OrderStatus.Finished;
             Global.Cart.Items.Clear();
         }
     }

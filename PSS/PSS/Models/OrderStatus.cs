@@ -1,19 +1,25 @@
-﻿using PSS.Utils.Constants;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PSS.Models
 {
-    [Table("OrderStatuses")]
-    [DisplayName("Status do pedido")]
-    public class OrderStatus : Base
+    public enum OrderStatus
     {
-        public enum Enum { Undefined, InProgress, Finished, InSeparation, OutForDelivery, Delivered }
+        [Display(Description = "Indefinido")]
+        Undefined,
 
-        [Required]
-        [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
-        [DisplayName("Descrição")]
-        public string Description { get; set; }
+        [Display(Description = "Em progresso")]
+        InProgress,
+
+        [Display(Description = "Finalizado")]
+        Finished,
+
+        [Display(Description = "Em separação")]
+        InSeparation,
+
+        [Display(Description = "Sáida para entrega")]
+        OutForDelivery,
+
+        [Display(Description = "Entregue")]
+        Delivered
     }
 }

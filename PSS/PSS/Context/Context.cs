@@ -14,7 +14,6 @@ namespace SGCO.Context
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<PaymentType> PaymentTypes { get; set; }
-        public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }

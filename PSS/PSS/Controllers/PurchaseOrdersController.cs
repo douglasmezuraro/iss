@@ -37,8 +37,7 @@ namespace PSS.Controllers
             }
 
             order.Freight = db.PurchaseOrderFreights.Find(order.Id);
-            order.User = db.Users.Find(order.UserId);
-            order.OrderStatus = db.OrderStatuses.Find(order.OrderStatusId);     
+            order.User = db.Users.Find(order.UserId);   
 
             return View(order);
         }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using PSS.Models;
 using SGCO.Context;
@@ -39,7 +35,6 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses, "Id", "Description");
             ViewBag.UserId = new SelectList(db.Users, "Id", "Password");
 
             return View();
@@ -57,7 +52,6 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses, "Id", "Description", saleOrder.OrderStatusId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "Password", saleOrder.UserId);
 
             return View(saleOrder);
@@ -76,7 +70,6 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses, "Id", "Description", saleOrder.OrderStatusId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "Password", saleOrder.UserId);
 
             return View(saleOrder);
@@ -94,7 +87,6 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrderStatusId = new SelectList(db.OrderStatuses, "Id", "Description", saleOrder.OrderStatusId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "Password", saleOrder.UserId);
 
             return View(saleOrder);
