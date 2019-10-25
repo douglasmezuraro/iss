@@ -18,8 +18,7 @@ namespace PSS.Migrations
             SeedStates(context);
             SeedCities(context);
             SeedGenders(context);
-            SeedUserTypes(context);
-            SeedPaymentTypes(context);
+            SeedUserTypes(context);           
             SeedUnits(context);
             SeedCategories(context);
             SeedManufacturers(context);
@@ -115,15 +114,6 @@ namespace PSS.Migrations
                 new UserType { Id = 1, Description = "Administrador" },
                 new UserType { Id = 2, Description = "Cliente" },
                 new UserType { Id = 3, Description = "Visitante" });
-        }
-
-        private void SeedPaymentTypes(SGCO.Context.Context context)
-        {
-            context.PaymentTypes.AddOrUpdate(p => p.Id,
-                new PaymentType { Id = 1, Description = "Dinheiro" },
-                new PaymentType { Id = 2, Description = "Cheque" },
-                new PaymentType { Id = 3, Description = "Cartão de crédito" },
-                new PaymentType { Id = 4, Description = "Cartão de débito" });
         }
 
         private void SeedUnits(SGCO.Context.Context context)

@@ -1,17 +1,22 @@
-﻿using PSS.Utils.Constants;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PSS.Models
 {
-    [Table("PaymentTypes")]
-    [DisplayName("Tipo de pagamento")]
-    public class PaymentType : Base
+    public enum PaymentType
     {
-        [Required]
-        [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
-        [DisplayName("Descrição")]
-        public string Description { get; set; }
+        [Display(Description = "Indefinido")]
+        Undefined,
+
+        [Display(Description = "Dinheiro")]
+        Money,
+
+        [Display(Description = "Cheque")]
+        Check,
+
+        [Display(Description = "Cartão de Crédito")]
+        CreditCard,
+
+        [Display(Description = "Cartão de Débito")]
+        DebitCard
     }
 }
