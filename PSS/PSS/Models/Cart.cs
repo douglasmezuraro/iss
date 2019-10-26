@@ -7,7 +7,7 @@ using System.Linq;
 namespace PSS.Models
 {
     [DisplayName("Carrinho de compras")]
-    public class Cart
+    public sealed class Cart
     {
         [DisplayName("Items")]
         public ICollection<Item> Items { get; } = new List<Item>();

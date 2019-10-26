@@ -7,7 +7,7 @@ namespace PSS.Models
 {
     [Table("Installments")]
     [DisplayName("Parcela")]
-    public class Installment : Base
+    public sealed class Installment : Base
     {
         [Required]
         [DisplayName("Preço")]

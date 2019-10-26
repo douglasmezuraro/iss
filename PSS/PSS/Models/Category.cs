@@ -7,7 +7,7 @@ namespace PSS.Models
 {
     [Table("Categories")]
     [DisplayName("Categoria")]
-    public class Category : Base
+    public sealed class Category : Base
     {
         [Required]
         [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]

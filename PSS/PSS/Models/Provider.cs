@@ -5,7 +5,7 @@ namespace PSS.Models
 {
     [Table("Providers")]
     [DisplayName("Fornecedores")]
-    public class Provider : LegalPerson
+    public sealed class Provider : LegalPerson
     {
 
     }

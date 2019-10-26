@@ -7,7 +7,7 @@ namespace PSS.Models
 {
     [Table("Cities")]
     [DisplayName("Cidade")]
-    public class City : Base
+    public sealed class City : Base
     {
         [Required]
         [MaxLength(General.DESCRIPTION_MAX_LENGTH)]

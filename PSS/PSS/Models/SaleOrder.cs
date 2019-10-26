@@ -6,7 +6,7 @@ namespace PSS.Models
 {
     [Table("SaleOrders")]
     [DisplayName("Pedido de venda")]
-    public class SaleOrder : Order
+    public sealed class SaleOrder : Order
     {
         [Required]
         [DisplayName("Frete")]

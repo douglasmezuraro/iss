@@ -7,7 +7,7 @@ namespace PSS.Models
 {
     [Table("States")]
     [DisplayName("Estado")]
-    public class State : Base
+    public sealed class State : Base
     {
         [Required]
         [MaxLength(General.DESCRIPTION_MAX_LENGTH)]

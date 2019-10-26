@@ -7,7 +7,7 @@ namespace PSS.Models
 {
     [Table("Users")]
     [DisplayName("Usuário")]
-    public class User : PhysicalPerson
+    public sealed class User : PhysicalPerson
     {
         [Required]
         [MinLength(General.PASSWORD_MIN_LENGTH), MaxLength(General.PASSWORD_MAX_LENGTH)]

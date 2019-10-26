@@ -8,7 +8,7 @@ namespace PSS.Models
 {
     [Table("Products")]
     [DisplayName("Produto")]
-    public class Product : Base
+    public sealed class Product : Base
     {
         [Required]
         [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]

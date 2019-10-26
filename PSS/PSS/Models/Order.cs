@@ -25,7 +25,7 @@ namespace PSS.Models
         public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Product.Price) + Installments.Sum(i => i.Price);
 
         [DisplayName("Data")]
-        public System.DateTime? Date { get; set; }
+        public System.DateTime Date { get; set; }
 
         [Required]
         [DisplayName("Status")]
@@ -47,7 +47,7 @@ namespace PSS.Models
         public virtual void FinalizeOrder()
         {
             UserId = Global.User.Id;
-            Date = System.DateTime.Now.Date;
+            Date = System.DateTime.Now;
             OrderStatus = OrderStatus.Finished;
             Global.Cart.Items.Clear();
         }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PSS.Models
 {
-    public class Country : Base
+    public sealed class Country : Base
     {
         [Required]
         [MaxLength(General.DESCRIPTION_MAX_LENGTH)]

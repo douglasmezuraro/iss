@@ -7,7 +7,7 @@ namespace PSS.Models
 {
     [Table("Units")]
     [DisplayName("Unidades")]
-    public class Unit : Base
+    public sealed class Unit : Base
     {
         [Required]
         [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]

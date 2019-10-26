@@ -23,13 +23,13 @@ namespace PSS.Models
     }
 
     [Table("PurchaseOrderFreights")]
-    public class PurchaseOrderFreight : Freight
+    public sealed class PurchaseOrderFreight : Freight
     {
 
     }
 
     [Table("SaleOrderFreights")]
-    public class SaleOrderFreight : Freight
+    public sealed class SaleOrderFreight : Freight
     {
 
     }
