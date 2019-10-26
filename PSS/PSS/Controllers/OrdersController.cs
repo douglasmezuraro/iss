@@ -5,11 +5,16 @@ namespace PSS.Controllers
 {
     public class OrdersController : Controller
     {
+        private Controller controller = new OrderControllerFactory().CreateController();
+
         public ActionResult Index()
         {
-            var controller = new OrderControllerFactory().CreateController();
-
             return RedirectToAction("Index", controller.ToString());
+        }
+
+        public ActionResult Create()
+        {
+            return RedirectToAction("Create", controller.ToString());
         }
     }
 }
