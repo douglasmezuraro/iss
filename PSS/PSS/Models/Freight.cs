@@ -25,12 +25,12 @@ namespace PSS.Models
     [Table("PurchaseOrderFreights")]
     public class PurchaseOrderFreight : Freight
     {
-        public virtual PurchaseOrder PurchaseOrder { get; set; }
+
     }
 
     [Table("SaleOrderFreights")]
     public class SaleOrderFreight : Freight
     {
-        public virtual SaleOrder SaleOrder { get; set; }
+
     }
 }

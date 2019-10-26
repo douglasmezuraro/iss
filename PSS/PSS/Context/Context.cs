@@ -28,10 +28,8 @@ namespace SGCO.Context
 
             modelBuilder.Properties<System.DateTime>().Configure(c => c.HasColumnType("datetime2"));
 
-            modelBuilder.Entity<PurchaseOrder>().HasRequired(o => o.Freight).WithRequiredPrincipal(f => f.PurchaseOrder);
-            modelBuilder.Entity<SaleOrder>().HasRequired(o => o.Freight).WithRequiredPrincipal(f => f.SaleOrder);
-            //modelBuilder.Entity<PurchaseOrderFreight>().HasRequired(f => f.PurchaseOrder).WithRequiredPrincipal(o => o.Freight);
-
+            modelBuilder.Entity<PurchaseOrder>().HasRequired(o => o.Freight);
+            modelBuilder.Entity<SaleOrder>().HasRequired(o => o.Freight);
 
             base.OnModelCreating(modelBuilder);
         }

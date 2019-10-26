@@ -15,7 +15,7 @@ namespace PSS.Controllers
         public ActionResult Index()
         {
             var purchaseOrders = db.PurchaseOrders.Include(p => p.User)
-                                              //    .Include(p => p.Freight)
+                                                  .Include(p => p.Freight)
                                                   .Include(p => p.Items.Select(i => i.Product))
                                                   .Where(p => p.IsActive);
         
@@ -35,7 +35,7 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            order.Freight = db.PurchaseOrderFreights.Find(order.Id);
+            order.Freight = db.PurchaseOrderFreights.Find(order.FreightId);
             order.User = db.Users.Find(order.UserId);   
 
             return View(order);
@@ -56,7 +56,8 @@ namespace PSS.Controllers
 
                 foreach (var item in purchaseOrder.Items)
                 {
-                    db.Entry(item.Product).State = EntityState.Modified;
+                //    db.Entry(item.Product).Property(p => p.Stock).IsModified = true;
+                   
                 }
           
                 db.PurchaseOrders.Add(purchaseOrder);              

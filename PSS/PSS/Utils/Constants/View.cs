@@ -10,6 +10,7 @@
         public const string Index = "Início";
 
         // Ações
+        public const string Error = "Erro";
         public const string BackToList = "Voltar";
         public const string ConfirmDelete = "Você tem certeza que deseja deletar esse registro?";
         public const string Login = "Login";

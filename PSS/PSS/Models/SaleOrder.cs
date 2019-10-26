@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSS.Models
@@ -7,6 +8,11 @@ namespace PSS.Models
     [DisplayName("Pedido de venda")]
     public class SaleOrder : Order
     {
+        [Required]
+        [DisplayName("Frete")]
+        public int FreightId { get; set; }
+
+        [DisplayName("Frete")]
         public SaleOrderFreight Freight { get; set; } = new SaleOrderFreight();
 
         public override void FinalizeOrder()
