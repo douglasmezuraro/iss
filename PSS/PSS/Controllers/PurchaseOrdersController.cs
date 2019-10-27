@@ -1,5 +1,4 @@
 using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -56,27 +55,12 @@ namespace PSS.Controllers
 
                 foreach (var item in purchaseOrder.Items)
                 {
-                //    db.Entry(item.Product).Property(p => p.Stock).IsModified = true;
-                   
+                    db.Products.Attach(item.Product); 
                 }
           
                 db.PurchaseOrders.Add(purchaseOrder);              
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var errors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in errors.ValidationErrors)
-                        {
-                            string errorMessage = validationError.ErrorMessage;
-                        }
-                    }
-                }
-
+                db.SaveChanges();
+         
                 return RedirectToAction("Index");
             }
 
