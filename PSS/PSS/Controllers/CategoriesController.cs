@@ -14,7 +14,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Categories.ToList().Where(c => c.IsActive));
+            return View(db.Categories.ToList().Where(c => c.IsActive).OrderBy(c => c.Id));
         }
 
         public ActionResult Details(int? id)
@@ -44,7 +44,6 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                category.IsActive = true;
                 db.Categories.Add(category);
                 db.SaveChanges();
 
@@ -76,7 +75,6 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                category.IsActive = true;
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
 

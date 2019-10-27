@@ -14,7 +14,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var states = db.States.Include(s => s.Country).Where(s => s.IsActive);
+            var states = db.States.Include(s => s.Country).Where(s => s.IsActive).OrderBy(s => s.Id);
             return View(states.ToList());
         }
 
@@ -36,7 +36,7 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name");
+            ViewBag.CountryId = new SelectList(db.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name");
             return View();
         }
 
@@ -52,7 +52,7 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", state.CountryId);
+            ViewBag.CountryId = new SelectList(db.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", state.CountryId);
 
             return View(state);
         }
@@ -70,7 +70,7 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", state.CountryId);
+            ViewBag.CountryId = new SelectList(db.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", state.CountryId);
 
             return View(state);
         }
@@ -86,7 +86,7 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", state.CountryId);
+            ViewBag.CountryId = new SelectList(db.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", state.CountryId);
 
             return View(state);
         }

@@ -13,7 +13,7 @@ namespace PSS.Controllers
         
         public ActionResult Index()
         {
-            return View(db.Countries.Where(c => c.IsActive).ToList());
+            return View(db.Countries.Where(c => c.IsActive).OrderBy(c => c.Name).ToList());
         }
        
         public ActionResult Details(int? id)

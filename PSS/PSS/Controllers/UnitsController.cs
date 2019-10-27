@@ -13,7 +13,8 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Units.Where(u => u.IsActive).ToList());
+            var units = db.Units.Where(u => u.IsActive).OrderBy(u => u.Id);
+            return View(units.ToList());
         }
 
         public ActionResult Details(int? id)
@@ -24,11 +25,11 @@ namespace PSS.Controllers
             }
 
             Unit unit = db.Units.Find(id);
-
             if (unit == null)
             {
                 return HttpNotFound();
             }
+
             return View(unit);
         }
 

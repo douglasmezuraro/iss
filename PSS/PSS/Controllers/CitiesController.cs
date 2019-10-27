@@ -14,7 +14,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var cities = db.Cities.Include(c => c.State).Include(c => c.State.Country).Where(c => c.IsActive);
+            var cities = db.Cities.Include(c => c.State).Include(c => c.State.Country).Where(c => c.IsActive).OrderBy(c => c.Id);
             return View(cities.ToList().Where(c => c.IsActive));
         }
 
@@ -38,7 +38,7 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name");
+            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name");
             return View();
         }
 
@@ -48,14 +48,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                city.IsActive = true;
                 db.Cities.Add(city);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name", city.StateId);
+            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", city.StateId);
 
             return View(city);
         }
@@ -73,7 +72,7 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name", city.StateId);
+            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", city.StateId);
 
             return View(city);
         }
@@ -84,13 +83,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                city.IsActive = true;
                 db.Entry(city).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive), "Id", "Name", city.StateId);
+
+            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", city.StateId);
 
             return View(city);
         }

@@ -17,7 +17,7 @@ namespace PSS.Controllers
         {
             if (Global.User != null)
             {
-                var users = db.Users.Include(u => u.City).Where(u => u.IsActive);
+                var users = db.Users.Include(u => u.City).Where(u => u.IsActive).OrderBy(u => u.Id);
 
                 if (Global.User.UserType == UserType.Client)
                 {
@@ -52,7 +52,7 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name");
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
 
             return View();
         }
@@ -69,7 +69,7 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", user.CityId);
 
             return View(user);
         }
@@ -87,7 +87,7 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", user.CityId);
 
             return View(user);
         }
@@ -104,7 +104,7 @@ namespace PSS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", user.CityId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", user.CityId);
 
             return View(user);
         }

@@ -14,7 +14,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var providers = db.Providers.Include(p => p.City).Where(p => p.IsActive);
+            var providers = db.Providers.Include(p => p.City).Where(p => p.IsActive).OrderBy(p => p.ShortName);
 
             return View(providers.ToList());
         }
@@ -39,7 +39,7 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name");
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
             return View();
         }
 
@@ -48,15 +48,14 @@ namespace PSS.Controllers
         public ActionResult Create(Provider provider)
         {
             if (ModelState.IsValid)
-            {
-                provider.IsActive = true;
+            { 
                 db.Providers.Add(provider);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", provider.CityId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", provider.CityId);
 
             return View(provider);
         }
@@ -74,7 +73,7 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", provider.CityId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", provider.CityId);
 
             return View(provider);
         }
@@ -84,15 +83,14 @@ namespace PSS.Controllers
         public ActionResult Edit(Provider provider)
         {
             if (ModelState.IsValid)
-            {
-                provider.IsActive = true;
+            { 
                 db.Entry(provider).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive), "Id", "Name", provider.CityId);
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", provider.CityId);
 
             return View(provider);
         }

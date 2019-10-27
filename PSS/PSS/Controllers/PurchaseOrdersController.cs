@@ -16,7 +16,8 @@ namespace PSS.Controllers
             var purchaseOrders = db.PurchaseOrders.Include(p => p.User)
                                                   .Include(p => p.Freight)
                                                   .Include(p => p.Items.Select(i => i.Product))
-                                                  .Where(p => p.IsActive);
+                                                  .Where(p => p.IsActive)
+                                                  .OrderBy(p => p.Id);
         
             return View(purchaseOrders.ToList());
         }
