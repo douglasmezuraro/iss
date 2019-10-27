@@ -98,7 +98,6 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.IsActive = true;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
 

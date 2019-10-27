@@ -55,7 +55,8 @@ namespace PSS.Controllers
 
                 foreach (var item in purchaseOrder.Items)
                 {
-                    db.Products.Attach(item.Product); 
+                    db.Products.Attach(item.Product);
+                    db.Entry(item.Product).State = EntityState.Modified;
                 }
           
                 db.PurchaseOrders.Add(purchaseOrder);              

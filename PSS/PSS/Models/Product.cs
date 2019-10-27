@@ -41,7 +41,7 @@ namespace PSS.Models
         [DisplayName("Categoria")]
         public int CategoryId { get; set; }
 
-        [DisplayName("Caregoria")]
+        [DisplayName("Categoria")]
         public Category Category { get; set; }
 
         [Required]
