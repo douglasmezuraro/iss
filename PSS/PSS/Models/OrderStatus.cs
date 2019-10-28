@@ -20,6 +20,12 @@ namespace PSS.Models
         OutForDelivery,
 
         [Display(Name = "Entregue")]
-        Delivered
+        Delivered,
+
+        [Display(Name = "Devolvido")]
+        Returned,
+
+        [Display(Name = "Cancelado")]
+        Canceled
     }
 }
