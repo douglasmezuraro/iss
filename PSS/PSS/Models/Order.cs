@@ -25,6 +25,7 @@ namespace PSS.Models
         public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Product.Price) + Installments.Sum(i => i.Price);
 
         [DisplayName("Data")]
+        [DataType(DataType.Date)]
         public System.DateTime Date { get; set; }
 
         [Required]

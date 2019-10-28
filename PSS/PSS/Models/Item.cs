@@ -24,8 +24,10 @@ namespace PSS.Models
         [DisplayName("Produto")]
         public Product Product { get; set; }
 
+        [ScaffoldColumn(false)]
         public int? PurchaseOrderId { get; set; }
 
+        [ScaffoldColumn(false)]
         public int? SaleOrderId { get; set; }
     }
 }

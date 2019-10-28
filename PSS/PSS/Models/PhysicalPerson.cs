@@ -18,11 +18,12 @@ namespace PSS.Models
 
         [Required]
         [MinLength(General.CPF_LENGTH), MaxLength(General.CPF_LENGTH)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:###.###.###-##}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.CPF_MASK)]
         public string CPF { get; set; }
 
         [Required]
         [DisplayName("Nascimento")]
+        [DataType(DataType.Date)]
         public System.DateTime Birth { get; set; }
 
         [Required]

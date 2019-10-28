@@ -9,6 +9,7 @@ namespace PSS.Models
     public class Freight : Base
     {
         [Required]
+        [DataType(DataType.Date)]
         [DisplayName("Previsão de entrega")]
         public System.DateTime DeliveryDate { get; set; }
 

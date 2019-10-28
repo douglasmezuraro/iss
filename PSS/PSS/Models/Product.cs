@@ -34,7 +34,8 @@ namespace PSS.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         public double Weight { get; set; }
 
-        [DisplayName("Validade")]       
+        [DisplayName("Validade")]
+        [DataType(DataType.Date)]
         public System.DateTime? Expiration { get; set; }
 
         [Required]
