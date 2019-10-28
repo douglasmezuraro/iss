@@ -88,6 +88,11 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            if (id != Global.User.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
+
             User user = db.Users.Find(id);
             if (user == null)
             {
@@ -123,6 +128,11 @@ namespace PSS.Controllers
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (id != Global.User.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
             User user = db.Users.Find(id);
