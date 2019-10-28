@@ -1,4 +1,5 @@
 ﻿@model PSS.Models.User
+@using PSS.Utils
 @using PSS.Utils.Constants
 
 @{
@@ -161,7 +162,7 @@
 
 <br />
 <div>
-    @Html.ActionLink(View.BackToList, "Index")
+    @Html.ActionLink(View.BackToList, Global.User == null ? "Login" : "Index")
 </div>
 
 @section Scripts {

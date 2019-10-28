@@ -162,7 +162,6 @@ namespace PSS.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            FormsAuthentication.SignOut();
             return View();
         }
 
@@ -178,7 +177,6 @@ namespace PSS.Controllers
                 return RedirectToAction("Login");
             }
 
-            Global.User = model;
             SetAuthenticationToken(model);
 
             return RedirectToAction("Index");
@@ -198,6 +196,7 @@ namespace PSS.Controllers
 
             if (user != null)
             {
+                Global.User = user;
                 data = new JavaScriptSerializer().Serialize(user);
             }
 
