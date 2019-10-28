@@ -36,7 +36,8 @@ namespace PSS.Controllers
             }
 
             order.Freight = db.PurchaseOrderFreights.Find(order.FreightId);
-            order.User = db.Users.Find(order.UserId);   
+            order.User = db.Users.Find(order.UserId);
+            order.Items = db.Items.Include(i => i.Product).Where(o => o.PurchaseOrderId == order.Id).ToList();
 
             return View(order);
         }

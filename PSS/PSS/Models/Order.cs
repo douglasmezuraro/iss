@@ -39,7 +39,7 @@ namespace PSS.Models
         public User User { get; set; }
 
         [DisplayName("Carrinho")]
-        public ICollection<Item> Items { get; } = new List<Item>();
+        public ICollection<Item> Items { get; set; } = new List<Item>();
 
         [DisplayName("Pagamento")]
         public ICollection<Installment> Installments { get; } = new List<Installment>();

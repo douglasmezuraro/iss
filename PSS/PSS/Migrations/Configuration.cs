@@ -1,10 +1,12 @@
+using PSS.Models;
+using SGCO.Context;
+using System.Data.Entity.Migrations;
+
 namespace PSS.Migrations
 {
-    using PSS.Models;
-    using System.Data.Entity.Migrations;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<SGCO.Context.Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<Context>
     {
+        private Context db;
 
         public Configuration()
         {
@@ -12,28 +14,30 @@ namespace PSS.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(SGCO.Context.Context context)
+        protected override void Seed(Context context)
         {
-            SeedCountries(context);
-            SeedStates(context);
-            SeedCities(context);            
-            SeedUnits(context);
-            SeedCategories(context);
-            SeedManufacturers(context);
-            SeedProviders(context);
-            SeedProducts(context);
-            SeedUsers(context);
+            db = context;
+
+            SeedCountries();
+            SeedStates();
+            SeedCities();
+            SeedUnits();
+            SeedCategories();
+            SeedManufacturers();
+            SeedProviders();
+            SeedProducts();
+            SeedUsers();
         }
 
-        private void SeedCountries(SGCO.Context.Context context)
+        private void SeedCountries()
         {
-            context.Countries.AddOrUpdate(c => c.Id,
+            db.Countries.AddOrUpdate(c => c.Id,
                 new Country { Id = 01, Name = "Brasil" });
         }
 
-        private void SeedStates(SGCO.Context.Context context)
+        private void SeedStates()
         {
-            context.States.AddOrUpdate(s => s.Id,
+            db.States.AddOrUpdate(s => s.Id,
                 new State { Id = 01, UF = "AC", CountryId = 01, Name = "Acre" },
                 new State { Id = 02, UF = "AL", CountryId = 01, Name = "Alagoas" },
                 new State { Id = 03, UF = "AP", CountryId = 01, Name = "Amapá" },
@@ -63,9 +67,9 @@ namespace PSS.Migrations
                 new State { Id = 27, UF = "TO", CountryId = 01, Name = "Tocantins" });
         }
 
-        private void SeedCities(SGCO.Context.Context context)
+        private void SeedCities()
         {
-            context.Cities.AddOrUpdate(c => c.Id,
+            db.Cities.AddOrUpdate(c => c.Id,
                 new City { Id = 01, StateId = 01, Name = "Rio Branco" },
                 new City { Id = 02, StateId = 02, Name = "Maceió" },
                 new City { Id = 03, StateId = 03, Name = "Macapá" },
@@ -99,9 +103,9 @@ namespace PSS.Migrations
                 new City { Id = 31, StateId = 16, Name = "Londrina" });
         }
 
-        private void SeedUnits(SGCO.Context.Context context)
+        private void SeedUnits()
         {
-            context.Units.AddOrUpdate(u => u.Id,
+            db.Units.AddOrUpdate(u => u.Id,
                 new Unit { Id = 1, Description = "Peça" },
                 new Unit { Id = 2, Description = "Caixa" },
                 new Unit { Id = 3, Description = "Pacote" },
@@ -110,9 +114,9 @@ namespace PSS.Migrations
                 new Unit { Id = 6, Description = "Granel" });
         }
 
-        private void SeedCategories(SGCO.Context.Context context)
+        private void SeedCategories()
         {
-            context.Categories.AddOrUpdate(c => c.Id,
+            db.Categories.AddOrUpdate(c => c.Id,
                 new Category { Id = 1, IsPerishable = false, Name = "Guitarra" },
                 new Category { Id = 2, IsPerishable = false, Name = "Violão" },
                 new Category { Id = 3, IsPerishable = false, Name = "Baixo" },
@@ -122,9 +126,9 @@ namespace PSS.Migrations
                 new Category { Id = 7, IsPerishable = false, Name = "Saxofone" });
         }
 
-        private void SeedManufacturers(SGCO.Context.Context context)
+        private void SeedManufacturers()
         {
-            context.Manufacturers.AddOrUpdate(m => m.Id,
+            db.Manufacturers.AddOrUpdate(m => m.Id,
                 new Manufacturer
                 {
                     Id = 1,
@@ -267,9 +271,9 @@ namespace PSS.Migrations
                 });
         }
 
-        private void SeedProviders(SGCO.Context.Context context)
+        private void SeedProviders()
         {
-            context.Providers.AddOrUpdate(p => p.Id,
+            db.Providers.AddOrUpdate(p => p.Id,
                 new Provider
                 {
                     Id = 1,
@@ -412,9 +416,9 @@ namespace PSS.Migrations
                 });
         }
 
-        private void SeedProducts(SGCO.Context.Context context)
+        private void SeedProducts()
         {
-            context.Products.AddOrUpdate(p => p.Id,
+            db.Products.AddOrUpdate(p => p.Id,
                 new Product
                 {
                     Id = 1,
@@ -557,9 +561,9 @@ namespace PSS.Migrations
                 });
         }
 
-        private void SeedUsers(SGCO.Context.Context context)
+        private void SeedUsers()
         {
-            context.Users.AddOrUpdate(u => u.Id,
+            db.Users.AddOrUpdate(u => u.Id,
                 new User
                 {
                     Id = 1,
@@ -576,6 +580,159 @@ namespace PSS.Migrations
                     Number = 812,
                     PostalCode = "87053-518",
                     CityId = 28
+                },
+                new User
+                {
+                    Id = 2,
+                    Name = "David",
+                    LastName = "Jon Gilmour",
+                    CPF = "756.116.050-01",
+                    Birth = System.DateTime.Parse("06/03/1946"),
+                    Gender = Gender.Male,
+                    Phone = "(00) 0000-0000",
+                    Email = "david@gilmour.com",
+                    Password = "1",
+                    UserType = UserType.Client,
+                    Address = "Rua #1",
+                    Number = 1,
+                    PostalCode = "00000-000",
+                    CityId = 1
+                },
+                new User
+                {
+                    Id = 3,
+                    Name = "Mikael",
+                    LastName = "Åkerfeldt",
+                    CPF = "772.379.290-54",
+                    Birth = System.DateTime.Parse("17/04/1974"),
+                    Gender = Gender.Male,
+                    Phone = "(00) 0000-0000",
+                    Email = "mikael@akerfeldt.com",
+                    Password = "1",
+                    UserType = UserType.Client,
+                    Address = "Rua #2",
+                    Number = 2,
+                    PostalCode = "00000-000",
+                    CityId = 2
+                },
+                new User
+                {
+                    Id = 4,
+                    Name = "Ozzy",
+                    LastName = "Osbourne",
+                    CPF = "550.527.180-47",
+                    Birth = System.DateTime.Parse("03/12/1948"),
+                    Gender = Gender.Male,
+                    Phone = "(00) 0000-0000",
+                    Email = "ozzy@osbourne.com",
+                    Password = "1",
+                    UserType = UserType.Client,
+                    Address = "Rua #3",
+                    Number = 3,
+                    PostalCode = "00000-000",
+                    CityId = 3
+                },
+                new User
+                {
+                    Id = 5,
+                    Name = "Tony",
+                    LastName = "Iommi",
+                    CPF = "709.324.560-90",
+                    Birth = System.DateTime.Parse("19/02/1948"),
+                    Gender = Gender.Male,
+                    Phone = "(00) 0000-0000",
+                    Email = "tony@iommi.com",
+                    Password = "1",
+                    UserType = UserType.Client,
+                    Address = "Rua #4",
+                    Number = 4,
+                    PostalCode = "00000-000",
+                    CityId = 4
+                },
+                new User
+                {
+                    Id = 6,
+                    Name = "Jimmy",
+                    LastName = "Page",
+                    CPF = "922.782.340-99",
+                    Birth = System.DateTime.Parse("09/01/1944"),
+                    Gender = Gender.Male,
+                    Phone = "(00) 0000-0000",
+                    Email = "jimmy@page.com",
+                    Password = "1",
+                    UserType = UserType.Client,
+                    Address = "Rua #5",
+                    Number = 5,
+                    PostalCode = "00000-000",
+                    CityId = 5
+                },
+                new User
+                {
+                    Id = 7,
+                    Name = "Robert",
+                    LastName = "Plant",
+                    CPF = "101.075.010-07",
+                    Birth = System.DateTime.Parse("20/08/1948"),
+                    Gender = Gender.Male,
+                    Phone = "(00) 0000-0000",
+                    Email = "robert@plant.com",
+                    Password = "1",
+                    UserType = UserType.Client,
+                    Address = "Rua #6",
+                    Number = 6,
+                    PostalCode = "00000-000",
+                    CityId = 6
+                },
+                new User
+                {
+                    Id = 8,
+                    Name = "Roger",
+                    LastName = "Waters",
+                    CPF = "751.864.680-37",
+                    Birth = System.DateTime.Parse("06/09/1943"),
+                    Gender = Gender.Male,
+                    Phone = "(00) 0000-0000",
+                    Email = "roger@waters.com",
+                    Password = "1",
+                    UserType = UserType.Client,
+                    Address = "Rua #7",
+                    Number = 7,
+                    PostalCode = "00000-000",
+                    CityId = 7
+                },
+                new User
+                {
+                    Id = 9,
+                    Name = "Bruce",
+                    LastName = "Dickinson",
+                    CPF = "338.065.340-39",
+                    Birth = System.DateTime.Parse("07/08/1958"),
+                    Gender = Gender.Male,
+                    Phone = "(00) 0000-0000",
+                    Email = "bruce@dickinson.com",
+                    Password = "1",
+                    UserType = UserType.Client,
+                    Address = "Rua #8",
+                    Number = 8,
+                    PostalCode = "00000-000",
+                    CityId = 8
+                },
+                new User
+                {
+                    Id = 10,
+                    Name = "Rob",
+                    LastName = "Halford",
+                    CPF = "623.107.310-64",
+                    Birth = System.DateTime.Parse("25/08/1951"),
+                    Gender = Gender.Male,
+                    Phone = "(00) 0000-0000",
+                    Email = "rob@halford.com",
+                    Password = "1",
+                    UserType = UserType.Client,
+                    Address = "Rua #9",
+                    Number = 9,
+                    PostalCode = "00000-000",
+                    CityId = 9
                 });
         }
     }

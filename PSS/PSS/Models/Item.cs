@@ -1,6 +1,7 @@
 ﻿using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSS.Models
 {
@@ -22,5 +23,9 @@ namespace PSS.Models
 
         [DisplayName("Produto")]
         public Product Product { get; set; }
+
+        public int? PurchaseOrderId { get; set; }
+
+        public int? SaleOrderId { get; set; }
     }
 }
