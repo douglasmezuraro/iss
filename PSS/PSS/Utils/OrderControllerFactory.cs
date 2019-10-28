@@ -12,7 +12,7 @@ namespace PSS.Utils
             switch (Global.User.UserType)
             {
                 case UserType.Admin    : return new PurchaseOrdersController(); 
-                case UserType.Customer : return null;
+                case UserType.Customer : return new SaleOrdersController();
                 default                : throw new ArgumentException(); 
             }
         }

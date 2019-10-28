@@ -1,4 +1,4 @@
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -7,18 +7,18 @@ using SGCO.Context;
 
 namespace PSS.Controllers
 {
-    public class PurchaseOrdersController : Controller
+    public class SaleOrdersController : Controller
     {
         private Context db = new Context();
 
         public ActionResult Index()
         {
-            var orders = db.PurchaseOrders.Include(p => p.User)
-                                                  .Include(p => p.Freight)
-                                                  .Include(p => p.Items.Select(i => i.Product))
-                                                  .Where(p => p.IsActive)
-                                                  .OrderBy(p => p.Id);
-        
+            var orders = db.SaleOrders.Include(p => p.User)
+                                          .Include(p => p.Freight)
+                                          .Include(p => p.Items.Select(i => i.Product))
+                                          .Where(p => p.IsActive)
+                                          .OrderBy(p => p.Id);
+
             return View(orders.ToList());
         }
 
@@ -29,15 +29,15 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PurchaseOrder order = db.PurchaseOrders.Find(id);
+            SaleOrder order = db.SaleOrders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
             }
 
-            order.Freight = db.PurchaseOrderFreights.Find(order.FreightId);
+            order.Freight = db.SaleOrderFreights.Find(order.FreightId);
             order.User = db.Users.Find(order.UserId);
-            order.Items = db.Items.Include(i => i.Product).Where(o => o.PurchaseOrderId == order.Id).ToList();
+            order.Items = db.Items.Include(i => i.Product).Where(o => o.SaleOrderId == order.Id).ToList();
 
             return View(order);
         }
@@ -49,7 +49,7 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PurchaseOrder order)
+        public ActionResult Create(SaleOrder order)
         {
             if (ModelState.IsValid)
             {
@@ -60,10 +60,10 @@ namespace PSS.Controllers
                     db.Products.Attach(item.Product);
                     db.Entry(item.Product).State = EntityState.Modified;
                 }
-          
-                db.PurchaseOrders.Add(order);              
+
+                db.SaleOrders.Add(order);
                 db.SaveChanges();
-         
+
                 return RedirectToAction("Index");
             }
 
@@ -77,7 +77,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PurchaseOrder order = db.PurchaseOrders.Find(id);
+            SaleOrder order = db.SaleOrders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PurchaseOrder order = db.PurchaseOrders.Find(id);
+            SaleOrder order = db.SaleOrders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -112,7 +112,7 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public override string ToString()
         {
-            return "PurchaseOrders";
+            return "SaleOrders";
         }
 
         public ActionResult FinalizeOrder()

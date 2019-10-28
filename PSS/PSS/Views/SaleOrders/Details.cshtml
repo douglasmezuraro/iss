@@ -1,0 +1,98 @@
+﻿@model PSS.Models.Order
+@using PSS.Utils.Constants
+
+@{
+    ViewBag.Title = View.Details;
+}
+
+<h2>@View.Details</h2>
+
+<div>
+    <h4>@Html.DisplayNameForModel()</h4>
+    <hr />
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Dados do pedido de compra</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.LastName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.LastName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalPrice)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalPrice)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.OrderStatus)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OrderStatus)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Dados dos items</div>
+        <div class="panel-body">
+            <table class="table">
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(i => item.Product.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(i => item.Product.Category.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(i => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(i => item.Price)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink(View.Edit, "Edit", new { id = Model.Id }) |
+    @Html.ActionLink(View.BackToList, "Index")
+</p>
