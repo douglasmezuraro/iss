@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using PSS.Models;
+using PSS.Utils;
 using SGCO.Context;
 
 namespace PSS.Controllers
@@ -45,6 +46,11 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
+            if (Global.Cart.Items.Count == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "O carrinho de compras está vazio.");
+            }
+
             return View();
         }
 
