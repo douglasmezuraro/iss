@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using PSS.Models;
 using SGCO.Context;
 using PSS.Utils;
+using System.Web.Security;
+using System.Web.Script.Serialization;
+using System.Web;
 
 namespace PSS.Controllers
 {
@@ -13,6 +16,7 @@ namespace PSS.Controllers
     {
         private Context db = new Context();
 
+        [Authorize]
         public ActionResult Index()
         {
             if (Global.User != null)
@@ -32,6 +36,7 @@ namespace PSS.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -49,14 +54,14 @@ namespace PSS.Controllers
 
             return View(user);
         }
-
+       
         public ActionResult Create()
         {
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
 
             return View();
         }
-
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(User user)
@@ -74,6 +79,7 @@ namespace PSS.Controllers
             return View(user);
         }
 
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -92,6 +98,7 @@ namespace PSS.Controllers
             return View(user);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(User user)
@@ -109,6 +116,7 @@ namespace PSS.Controllers
             return View(user);
         }
 
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -127,6 +135,7 @@ namespace PSS.Controllers
             return View(user);
         }
 
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -153,6 +162,7 @@ namespace PSS.Controllers
             if (model != null)
             {
                 Global.User = model;
+                SetAuthenticationToken(model);
             }
             
             return RedirectToAction("index");
@@ -161,7 +171,51 @@ namespace PSS.Controllers
         public ActionResult Logoff()
         {
             Global.User = null;
+            FormsAuthentication.SignOut();
             return RedirectToAction("index");
+        }
+
+        private void SetAuthenticationToken(User user)
+        {
+            string data = null;
+
+            if (user != null)
+            {
+                data = new JavaScriptSerializer().Serialize(user);
+            }
+
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.Name, System.DateTime.Now, System.DateTime.Now.AddDays(1), true, user.Email);
+            string cookieData = FormsAuthentication.Encrypt(ticket);
+
+            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, cookieData)
+            {
+                HttpOnly = true,
+                Expires = ticket.Expiration
+            };
+
+            HttpContext.Response.Cookies.Add(cookie);
+        }
+
+        private User GetUserData()
+        {
+            User user = null;
+
+            try
+            {
+                HttpCookie cookie = HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (cookie != null)
+                {
+                    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+                    user = new JavaScriptSerializer().Deserialize(ticket.UserData, typeof(User)) as User;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                // TODO: Tratar erro
+            }
+
+            return user;
         }
 
         protected override void Dispose(bool disposing)
