@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<PSS.Models.Item>
 @using PSS.Utils.Constants
+@using PSS.Utils
 
 @{
     ViewBag.Title = View.Index;
@@ -7,9 +8,12 @@
 
 <h2>@View.Index</h2>
 
-<p>
-    @Html.ActionLink("Finalizar pedido", "Create", "Orders")
-</p>
+@if ((Global.User != null) && (Global.Cart.Items.Count > 0))
+{
+    <p>
+        @Html.ActionLink("Finalizar pedido", "Create", "Orders")
+    </p>
+}
 
 <table class="table">
     <tr>
