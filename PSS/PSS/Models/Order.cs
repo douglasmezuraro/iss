@@ -52,5 +52,12 @@ namespace PSS.Models
             OrderStatus = OrderStatus.Finished;
             Global.Cart.Items.Clear();
         }
+
+        public virtual void CancelOrder()
+        {
+            OrderStatus = OrderStatus.Canceled;
+        }
+
+        public abstract void ReturnOrder();
     }
 }

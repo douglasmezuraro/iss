@@ -70,70 +70,40 @@ namespace PSS.Controllers
             return View(purchaseOrder);
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Cancel(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PurchaseOrder purchaseOrder = db.PurchaseOrders.Find(id);
-            if (purchaseOrder == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(purchaseOrder);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(PurchaseOrder purchaseOrder)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(purchaseOrder).State = EntityState.Modified;
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
-            }
-
-            return View(purchaseOrder);
-        }
-
-
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            PurchaseOrder purchaseOrder = db.PurchaseOrders.Find(id);
-            if (purchaseOrder == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(purchaseOrder);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
             PurchaseOrder order = db.PurchaseOrders.Find(id);
-
-            order.IsActive = false;
-            db.Entry(order).State = EntityState.Modified;
-
-            foreach (var item in order.Items)
+            if (order == null)
             {
-                item.IsActive = false;
-                db.Entry(item).State = EntityState.Modified;
-            }    
- 
+                return HttpNotFound();
+            }
+
+            order.CancelOrder();
+            db.Entry(order).State = EntityState.Modified;
             db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Return(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            PurchaseOrder order = db.PurchaseOrders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+
+            order.ReturnOrder();
 
             return RedirectToAction("Index");
         }

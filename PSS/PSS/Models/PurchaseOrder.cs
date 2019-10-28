@@ -24,5 +24,10 @@ namespace PSS.Models
                 item.Product.Stock += item.Quantity;
             }            
         }
+
+        public override void ReturnOrder()
+        {
+            throw new System.NotImplementedException("A devolução do pedido de compra ainda não foi implementado!");
+        }
     }
 }
