@@ -11,6 +11,6 @@ namespace PSS.Models
         Admin,
 
         [Display(Name = "Cliente")]
-        Client
+        Customer
     }
 }

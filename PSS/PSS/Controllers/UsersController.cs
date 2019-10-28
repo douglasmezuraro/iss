@@ -19,7 +19,7 @@ namespace PSS.Controllers
             {
                 var users = db.Users.Include(u => u.City).Where(u => u.IsActive).OrderBy(u => u.Id);
 
-                if (Global.User.UserType == UserType.Client)
+                if (Global.User.UserType == UserType.Customer)
                 {
                     return View(users.ToList().Where(u => u.Id == Global.User.Id));
                 }
