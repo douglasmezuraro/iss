@@ -8,6 +8,7 @@ using SGCO.Context;
 
 namespace PSS.Controllers
 {
+    [Authorize]
     public class ProvidersController : Controller
     {
         private Context db = new Context();

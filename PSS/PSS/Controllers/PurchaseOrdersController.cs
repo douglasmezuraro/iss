@@ -7,6 +7,7 @@ using SGCO.Context;
 
 namespace PSS.Controllers
 {
+    [Authorize]
     public class PurchaseOrdersController : Controller
     {
         private Context db = new Context();

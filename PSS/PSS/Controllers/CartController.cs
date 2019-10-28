@@ -7,6 +7,7 @@ using PSS.Utils;
 
 namespace PSS.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private Context db = new Context();

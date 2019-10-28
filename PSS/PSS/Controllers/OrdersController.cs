@@ -3,6 +3,7 @@ using PSS.Utils;
 
 namespace PSS.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private Controller controller = new OrderControllerFactory().CreateController();

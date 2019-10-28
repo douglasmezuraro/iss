@@ -62,6 +62,7 @@ namespace PSS.Controllers
             return View();
         }
       
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(User user)
@@ -148,8 +149,10 @@ namespace PSS.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
+            FormsAuthentication.SignOut();
             return View();
         }
 
@@ -214,7 +217,7 @@ namespace PSS.Controllers
                     user = new JavaScriptSerializer().Deserialize(ticket.UserData, typeof(User)) as User;
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 // TODO: Tratar erro
             }

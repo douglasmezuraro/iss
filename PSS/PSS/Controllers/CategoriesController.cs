@@ -8,6 +8,7 @@ using SGCO.Context;
 
 namespace PSS.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private Context db = new Context();
