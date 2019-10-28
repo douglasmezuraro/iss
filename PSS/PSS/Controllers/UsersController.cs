@@ -155,24 +155,28 @@ namespace PSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Login(User user)
         {
             var model = db.Users.Where(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password)).FirstOrDefault();
 
-            if (model != null)
+            if (model == null)
             {
-                Global.User = model;
-                SetAuthenticationToken(model);
+                return RedirectToAction("Login");
             }
-            
-            return RedirectToAction("index");
+
+            Global.User = model;
+            SetAuthenticationToken(model);
+
+            return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public ActionResult Logoff()
         {
             Global.User = null;
             FormsAuthentication.SignOut();
-            return RedirectToAction("index");
+            return RedirectToAction("Login");
         }
 
         private void SetAuthenticationToken(User user)

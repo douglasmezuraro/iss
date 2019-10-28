@@ -590,7 +590,7 @@ namespace PSS.Migrations
                     Birth = System.DateTime.Parse("06/03/1946"),
                     Gender = Gender.Male,
                     Phone = "(68) 2528-3606",
-                    Email = "pedro@gmail.com.br",
+                    Email = "pedro@gmail.com",
                     Password = "1",
                     UserType = UserType.Customer,
                     Address = "Travessa Calvário",
