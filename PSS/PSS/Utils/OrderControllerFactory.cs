@@ -1,6 +1,7 @@
 ﻿using PSS.Controllers;
 using PSS.Models;
 using System.Web.Mvc;
+using System;
 
 namespace PSS.Utils
 {
@@ -12,7 +13,7 @@ namespace PSS.Utils
             {
                 case UserType.Admin    : return new PurchaseOrdersController(); 
                 case UserType.Customer : return null; // new SaleOrdersController(); // TODO: Refatorar controlador de pedido de venda
-                default                : return new HomeController(); 
+                default                : throw new ArgumentException(); 
             }
         }
     }
