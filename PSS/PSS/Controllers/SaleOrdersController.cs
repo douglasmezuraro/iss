@@ -19,6 +19,7 @@ namespace PSS.Controllers
                                           .Include(p => p.Freight)
                                           .Include(p => p.Items.Select(i => i.Product))
                                           .Where(p => p.IsActive)
+                                          .Where(p => p.UserId == Global.User.Id)
                                           .OrderBy(p => p.Id);
 
             return View(orders.ToList());
@@ -35,6 +36,11 @@ namespace PSS.Controllers
             if (order == null)
             {
                 return HttpNotFound();
+            }
+
+            if (order.UserId != Global.User.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
             order.Freight = db.SaleOrderFreights.Find(order.FreightId);
@@ -90,6 +96,11 @@ namespace PSS.Controllers
                 return HttpNotFound();
             }
 
+            if (order.UserId != Global.User.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
+
             order.CancelOrder();
             db.Entry(order).State = EntityState.Modified;
             db.SaveChanges();
@@ -108,6 +119,11 @@ namespace PSS.Controllers
             if (order == null)
             {
                 return HttpNotFound();
+            }
+
+            if (order.UserId != Global.User.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
             order.ReturnOrder();
