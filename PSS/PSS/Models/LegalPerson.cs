@@ -1,4 +1,5 @@
-﻿using PSS.Utils.Constants;
+﻿using PSS.Utils.Attributes.Validation;
+using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -17,9 +18,9 @@ namespace PSS.Models
         public string FullName { get; set; }
 
         [Required]
+        [CNPJ]
         [DisplayName("CNPJ")]
-        [MinLength(General.CNPJ_LENTH), MaxLength(General.CNPJ_LENTH)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.CNPJ_MASK)]
+        [StringLength(General.CNPJ_LENTH)]
         public string CNPJ { get; set; }
     }
 }
