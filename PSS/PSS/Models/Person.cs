@@ -1,4 +1,5 @@
-﻿using PSS.Utils.Constants;
+﻿using PSS.Utils.Attributes.Validation;
+using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,8 +29,8 @@ namespace PSS.Models
         public int Number { get; set; }
 
         [Required]
-        [MinLength(General.CEP_LENGTH), MaxLength(General.CEP_LENGTH)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.CEP_MASK)]
+        [CEP]
+        [StringLength(General.CEP_LENGTH)]
         [DisplayName("CEP")]
         public string PostalCode { get; set; }
 
