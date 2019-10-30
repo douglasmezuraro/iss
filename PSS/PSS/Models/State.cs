@@ -15,7 +15,7 @@ namespace PSS.Models
         public string Name { get; set; }
 
         [Required]
-        [StringLength(General.UF_LENGTH)]
+        [StringLength(General.ABREVIATION_LENGTH)]
         [DisplayName("UF")]
         public string UF { get; set; }
 

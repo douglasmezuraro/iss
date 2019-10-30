@@ -21,6 +21,9 @@
             @Html.DisplayNameFor(m => m.Product)
         </th>
         <th>
+            @Html.DisplayNameFor(m => m.Product.Unit)
+        </th>
+        <th>
             @Html.DisplayNameFor(m => m.Product.Category)
         </th>
         <th>
@@ -37,6 +40,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(m => item.Product.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Product.Unit.Abbreviation)
             </td>
             <td>
                 @Html.DisplayFor(m => item.Product.Category.Name)

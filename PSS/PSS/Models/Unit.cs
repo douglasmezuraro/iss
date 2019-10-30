@@ -13,5 +13,10 @@ namespace PSS.Models
         [MaxLength(General.TEXT_LENGTH)]
         [DisplayName("Descrição")]
         public string Description { get; set; }
+
+        [Required]
+        [StringLength(General.ABREVIATION_LENGTH)]
+        [DisplayName("Abreviação")]
+        public string Abbreviation { get; set; }
     }
 }

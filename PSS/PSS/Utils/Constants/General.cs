@@ -3,7 +3,7 @@
     public static class General
     {
         public const byte TEXT_LENGTH = 100;
-        public const byte UF_LENGTH = 2;
+        public const byte ABREVIATION_LENGTH = 2;
         public const byte CEP_LENGTH = 9;
         public const byte CPF_LENGTH = 14;
         public const byte CNPJ_LENGTH = 19;

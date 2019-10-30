@@ -106,12 +106,11 @@ namespace PSS.Migrations
         private void SeedUnits()
         {
             db.Units.AddOrUpdate(u => u.Id,
-                new Unit { Id = 1, Description = "Peça" },
-                new Unit { Id = 2, Description = "Caixa" },
-                new Unit { Id = 3, Description = "Pacote" },
-                new Unit { Id = 4, Description = "Unidade" },
-                new Unit { Id = 5, Description = "Tonel" },
-                new Unit { Id = 6, Description = "Granel" });
+                new Unit { Id = 1, Abbreviation = "PÇ", Description = "Peça" },
+                new Unit { Id = 2, Abbreviation = "CX", Description = "Caixa" },
+                new Unit { Id = 3, Abbreviation = "PA", Description = "Pacote" },
+                new Unit { Id = 4, Abbreviation = "UN", Description = "Unidade" },
+                new Unit { Id = 5, Abbreviation = "KG", Description = "Kilo" });
         }
 
         private void SeedCategories()
