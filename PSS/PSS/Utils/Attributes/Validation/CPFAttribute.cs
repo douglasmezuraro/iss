@@ -8,7 +8,7 @@ namespace PSS.Utils.Attributes.Validation
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             string cpf = (string)value;
-            Regex regex = new Regex("([0-9]{3}.){2}[0-9]{3}-[0-9]{2}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            Regex regex = new Regex(@"([0-9]{3}\.){2}[0-9]{3}\-[0-9]{2}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
             if ((value == null) || regex.IsMatch(cpf))
             {

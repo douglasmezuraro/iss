@@ -8,7 +8,7 @@ namespace PSS.Models
     public abstract class Person : Base
     {
         [Required]
-        [Phone]
+        [Utils.Attributes.Validation.Phone]
         [DisplayName("Telefone")]
         [MaxLength(General.TEXT_LENGTH)]
         public string Phone { get; set; }

@@ -244,6 +244,7 @@
     <Compile Include="Utils\Attributes\Validation\CEPAttribute.cs" />
     <Compile Include="Utils\Attributes\Validation\CNPJAttribute.cs" />
     <Compile Include="Utils\Attributes\Validation\CPFAttribute.cs" />
+    <Compile Include="Utils\Attributes\Validation\PhoneAttribute.cs" />
     <Compile Include="Utils\Constants\General.cs" />
     <Compile Include="Utils\Constants\View.cs" />
     <Compile Include="Utils\Global.cs" />
