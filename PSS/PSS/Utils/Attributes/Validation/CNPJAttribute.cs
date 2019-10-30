@@ -20,7 +20,7 @@ namespace PSS.Utils.Attributes.Validation
 
         private string GetErrorMessage(string value)
         {
-            return "O valor '" + value + "' não é um CNPJ válido.";
+            return "O valor '" + value + "' não é um CNPJ válido. O CPNJ deve ter o seguinte formato: 00.000.000/0000-00";
         }
     }
 }

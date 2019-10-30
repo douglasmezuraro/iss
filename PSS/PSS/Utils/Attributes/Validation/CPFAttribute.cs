@@ -18,9 +18,9 @@ namespace PSS.Utils.Attributes.Validation
             return new ValidationResult(GetErrorMessage(cpf));
         }
 
-        private string GetErrorMessage(string cpf)
+        private string GetErrorMessage(string value)
         {
-            return "O valor '" + cpf + "' não é um CPF válido.";
+            return "O valor '" + value + "' não é um CPF válido. O CPF deve ter o seguinte formato: '000.000.000-00'";
         }
     }
 }

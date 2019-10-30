@@ -7,20 +7,20 @@ namespace PSS.Utils.Attributes.Validation
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            string cpf = (string)value;
-            Regex regex = new Regex("[0-9]{5}-[0-9]{3}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            string cep = (string)value;
+            Regex regex = new Regex("^[0-9]{5}-[0-9]{3}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-            if ((value == null) || regex.IsMatch(cpf))
+            if ((value == null) || regex.IsMatch(cep))
             {
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(GetErrorMessage(cpf));
+            return new ValidationResult(GetErrorMessage(cep));
         }
 
-        private string GetErrorMessage(string cpf)
+        private string GetErrorMessage(string value)
         {
-            return "O valor '" + cpf + "' não é um CEP válido.";
+            return "O valor '" + value + "' não é um CEP válido. O CEP deve ter o seguinte formato: 00000-000";
         }
     }
 }
