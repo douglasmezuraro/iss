@@ -7,7 +7,7 @@ namespace PSS.Models
     public sealed class Country : Base
     {
         [Required]
-        [MaxLength(General.DESCRIPTION_MAX_LENGTH)]
+        [MaxLength(General.TEXT_LENGTH)]
         [DisplayName("Nome")]
         public string Name { get; set; }
     }

@@ -10,7 +10,7 @@ namespace PSS.Models
     public sealed class User : PhysicalPerson
     {
         [Required]
-        [MinLength(General.PASSWORD_MIN_LENGTH), MaxLength(General.PASSWORD_MAX_LENGTH)]
+        [MaxLength(General.PASSWORD_LENGTH)]
         [PasswordPropertyText(true)]
         [DisplayName("Senha")]
         public string Password { get; set; }

@@ -10,12 +10,12 @@ namespace PSS.Models
     public sealed class State : Base
     {
         [Required]
-        [MaxLength(General.DESCRIPTION_MAX_LENGTH)]
+        [MaxLength(General.TEXT_LENGTH)]
         [DisplayName("Nome")]
         public string Name { get; set; }
 
         [Required]
-        [MinLength(General.UF_LENGTH), MaxLength(General.UF_LENGTH)]
+        [StringLength(General.UF_LENGTH)]
         [DisplayName("UF")]
         public string UF { get; set; }
 

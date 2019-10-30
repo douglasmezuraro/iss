@@ -10,7 +10,7 @@ namespace PSS.Models
     public sealed class City : Base
     {
         [Required]
-        [MaxLength(General.DESCRIPTION_MAX_LENGTH)]
+        [MaxLength(General.TEXT_LENGTH)]
         [DisplayName("Nome")]
         public string Name { get; set; }
 

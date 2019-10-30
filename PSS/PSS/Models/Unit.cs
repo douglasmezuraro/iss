@@ -10,7 +10,7 @@ namespace PSS.Models
     public sealed class Unit : Base
     {
         [Required]
-        [MinLength(General.DESCRIPTION_MIN_LENGTH), MaxLength(General.DESCRIPTION_MAX_LENGTH)]
+        [MaxLength(General.TEXT_LENGTH)]
         [DisplayName("Descrição")]
         public string Description { get; set; }
     }

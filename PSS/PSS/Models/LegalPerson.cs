@@ -9,18 +9,18 @@ namespace PSS.Models
     {
         [Required]
         [DisplayName("Nome resumido")]
-        [MaxLength(General.DESCRIPTION_MAX_LENGTH)]
+        [MaxLength(General.TEXT_LENGTH)]
         public string ShortName { get; set; }
 
         [Required]
         [DisplayName("Nome completo")]
-        [MaxLength(General.DESCRIPTION_MAX_LENGTH)]
+        [MaxLength(General.TEXT_LENGTH)]
         public string FullName { get; set; }
 
         [Required]
         [CNPJ]
         [DisplayName("CNPJ")]
-        [StringLength(General.CNPJ_LENTH)]
+        [StringLength(General.CNPJ_LENGTH)]
         public string CNPJ { get; set; }
     }
 }
