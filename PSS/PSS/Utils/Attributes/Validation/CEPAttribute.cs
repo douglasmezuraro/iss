@@ -15,12 +15,12 @@ namespace PSS.Utils.Attributes.Validation
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(GetErrorMessage(cep));
+            return new ValidationResult(FormatErrorMessage(cep));
         }
 
-        private string GetErrorMessage(string value)
+        public override string FormatErrorMessage(string name)
         {
-            return "O valor '" + value + "' não é um CEP válido. O CEP deve ter o seguinte formato: '00000-000'";
+            return "O valor '" + name + "' não é um CEP válido. O CEP deve ter o seguinte formato: '00000-000'";
         }
     }
 }
