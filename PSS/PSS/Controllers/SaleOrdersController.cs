@@ -68,13 +68,17 @@ namespace PSS.Controllers
             {
                 order.FinalizeOrder();
 
+                db.SaleOrders.Add(order);
+
                 foreach (var item in order.Items)
                 {
-                    db.Products.Attach(item.Product);
-                    db.Entry(item.Product).State = EntityState.Modified;
+                    var product = db.Products.Find(item.ProductId);
+
+                    product.Stock = item.Product.Stock;
+                    db.Entry(item.Product).State = EntityState.Detached;
+                    db.Entry(product).State = EntityState.Modified;
                 }
 
-                db.SaleOrders.Add(order);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
