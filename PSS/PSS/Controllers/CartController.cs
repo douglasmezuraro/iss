@@ -14,12 +14,12 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            return View(Global.Cart.Items.ToList());
+            return View(Global.User.Cart.Items.ToList());
         }
 
         public ActionResult AddToCart(Item item)
         {
-            var model = Global.Cart.Items.FirstOrDefault(i => i.ProductId == item.ProductId);
+            var model = Global.User.Cart.Items.FirstOrDefault(i => i.ProductId == item.ProductId);
 
             if (model == null)
             {
@@ -27,7 +27,7 @@ namespace PSS.Controllers
                 item.Product.Category = db.Categories.Find(item.Product.CategoryId);
                 item.Product.Unit = db.Units.Find(item.Product.UnitId);             
 
-                Global.Cart.Items.Add(item);
+                Global.User.Cart.Items.Add(item);
             }
             else
             {
@@ -44,7 +44,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var item = Global.Cart.Items.FirstOrDefault(p => p.Product.Id == id);
+            var item = Global.User.Cart.Items.FirstOrDefault(p => p.Product.Id == id);
 
             if (item == null)
             {
@@ -61,7 +61,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var item = Global.Cart.Items.First(i => i.Product.Id == id);
+            var item = Global.User.Cart.Items.First(i => i.Product.Id == id);
 
             if (item == null)
             {
@@ -75,7 +75,7 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Item item)
         {
-            var model = Global.Cart.Items.First(i => i.Product.Id == item.ProductId);
+            var model = Global.User.Cart.Items.First(i => i.Product.Id == item.ProductId);
             model.Quantity = item.Quantity;
 
             return RedirectToAction("Index");
@@ -88,7 +88,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var item = Global.Cart.Items.FirstOrDefault(i => i.Product.Id == id);
+            var item = Global.User.Cart.Items.FirstOrDefault(i => i.Product.Id == id);
 
             if (item == null)
             {
@@ -102,7 +102,7 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            Global.Cart.Items.Remove(Global.Cart.Items.FirstOrDefault(i => i.Product.Id == id));
+            Global.User.Cart.Items.Remove(Global.User.Cart.Items.FirstOrDefault(i => i.Product.Id == id));
 
             return RedirectToAction("Index");
         }

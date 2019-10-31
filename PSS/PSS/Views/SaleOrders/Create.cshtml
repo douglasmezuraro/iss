@@ -22,7 +22,7 @@
             <div class="panel-heading">@Html.DisplayNameFor(model => model.Items)</div>
             <div class="panel-body">
                 <table class="table">
-                    @foreach (var item in Global.Cart.Items)
+                    @foreach (var item in Global.User.Cart.Items)
                     {
                         <tr>
                             <td>
@@ -78,7 +78,7 @@
                 @Html.DisplayNameFor(model => model.TotalPrice)
             </dt>
             <dd>
-                @Html.DisplayFor(model => Global.Cart.TotalValue)
+                @Html.DisplayFor(model => Global.User.Cart.TotalValue)
             </dd>
         </dl>
 

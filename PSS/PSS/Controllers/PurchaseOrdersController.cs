@@ -52,7 +52,7 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            if (Global.Cart.Items.Count == 0)
+            if (Global.User.Cart.Items.Count == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "O carrinho de compras está vazio.");
             }

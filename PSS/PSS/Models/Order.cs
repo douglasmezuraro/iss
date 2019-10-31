@@ -14,7 +14,7 @@ namespace PSS.Models
         {
             OrderStatus = OrderStatus.InProgress;
 
-            foreach (var Item in Global.Cart.Items)
+            foreach (var Item in Global.User.Cart.Items)
             {
                 Items.Add(Item);
             }
@@ -50,7 +50,7 @@ namespace PSS.Models
             UserId = Global.User.Id;
             Date = System.DateTime.Now;
             OrderStatus = OrderStatus.Finished;
-            Global.Cart.Items.Clear();
+            Global.User.Cart.Items.Clear();
         }
 
         public virtual void CancelOrder()

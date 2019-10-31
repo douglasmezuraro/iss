@@ -8,7 +8,7 @@
 
 <h2>@View.Index</h2>
 
-@if ((Global.User != null) && (Global.Cart.Items.Count > 0))
+@if ((Global.User != null) && (Global.User.Cart.Items.Count > 0))
 {
     <p>
         @Html.ActionLink("Finalizar pedido", "Create", "Orders")

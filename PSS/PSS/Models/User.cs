@@ -18,5 +18,9 @@ namespace PSS.Models
         [Required]
         [DisplayName("Tipo de usuário")]
         public UserType UserType { get; set; }
+
+        [NotMapped]
+        [DisplayName("Carrinho")]
+        public Cart Cart { get; set; } = new Cart();
     }
 }
