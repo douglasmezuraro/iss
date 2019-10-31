@@ -26,6 +26,7 @@ namespace PSS.Models
         [Required]
         [DisplayName("Nascimento")]
         [DataType(DataType.Date)]
+        [Date(Temporality.Past)]
         public System.DateTime Birth { get; set; }
 
         [Required]

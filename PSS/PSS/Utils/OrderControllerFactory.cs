@@ -13,8 +13,9 @@ namespace PSS.Utils
             {
                 case UserType.Admin    : return new PurchaseOrdersController(); 
                 case UserType.Customer : return new SaleOrdersController();
-                default                : throw new ArgumentException(); 
             }
+
+            throw new ArgumentException("O usuário deve ser ou administador ou cliente");
         }
     }
 }

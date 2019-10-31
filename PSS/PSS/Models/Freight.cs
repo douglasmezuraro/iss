@@ -1,4 +1,5 @@
-﻿using PSS.Utils.Constants;
+﻿using PSS.Utils.Attributes.Validation;
+using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,6 +11,7 @@ namespace PSS.Models
     {
         [Required]
         [DataType(DataType.Date)]
+        [Date(Temporality.Future)]
         [DisplayName("Previsão de entrega")]
         public System.DateTime DeliveryDate { get; set; }
 
