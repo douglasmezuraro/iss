@@ -183,7 +183,7 @@ namespace PSS.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Logoff()
+        public ActionResult Logout()
         {
             Global.User = null;
             FormsAuthentication.SignOut();

@@ -8,7 +8,7 @@
 <h2>@View.Index</h2>
 
 <p>
-    @Html.ActionLink(View.Create, "Create")
+    @Html.ActionLink(View.Delete, Actions.Create)
 </p>
 <table class="table">
     <tr>
@@ -49,9 +49,9 @@
             @Html.DisplayFor(modelItem => item.City.Name)
         </td>
         <td>
-            @Html.ActionLink(View.Edit, "Edit", new { id = item.Id }) |
-            @Html.ActionLink(View.Details, "Details", new { id = item.Id }) |
-            @Html.ActionLink(View.Delete, "Delete", new { id = item.Id })
+            @Html.ActionLink(View.Edit, Actions.Edit, new { id = item.Id }) |
+            @Html.ActionLink(View.Details, Actions.Details, new { id = item.Id }) |
+            @Html.ActionLink(View.Delete, Actions.Delete, new { id = item.Id })
         </td>
     </tr>
     }

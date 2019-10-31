@@ -24,10 +24,11 @@
         public const string BackToList = "Voltar";
         public const string ConfirmDelete = "Você tem certeza que deseja deletar esse registro?";
         public const string Login = "Login";
+        public const string Logout = "Logout";
         public const string AddToCart = "Comprar";
     }
 
-    public static class Action
+    public static class Actions
     {
         public const string Create = "Create";
         public const string Delete = "Delete";
@@ -37,9 +38,10 @@
         public const string Cancel = "Cancel";
         public const string Return = "Return";
         public const string Error = "Error";
-        public const string BackToList = "BackToList";
+        public const string BackToList = "Index";
         public const string ConfirmDelete = "ConfirmDelete";
         public const string Login = "Login";
+        public const string Logout = "Logout";
         public const string AddToCart = "AddToCart";
     }
 }

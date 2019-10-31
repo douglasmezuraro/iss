@@ -9,7 +9,7 @@
 <h2>@View.Index</h2>
 
 <p>
-    @Html.ActionLink(View.Create, "Create")
+    @Html.ActionLink(View.Delete, Actions.Create)
 </p>
 <table class="table">
     <tr>
@@ -50,10 +50,10 @@
             @Html.DisplayFor(modelItem => item.Unit.Abbreviation)
         </td>
         <td>
-            @Html.ActionLink(View.Edit, "Edit", new { id = item.Id }) |
-            @Html.ActionLink(View.Details, "Details", new { id = item.Id }) |
-            @Html.ActionLink(View.Delete, "Delete", new { id = item.Id }) |
-            @Html.ActionLink(View.AddToCart, "AddToCart", "Cart", new Item { ProductId = item.Id, Quantity = 1, IsActive = true }, null)
+            @Html.ActionLink(View.Edit, Actions.Edit, new { id = item.Id }) |
+            @Html.ActionLink(View.Details, Actions.Details, new { id = item.Id }) |
+            @Html.ActionLink(View.Delete, Actions.Delete, new { id = item.Id }) |
+            @Html.ActionLink(View.AddToCart, Actions.AddToCart, "Cart", new Item { ProductId = item.Id, Quantity = 1, IsActive = true }, null)
         </td>
     </tr>
     }

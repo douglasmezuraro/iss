@@ -21,32 +21,32 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Pessoas</span> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Usuários", "Index", "Users")</li>
-                                <li>@Html.ActionLink("Fornecedores", "Index", "Providers")</li>
-                                <li>@Html.ActionLink("Fabricantes", "Index", "Manufacturers")</li>
+                                <li>@Html.ActionLink("Usuários", Actions.Index, "Users")</li>
+                                <li>@Html.ActionLink("Fornecedores", Actions.Index, "Providers")</li>
+                                <li>@Html.ActionLink("Fabricantes", Actions.Index, "Manufacturers")</li>
                             </ul>
                         </li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Produtos</span> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Categorias", "Index", "Categories")</li>
-                                <li>@Html.ActionLink("Unidades", "Index", "Units")</li>
-                                <li>@Html.ActionLink("Produtos", "Index", "Products")</li>
+                                <li>@Html.ActionLink("Categorias", Actions.Index, "Categories")</li>
+                                <li>@Html.ActionLink("Unidades", Actions.Index, "Units")</li>
+                                <li>@Html.ActionLink("Produtos", Actions.Index, "Products")</li>
                             </ul>
                         </li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Localização</span> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Cidades", "Index", "Cities")</li>
-                                <li>@Html.ActionLink("Estados", "Index", "States")</li>
-                                <li>@Html.ActionLink("Países", "Index", "Countries")</li>
+                                <li>@Html.ActionLink("Cidades", Actions.Index, "Cities")</li>
+                                <li>@Html.ActionLink("Estados", Actions.Index, "States")</li>
+                                <li>@Html.ActionLink("Países", Actions.Index, "Countries")</li>
                             </ul>
                         </li>
 
-                        <li>@Html.ActionLink("Carrinho de compras", "Index", "Cart")</li>
-                        <li>@Html.ActionLink("Pedidos", "Index", "Orders")</li>
+                        <li>@Html.ActionLink("Carrinho de compras", Actions.Index, "Cart")</li>
+                        <li>@Html.ActionLink("Pedidos", Actions.Index, "Orders")</li>
                     </ul>
                 }
 
@@ -54,8 +54,8 @@
                 {
                     <div class="pull-right">
                         <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink(Global.User.Email, "Details/" + Global.User.Id, "Users")</li>
-                            <li>@Html.ActionLink("Sair", "Logoff", "Users")</li>
+                            <li>@Html.ActionLink(Global.User.Email, $"{Actions.Details}/{Global.User.Id}", "Users")</li>
+                            <li>@Html.ActionLink(View.Logout, Actions.Logout, "Users")</li>
                         </ul>
                     </div>
                 }

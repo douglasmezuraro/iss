@@ -162,7 +162,7 @@
 
 <br />
 <div>
-    @Html.ActionLink(View.BackToList, Global.User == null ? "Login" : "Index")
+    @Html.ActionLink(View.BackToList, Global.User == null ? Actions.Login : Actions.BackToList)
 </div>
 
 @section Scripts {
