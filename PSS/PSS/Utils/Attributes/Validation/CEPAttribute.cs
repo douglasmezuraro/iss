@@ -18,9 +18,9 @@ namespace PSS.Utils.Attributes.Validation
             return new ValidationResult(FormatErrorMessage(cep));
         }
 
-        public override string FormatErrorMessage(string name)
+        public string FormatErrorMessage()
         {
-            return "O valor '" + name + "' não é um CEP válido. O CEP deve ter o seguinte formato: '00000-000'";
+            return "O CEP deve ter o seguinte formato: '00000-000'";
         }
     }
 }

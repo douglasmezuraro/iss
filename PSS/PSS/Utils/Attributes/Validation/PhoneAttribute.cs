@@ -15,12 +15,12 @@ namespace PSS.Utils.Attributes.Validation
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(FormatErrorMessage(phone));
+            return new ValidationResult(FormatErrorMessage());
         }
 
-        public override string FormatErrorMessage(string name)
+        public string FormatErrorMessage()
         {
-            return "O valor '" + name + "' não é um telefone válido. O telefone deve ter os seguintes formatos: '(00) 00000-0000' ou '(00) 0000-0000'";
+            return "O telefone deve ter os seguintes formatos: '(00) 00000-0000' ou '(00) 0000-0000'";
         }
     }
 }

@@ -15,12 +15,12 @@ namespace PSS.Utils.Attributes.Validation
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(FormatErrorMessage(cpf));
+            return new ValidationResult(FormatErrorMessage());
         }
 
-        public override string FormatErrorMessage(string name)
+        public string FormatErrorMessage()
         {
-            return "O valor '" + name + "' não é um CPF válido. O CPF deve ter o seguinte formato: '000.000.000-00'";
+            return "O CPF deve ter o seguinte formato: '000.000.000-00'";
         }
     }
 }

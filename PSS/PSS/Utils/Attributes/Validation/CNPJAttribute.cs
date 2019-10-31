@@ -15,12 +15,12 @@ namespace PSS.Utils.Attributes.Validation
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(FormatErrorMessage(cnpj));
+            return new ValidationResult(FormatErrorMessage());
         }
 
-        public override string FormatErrorMessage(string name)
+        public string FormatErrorMessage()
         {
-            return "O valor '" + name + "' não é um CNPJ válido. O CPNJ deve ter o seguinte formato: '00.000.000/0000-00'";
+            return "O CPNJ deve ter o seguinte formato: '00.000.000/0000-00'";
         }
     }
 }

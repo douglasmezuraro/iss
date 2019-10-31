@@ -21,10 +21,10 @@ namespace PSS.Utils.Attributes.Validation
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(FormatErrorMessage(value as string));
+            return new ValidationResult(FormatErrorMessage());
         }
 
-        public override string FormatErrorMessage(string name)
+        public string FormatErrorMessage()
         {
             switch (Temporality)
             {
