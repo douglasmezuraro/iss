@@ -11,7 +11,7 @@ namespace PSS.Controllers
     [Authorize]
     public class SaleOrdersController : Controller
     {
-        private Context db = new Context();
+        private DBContext db = new DBContext();
 
         public ActionResult Index()
         {
@@ -66,7 +66,7 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                order.FinalizeOrder();
+                order.FinalizeOrder(Global.User);
 
                 db.SaleOrders.Add(order);
 

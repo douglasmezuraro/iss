@@ -1,6 +1,5 @@
 ﻿@model PSS.Models.PurchaseOrder
 @using PSS.Utils.Constants
-@using PSS.Utils
 
 @{
     ViewBag.Title = View.Create;
@@ -22,7 +21,7 @@
             <div class="panel-heading">@Html.DisplayNameFor(model => model.Items)</div>
             <div class="panel-body">
                 <table class="table">
-                    @foreach (var item in Global.User.Cart.Items)
+                    @foreach (var item in Model.Items)
                     {
                         <tr>
                             <td>
@@ -45,6 +44,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">@Html.DisplayNameFor(model => model.Freight)</div>
             <div class="panel-body">
+                @Html.HiddenFor(model => model.UserId)
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Freight.DeliveryDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -70,6 +70,54 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Freight.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Freight.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Freight.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Freight.Number, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Freight.Number, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Freight.Number, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Freight.PostalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Freight.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Freight.PostalCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Freight.Complement, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Freight.Complement, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Freight.Complement, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Freight.Reference, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Freight.Reference, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Freight.Reference, "", new { @class = "text-danger" })
+                    </div>
+                </div>  
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Freight.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">             
+                        @Html.DropDownListFor(model => model.Freight.CityId, ViewBag.CityId as SelectList, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Freight.CityId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -78,7 +126,7 @@
                 @Html.DisplayNameFor(model => model.TotalPrice)
             </dt>
             <dd>
-                @Html.DisplayFor(model => Global.User.Cart.TotalValue)
+                @Html.DisplayFor(model => model.TotalPrice)
             </dd>
         </dl>
 

@@ -4,9 +4,9 @@ using System.Data.Entity.Migrations;
 
 namespace PSS.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<DBContext>
     {
-        private Context db;
+        private DBContext db;
 
         public Configuration()
         {
@@ -14,7 +14,7 @@ namespace PSS.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(Context context)
+        protected override void Seed(DBContext context)
         {
             db = context;
 

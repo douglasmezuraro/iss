@@ -14,7 +14,7 @@ namespace PSS.Controllers
 {
     public class UsersController : Controller
     {
-        private Context db = new Context();
+        private DBContext db = new DBContext();
 
         [Authorize]
         public ActionResult Index()

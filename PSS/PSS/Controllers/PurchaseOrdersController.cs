@@ -11,7 +11,7 @@ namespace PSS.Controllers
     [Authorize]
     public class PurchaseOrdersController : Controller
     {
-        private Context db = new Context();
+        private DBContext db = new DBContext();
 
         public ActionResult Index()
         {
@@ -44,6 +44,7 @@ namespace PSS.Controllers
             }
 
             order.Freight = db.PurchaseOrderFreights.Find(order.FreightId);
+            order.Freight.City = db.Cities.Find(order.Freight.CityId);
             order.User = db.Users.Find(order.UserId);
             order.Items = db.Items.Include(i => i.Product).Where(o => o.PurchaseOrderId == order.Id).ToList();
 
@@ -57,7 +58,9 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "O carrinho de compras está vazio.");
             }
 
-            return View();
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
+
+            return View(new PurchaseOrder(Global.User));
         }
 
         [HttpPost]
@@ -66,9 +69,9 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                order.FinalizeOrder();
+                order.FinalizeOrder(Global.User);
           
-                db.PurchaseOrders.Add(order);                
+                 db.PurchaseOrders.Add(order);                
 
                 foreach (var item in order.Items)
                 {
@@ -83,6 +86,8 @@ namespace PSS.Controllers
          
                 return RedirectToAction("Index");
             }
+
+            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", order.Freight.CityId);
 
             return View(order);
         }

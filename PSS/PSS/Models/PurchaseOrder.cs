@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSS.Models
@@ -8,16 +7,21 @@ namespace PSS.Models
     [DisplayName("Pedido de compra")]
     public sealed class PurchaseOrder : Order
     {
-        [Required]
-        [DisplayName("Frete")]
-        public int FreightId { get; set; }
-
-        [DisplayName("Frete")]
-        public PurchaseOrderFreight Freight { get; set; } = new PurchaseOrderFreight();
-
-        public override void FinalizeOrder()
+        public PurchaseOrder()
         {
-            base.FinalizeOrder();
+
+        }
+
+        public PurchaseOrder(User user) : base(user)
+        {
+
+        }
+
+        public override Freight Freight { get; set; } = new PurchaseOrderFreight();
+
+        public override void FinalizeOrder(User user)
+        {
+            base.FinalizeOrder(user);
 
             foreach(var item in Items)
             {

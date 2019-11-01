@@ -10,7 +10,7 @@ namespace PSS.Controllers
     [Authorize]
     public class ManufacturersController : Controller
     {
-        private Context db = new Context();
+        private DBContext db = new DBContext();
 
         public ActionResult Index()
         {

@@ -1,10 +1,11 @@
-﻿    using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using PSS.Context.Configuration;
 using PSS.Models;
 
 namespace SGCO.Context
 {
-    public class Context : DbContext
+    public class DBContext : DbContext
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<City> Cities { get; set; }
@@ -28,8 +29,10 @@ namespace SGCO.Context
 
             modelBuilder.Properties<System.DateTime>().Configure(c => c.HasColumnType("datetime2"));
 
-            modelBuilder.Entity<PurchaseOrder>().HasRequired(o => o.Freight);
-            modelBuilder.Entity<SaleOrder>().HasRequired(o => o.Freight);
+            modelBuilder.Configurations.Add(new PurchaseOrderConfiguration());
+            modelBuilder.Configurations.Add(new SaleOrderConfiguration());
+            modelBuilder.Configurations.Add(new PurchaseOrderFreightConfiguration());
+            modelBuilder.Configurations.Add(new SaleOrderFreightConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

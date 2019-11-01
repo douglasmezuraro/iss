@@ -2,12 +2,11 @@
 using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSS.Models
 {
     [DisplayName("Frete")]
-    public class Freight : Base
+    public abstract class Freight : Base
     {
         [Required]
         [DataType(DataType.Date)]
@@ -22,16 +21,43 @@ namespace PSS.Models
 
         [Required]
         [DisplayName("Tipo de frete")]
-        public FreightType FreightType { get; set; } 
+        public FreightType FreightType { get; set; }
+
+        [Required]
+        [DisplayName("Endereço")]
+        [MaxLength(General.TEXT_LENGTH)]
+        public string Address { get; set; }
+
+        [Required]
+        [DisplayName("Número")]
+        public int Number { get; set; }
+
+        [Required]
+        [CEP]
+        [StringLength(General.CEP_LENGTH)]
+        [DisplayName("CEP")]
+        public string PostalCode { get; set; }
+
+        [DisplayName("Complemento")]
+        [MaxLength(General.TEXT_LENGTH)]
+        public string Complement { get; set; }
+
+        [DisplayName("Referência")]
+        [MaxLength(General.TEXT_LENGTH)]
+        public string Reference { get; set; }
+
+        [Required]
+        [DisplayName("Cidade")]
+        public int CityId { get; set; }
+
+        [DisplayName("Cidade")]
+        public City City { get; set; }
     }
 
-    [Table("PurchaseOrderFreights")]
     public sealed class PurchaseOrderFreight : Freight
     {
-
     }
 
-    [Table("SaleOrderFreights")]
     public sealed class SaleOrderFreight : Freight
     {
 

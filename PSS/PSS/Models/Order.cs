@@ -1,9 +1,9 @@
-using PSS.Utils;
 using PSS.Utils.Constants;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSS.Models
 {
@@ -12,17 +12,31 @@ namespace PSS.Models
     {
         public Order()
         {
-            OrderStatus = OrderStatus.InProgress;
 
-            foreach (var Item in Global.User.Cart.Items)
+        }
+
+        public Order(User user)
+        {
+            User = user;
+
+            foreach (var Item in User.Cart.Items)
             {
                 Items.Add(Item);
             }
+
+            Freight.Address = user.Address;
+            Freight.City = user.City;
+            Freight.CityId = user.CityId;
+            Freight.Complement = user.Complement;
+            Freight.Number = user.Number;
+            Freight.PostalCode = user.PostalCode;
+            Freight.Price = 100;
+            Freight.Reference = user.Reference;
         }
 
         [DisplayName("Preço total")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
-        public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Product.Price) + Installments.Sum(i => i.Price);
+        public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Price) + Installments.Sum(i => i.Price) + Freight.Price;
 
         [DisplayName("Data")]
         [DataType(DataType.Date)]
@@ -30,7 +44,7 @@ namespace PSS.Models
 
         [Required]
         [DisplayName("Status")]
-        public OrderStatus OrderStatus { get; set; }
+        public OrderStatus OrderStatus { get; set; } = OrderStatus.InProgress;
 
         [Required]
         [DisplayName("Usuário")]
@@ -38,6 +52,13 @@ namespace PSS.Models
 
         [DisplayName("Usuário")]
         public User User { get; set; }
+       
+        [Required]
+        [DisplayName("Frete")]
+        public int FreightId { get; set; }
+
+        [DisplayName("Frete")]
+        public abstract Freight Freight { get; set; }
 
         [DisplayName("Carrinho")]
         public ICollection<Item> Items { get; set; } = new List<Item>();
@@ -45,12 +66,12 @@ namespace PSS.Models
         [DisplayName("Pagamento")]
         public ICollection<Installment> Installments { get; } = new List<Installment>();
 
-        public virtual void FinalizeOrder()
-        {
-            UserId = Global.User.Id;
+        public virtual void FinalizeOrder(User user)
+        { 
             Date = System.DateTime.Now;
             OrderStatus = OrderStatus.Finished;
-            Global.User.Cart.Items.Clear();
+            UserId = user.Id;
+            user.Cart.Items.Clear();
         }
 
         public virtual void CancelOrder()

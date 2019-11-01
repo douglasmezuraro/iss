@@ -11,7 +11,7 @@ namespace PSS.Controllers
     [Authorize]
     public class ProvidersController : Controller
     {
-        private Context db = new Context();
+        private DBContext db = new DBContext();
 
         public ActionResult Index()
         {
