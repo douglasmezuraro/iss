@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 
-namespace PSS.Context.Configuration
+namespace PSS.Configuration
 {
     public sealed class SaleOrderFreightConfiguration : EntityTypeConfiguration<Models.SaleOrderFreight>
     {
@@ -9,7 +9,7 @@ namespace PSS.Context.Configuration
             Map(m =>
                 {
                     m.MapInheritedProperties();
-                    m.ToTable("PurchaseOrderFreights");
+                    m.ToTable("SaleOrderFreights");
                 });
         }
     }

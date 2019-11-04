@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using PSS.Context.Configuration;
+using PSS.Configuration;
 using PSS.Models;
 
 namespace SGCO.Context

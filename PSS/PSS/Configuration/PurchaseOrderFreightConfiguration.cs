@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 
-namespace PSS.Context.Configuration
+namespace PSS.Configuration
 {
     public sealed class PurchaseOrderFreightConfiguration : EntityTypeConfiguration<Models.PurchaseOrderFreight>
     {
