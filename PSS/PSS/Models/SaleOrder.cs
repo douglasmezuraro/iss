@@ -7,16 +7,11 @@ namespace PSS.Models
     [DisplayName("Pedido de venda")]
     public sealed class SaleOrder : Order
     {
-        public SaleOrder(User user) : base(user)
-        {
-
-        }
-
         public override Freight Freight { get; set; } = new SaleOrderFreight();
 
-        public override void FinalizeOrder(User user)
+        public override void FinalizeOrder()
         {
-            base.FinalizeOrder(user);
+            base.FinalizeOrder();
 
             foreach (var item in Items)
             {

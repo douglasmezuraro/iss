@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using PSS.Utils;
 
 namespace PSS.Models
 {
@@ -11,26 +12,20 @@ namespace PSS.Models
     {
         public Order()
         {
+            UserId = Global.User.Id;
 
-        }
-
-        public Order(User user)
-        {
-            User = user;
-
-            foreach (var Item in User.Cart.Items)
+            foreach (var Item in Global.User.Cart.Items)
             {
                 Items.Add(Item);
             }
 
-            Freight.Address = user.Address;
-            Freight.City = user.City;
-            Freight.CityId = user.CityId;
-            Freight.Complement = user.Complement;
-            Freight.Number = user.Number;
-            Freight.PostalCode = user.PostalCode;
+            Freight.Address = Global.User.Address;
+            Freight.CityId = Global.User.CityId;
+            Freight.Complement = Global.User.Complement;
+            Freight.Number = Global.User.Number;
+            Freight.PostalCode = Global.User.PostalCode;
+            Freight.Reference = Global.User.Reference;
             Freight.Price = 100;
-            Freight.Reference = user.Reference;
         }
 
         [DisplayName("Preço total")]
@@ -65,12 +60,11 @@ namespace PSS.Models
         [DisplayName("Pagamento")]
         public ICollection<Installment> Installments { get; } = new List<Installment>();
 
-        public virtual void FinalizeOrder(User user)
+        public virtual void FinalizeOrder()
         { 
             Date = System.DateTime.Now;
             OrderStatus = OrderStatus.Finished;
-            UserId = user.Id;
-            user.Cart.Items.Clear();
+            Global.User.Cart.Items.Clear();
         }
 
         public virtual void CancelOrder()

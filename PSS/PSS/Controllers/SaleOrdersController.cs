@@ -66,7 +66,7 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                order.FinalizeOrder(Global.User);
+                order.FinalizeOrder();
 
                 db.SaleOrders.Add(order);
 

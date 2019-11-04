@@ -21,7 +21,7 @@ namespace PSS.Controllers
                                                   .Where(p => p.IsActive)
                                                   .Where(p => p.UserId == Global.User.Id)
                                                   .OrderBy(p => p.Id);
-        
+
             return View(orders.ToList());
         }
 
@@ -60,7 +60,7 @@ namespace PSS.Controllers
 
             ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
 
-            return View(new PurchaseOrder(Global.User));
+            return View(new PurchaseOrder());
         }
 
         [HttpPost]
@@ -69,21 +69,21 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                order.FinalizeOrder(Global.User);
-          
-                 db.PurchaseOrders.Add(order);                
+                order.FinalizeOrder();
+
+                db.PurchaseOrders.Add(order);
 
                 foreach (var item in order.Items)
                 {
                     var product = db.Products.Find(item.ProductId);
-    
+
                     product.Stock = item.Product.Stock;
                     db.Entry(item.Product).State = EntityState.Detached;
                     db.Entry(product).State = EntityState.Modified;
                 }
 
                 db.SaveChanges();
-         
+
                 return RedirectToAction("Index");
             }
 
