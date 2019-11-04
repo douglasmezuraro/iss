@@ -326,7 +326,6 @@
     <Content Include="Views\PurchaseOrders\Create.cshtml" />
     <Content Include="Views\PurchaseOrders\Delete.cshtml" />
     <Content Include="Views\PurchaseOrders\Details.cshtml" />
-    <Content Include="Views\PurchaseOrders\Edit.cshtml" />
     <Content Include="Views\PurchaseOrders\Index.cshtml" />
     <Content Include="Views\Units\Create.cshtml" />
     <Content Include="Views\Units\Delete.cshtml" />
@@ -350,7 +349,6 @@
     <Content Include="Views\SaleOrders\Create.cshtml" />
     <Content Include="Views\SaleOrders\Delete.cshtml" />
     <Content Include="Views\SaleOrders\Details.cshtml" />
-    <Content Include="Views\SaleOrders\Edit.cshtml" />
     <Content Include="Views\SaleOrders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
