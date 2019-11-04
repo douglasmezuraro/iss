@@ -12,7 +12,7 @@
     <hr />
 
     <div class="panel panel-default">
-        <div class="panel-heading">Dados do pedido de compra</div>
+        <div class="panel-heading">@Html.DisplayNameForModel()</div>
         <div class="panel-body">
             <dl class="dl-horizontal">
                 <dt>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Dados dos items</div>
+        <div class="panel-heading">@Html.DisplayNameFor(model => model.Items)</div>
         <div class="panel-body">
             <table class="table">
                 @foreach (var item in Model.Items)
@@ -88,6 +88,85 @@
                     </tr>
                 }
             </table>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Html.DisplayNameFor(model => model.Freight)</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Freight.DeliveryDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Freight.DeliveryDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Freight.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Freight.Price)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Freight.FreightType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Freight.FreightType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Freight.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Freight.Address)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Freight.Number)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Freight.Number)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Freight.PostalCode)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Freight.PostalCode)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Freight.Complement)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Freight.Complement)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Freight.Reference)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Freight.Reference)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Freight.City)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Freight.City.Name)
+                </dd>
+            </dl>
         </div>
     </div>
 </div>
