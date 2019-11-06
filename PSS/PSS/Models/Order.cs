@@ -30,7 +30,7 @@ namespace PSS.Models
 
         [DisplayName("Preço total")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
-        public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Price) + Installments.Sum(i => i.Price) + Freight.Price;
+        public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Price) + Payment.Price + Freight.Price;
 
         [DisplayName("Data")]
         [DataType(DataType.Date)]
@@ -54,11 +54,11 @@ namespace PSS.Models
         [DisplayName("Frete")]
         public abstract Freight Freight { get; set; }
 
+        [DisplayName("Pagamento")]
+        public abstract Payment Payment { get; set; }
+
         [DisplayName("Carrinho")]
         public ICollection<Item> Items { get; set; } = new List<Item>();
-
-        [DisplayName("Pagamento")]
-        public ICollection<Installment> Installments { get; } = new List<Installment>();
 
         public virtual void FinalizeOrder()
         { 

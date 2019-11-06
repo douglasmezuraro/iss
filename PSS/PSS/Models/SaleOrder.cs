@@ -9,6 +9,8 @@ namespace PSS.Models
     {
         public override Freight Freight { get; set; } = new SaleOrderFreight();
 
+        public override Payment Payment { get; set; } = new SaleOrderPayment();
+
         public override void FinalizeOrder()
         {
             base.FinalizeOrder();

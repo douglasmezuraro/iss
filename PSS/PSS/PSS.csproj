@@ -199,8 +199,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configuration\PurchaseOrderConfiguration.cs" />
     <Compile Include="Configuration\PurchaseOrderFreightConfiguration.cs" />
+    <Compile Include="Configuration\PurchaseOrderPaymentConfiguration.cs" />
     <Compile Include="Configuration\SaleOrderConfiguration.cs" />
     <Compile Include="Configuration\SaleOrderFreightConfiguration.cs" />
+    <Compile Include="Configuration\SaleOrderPaymentConfiguration.cs" />
     <Compile Include="Context\Context.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
@@ -227,12 +229,12 @@
     <Compile Include="Models\Freight.cs" />
     <Compile Include="Models\FreightType.cs" />
     <Compile Include="Models\Gender.cs" />
-    <Compile Include="Models\Installment.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\LegalPerson.cs" />
     <Compile Include="Models\Manufacturer.cs" />
+    <Compile Include="Models\Month.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\PaymentType.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PhysicalPerson.cs" />
@@ -324,7 +326,6 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\PurchaseOrders\Create.cshtml" />
-    <Content Include="Views\PurchaseOrders\Delete.cshtml" />
     <Content Include="Views\PurchaseOrders\Details.cshtml" />
     <Content Include="Views\PurchaseOrders\Index.cshtml" />
     <Content Include="Views\Units\Create.cshtml" />
@@ -347,7 +348,6 @@
     <Content Include="Views\States\Edit.cshtml" />
     <Content Include="Views\States\Index.cshtml" />
     <Content Include="Views\SaleOrders\Create.cshtml" />
-    <Content Include="Views\SaleOrders\Delete.cshtml" />
     <Content Include="Views\SaleOrders\Details.cshtml" />
     <Content Include="Views\SaleOrders\Index.cshtml" />
   </ItemGroup>
