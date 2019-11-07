@@ -6,8 +6,8 @@ namespace PSS.Configuration
     {
         public SaleOrderConfiguration()
         {
-            HasRequired(o => o.Freight);
-            HasRequired(o => o.Payment);
+          
+          
         }
     }
 }

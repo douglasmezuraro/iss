@@ -43,9 +43,11 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
+            int PaymentId = order.PaymentId; //TODO: Gambiarra até entender porque o find do pagamento está alterando o
+            int FreightId = order.FreightId; //      FreightId do objeto "order"
             
-            order.Payment = db.PurchaseOrderPayments.Find(order.PaymentId);
-            order.Freight = db.PurchaseOrderFreights.Find(order.FreightId);
+            order.Payment = db.PurchaseOrderPayments.Find(PaymentId);
+            order.Freight = db.PurchaseOrderFreights.Find(FreightId);
             order.Freight.City = db.Cities.Find(order.Freight.CityId);
             order.User = db.Users.Find(order.UserId);
             order.Items = db.Items.Include(i => i.Product).Where(o => o.PurchaseOrderId == order.Id).ToList();

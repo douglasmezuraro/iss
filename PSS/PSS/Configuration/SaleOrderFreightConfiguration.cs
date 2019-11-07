@@ -9,7 +9,7 @@ namespace PSS.Configuration
             Map(m =>
                 {
                     m.MapInheritedProperties();
-                    m.ToTable("SaleOrderFreights");
+                    m.ToTable(nameof(SGCO.Context.DBContext.SaleOrderFreights));
                 });
         }
     }
