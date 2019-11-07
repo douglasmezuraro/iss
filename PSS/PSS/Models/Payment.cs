@@ -8,10 +8,6 @@ namespace PSS.Models
     public abstract class Payment : Base
     {
         [Required]
-        [DisplayName("Preço")]
-        public double Price { get; set; }
-
-        [Required]
         [MaxLength(General.TEXT_LENGTH)]
         [DisplayName("Nome")]
         public string Name { get; set; }
@@ -19,6 +15,7 @@ namespace PSS.Models
         [Required]
         [CreditCard]
         [DataType(DataType.CreditCard)]
+        [DisplayFormat(ApplyFormatInEditMode = true)]
         [DisplayName("Número do cartão")]
         public string Number { get; set; }
 

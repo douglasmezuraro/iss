@@ -16,11 +16,12 @@ namespace PSS.Controllers
         public ActionResult Index()
         {
             var orders = db.SaleOrders.Include(p => p.User)
-                                          .Include(p => p.Freight)
-                                          .Include(p => p.Items.Select(i => i.Product))
-                                          .Where(p => p.IsActive)
-                                          .Where(p => p.UserId == Global.User.Id)
-                                          .OrderBy(p => p.Id);
+                                      .Include(p => p.Freight)
+                                      .Include(p => p.Payment)
+                                      .Include(p => p.Items.Select(i => i.Product))
+                                      .Where(p => p.IsActive)
+                                      .Where(p => p.UserId == Global.User.Id)
+                                      .OrderBy(p => p.Id);
 
             return View(orders.ToList());
         }
@@ -44,6 +45,8 @@ namespace PSS.Controllers
             }
 
             order.Freight = db.SaleOrderFreights.Find(order.FreightId);
+            order.Freight.City = db.Cities.Find(order.Freight.CityId);
+            order.Payment = db.SaleOrderPayments.Find(order.PaymentId);
             order.User = db.Users.Find(order.UserId);
             order.Items = db.Items.Include(i => i.Product).Where(o => o.SaleOrderId == order.Id).ToList();
 

@@ -32,7 +32,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PurchaseOrder order = db.PurchaseOrders.Find(id);
+            PurchaseOrder order = db.PurchaseOrders.Find(id); 
             if (order == null)
             {
                 return HttpNotFound();
@@ -43,6 +43,8 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
+            
+            order.Payment = db.PurchaseOrderPayments.Find(order.PaymentId);
             order.Freight = db.PurchaseOrderFreights.Find(order.FreightId);
             order.Freight.City = db.Cities.Find(order.Freight.CityId);
             order.User = db.Users.Find(order.UserId);
