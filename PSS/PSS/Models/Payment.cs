@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PSS.Models
 {
-    [DisplayName("Pagamento")]
+    [DisplayName("Pagamento - Cartão")]
     public abstract class Payment : Base
     {
         [Required]
@@ -16,16 +16,16 @@ namespace PSS.Models
         [CreditCard]
         [DataType(DataType.CreditCard)]
         [DisplayFormat(ApplyFormatInEditMode = true)]
-        [DisplayName("Número do cartão")]
+        [DisplayName("Número")]
         public string Number { get; set; }
 
         [Required]
-        [DisplayName("Mês de vencimento do cartão")]
+        [DisplayName("Mês de vencimento")]
         public Month Month { get; set; }
 
         [Required]
         [Range(2019, 2030)]
-        [DisplayName("Ano de vencimento do cartão")]
+        [DisplayName("Ano de vencimento")]
         public short Year { get; set; }
     }
 
