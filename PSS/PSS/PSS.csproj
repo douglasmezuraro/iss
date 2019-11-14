@@ -254,6 +254,7 @@
     <Compile Include="Utils\Attributes\Validation\DateAttribute.cs" />
     <Compile Include="Utils\Attributes\Validation\PhoneAttribute.cs" />
     <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\Extensions\EnumExtension.cs" />
     <Compile Include="Utils\Global.cs" />
     <Compile Include="Utils\OrderControllerFactory.cs" />
   </ItemGroup>

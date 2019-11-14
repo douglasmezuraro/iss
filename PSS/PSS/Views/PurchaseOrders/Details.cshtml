@@ -1,5 +1,6 @@
 ﻿@model PSS.Models.PurchaseOrder
 @using PSS.Utils.Constants
+@using PSS.Utils.Extensions
 
 @{
     ViewBag.Title = View.Details;
@@ -60,7 +61,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.OrderStatus)
+                    @Model.OrderStatus.EnumDisplayFor()
                 </dd>
             </dl>
         </div>
@@ -116,7 +117,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Freight.FreightType)
+                    @Model.Freight.FreightType.EnumDisplayFor()
                 </dd>
 
                 <dt>
@@ -196,7 +197,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Payment.Month)
+                    @Model.Payment.Month.EnumDisplayFor()
                 </dd>
 
                 <dt>

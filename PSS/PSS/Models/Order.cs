@@ -28,6 +28,7 @@ namespace PSS.Models
             Freight.Price = 100;
         }
 
+        [ReadOnly(true)]
         [DisplayName("Preço total")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         public double TotalPrice => Items.Count == 0 ? 0 : Items.Sum(i => i.Price) + Freight.Price;

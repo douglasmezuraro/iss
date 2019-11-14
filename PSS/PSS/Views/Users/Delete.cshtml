@@ -1,5 +1,6 @@
 ﻿@model PSS.Models.User
 @using PSS.Utils.Constants
+@using PSS.Utils.Extensions
 
 @{
     ViewBag.Title = View.Delete;
@@ -65,7 +66,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Gender)
+            @Model.Gender.EnumDisplayFor()
         </dd>
 
         <dt>
@@ -73,7 +74,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UserType)
+            @Model.UserType.EnumDisplayFor()
         </dd>
 
         <dt>

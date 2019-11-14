@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<PSS.Models.PurchaseOrder>
 @using PSS.Utils.Constants
+@using PSS.Utils.Extensions
 
 @{
     ViewBag.Title = View.Index;
@@ -28,8 +29,9 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
+                @item.OrderStatus.EnumDisplayFor()
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.User.Name)
             </td>
@@ -40,9 +42,9 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.ActionLink(View.Cancel, "Cancel", new { id = item.Id }) |
+                @Html.ActionLink(View.Cancel, Actions.Cancel, new { id = item.Id }) |
                 @Html.ActionLink(View.Details, Actions.Details, new { id = item.Id }) |
-                @Html.ActionLink(View.Return, "Return", new { id = item.Id })
+                @Html.ActionLink(View.Return, Actions.Return, new { id = item.Id })
             </td>
         </tr>
     }
