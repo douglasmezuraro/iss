@@ -113,9 +113,10 @@ namespace PSS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
-
+          
             order.CancelOrder();
-            db.Entry(order).State = EntityState.Modified;
+            db.Entry(order).Property(o => o.OrderStatus).IsModified = true;
+
             db.SaveChanges();
 
             return RedirectToAction("Index");

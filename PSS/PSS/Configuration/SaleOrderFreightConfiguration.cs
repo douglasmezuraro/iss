@@ -7,10 +7,10 @@ namespace PSS.Configuration
         public SaleOrderFreightConfiguration()
         {
             Map(m =>
-                {
-                    m.MapInheritedProperties();
-                    m.ToTable(nameof(SGCO.Context.DBContext.SaleOrderFreights));
-                });
+            {
+                m.MapInheritedProperties();
+                m.ToTable(nameof(SGCO.Context.DBContext.SaleOrderFreights));
+            });
         }
     }
 }

@@ -6,8 +6,7 @@ namespace PSS.Configuration
     {
         public SaleOrderConfiguration()
         {
-          
-          
+                    
         }
     }
 }

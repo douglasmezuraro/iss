@@ -75,6 +75,11 @@ namespace PSS.Models
         public virtual void CancelOrder()
         {
             OrderStatus = OrderStatus.Canceled;
+
+            // TODO : Ver o porque precisa fazer isso
+            Items = null;
+            Payment = null;
+            Freight = null;            
         }
 
         public abstract void ReturnOrder();
