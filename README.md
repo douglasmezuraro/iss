@@ -1,5 +1,5 @@
-###Implementação de Sistemas de Software
-#####Software System Implementation
+### Implementação de Sistemas de Software
+##### Software System Implementation
 
 Repositório da avaliação da disciplina *Implementação de Sistemas de Software*. Foi implementado um pequeno sistema de compra e venda.
 
