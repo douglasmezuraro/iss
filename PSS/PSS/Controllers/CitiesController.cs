@@ -15,8 +15,8 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var cities = db.Cities.Include(c => c.State).Include(c => c.State.Country).Where(c => c.IsActive).OrderBy(c => c.Id);
-            return View(cities.ToList().Where(c => c.IsActive));
+            var cities = db.Cities.Include(c => c.State).Include(c => c.State.Country).Where(c => c.IsActive).OrderBy(c => c.Name);
+            return View(cities.ToList());
         }
 
         public ActionResult Details(int? id)

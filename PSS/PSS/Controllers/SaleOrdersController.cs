@@ -21,8 +21,7 @@ namespace PSS.Controllers
                                       .Include(p => p.Items.Select(i => i.Product))
                                       .Where(p => p.IsActive)
                                       .Where(p => p.UserId == Global.User.Id)
-                                      .OrderBy(p => p.Id);
-
+                                      .OrderBy(p => p.Date);
             return View(orders.ToList());
         }
 

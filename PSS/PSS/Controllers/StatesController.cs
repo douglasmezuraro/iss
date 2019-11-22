@@ -15,7 +15,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var states = db.States.Include(s => s.Country).Where(s => s.IsActive).OrderBy(s => s.Id);
+            var states = db.States.Include(s => s.Country).Where(s => s.IsActive).OrderBy(s => s.Name);
             return View(states.ToList());
         }
 

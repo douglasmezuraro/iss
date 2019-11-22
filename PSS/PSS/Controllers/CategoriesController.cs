@@ -15,7 +15,8 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Categories.ToList().Where(c => c.IsActive).OrderBy(c => c.Id));
+            var categories = db.Categories.Where(c => c.IsActive).OrderBy(c => c.Name);
+            return View(categories.ToList());
         }
 
         public ActionResult Details(int? id)

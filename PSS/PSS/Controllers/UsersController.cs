@@ -19,21 +19,19 @@ namespace PSS.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            if (Global.User != null)
-            {
-                var users = db.Users.Include(u => u.City).Where(u => u.IsActive).OrderBy(u => u.Id);
-
-                if (Global.User.UserType == UserType.Customer)
-                {
-                    return View(users.ToList().Where(u => u.Id == Global.User.Id));
-                }
-
-                return View(users.ToList());
-            }
-            else
+            if (Global.User == null)
             {
                 return RedirectToAction("Login");
             }
+
+            var users = db.Users.Include(u => u.City).Where(u => u.IsActive).OrderBy(u => u.Name);
+
+            if (Global.User.UserType == UserType.Customer)
+            {
+                return View(users.ToList().Where(u => u.Id == Global.User.Id));
+            }
+
+            return View(users.ToList());
         }
 
         [Authorize]

@@ -14,7 +14,8 @@ namespace PSS.Controllers
         
         public ActionResult Index()
         {
-            return View(db.Countries.Where(c => c.IsActive).OrderBy(c => c.Name).ToList());
+            var countries = db.Countries.Where(c => c.IsActive).OrderBy(c => c.Name);
+            return View(countries.ToList());
         }
        
         public ActionResult Details(int? id)

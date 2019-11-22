@@ -16,7 +16,6 @@ namespace PSS.Controllers
         public ActionResult Index()
         {
             var providers = db.Providers.Include(p => p.City).Where(p => p.IsActive).OrderBy(p => p.ShortName);
-
             return View(providers.ToList());
         }
 

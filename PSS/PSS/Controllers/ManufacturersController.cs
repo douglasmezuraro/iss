@@ -15,7 +15,6 @@ namespace PSS.Controllers
         public ActionResult Index()
         {
             var manufacturers = db.Manufacturers.Include(m => m.City).Where(m => m.IsActive).OrderBy(m => m.ShortName);
-
             return View(manufacturers.ToList());
         }
 

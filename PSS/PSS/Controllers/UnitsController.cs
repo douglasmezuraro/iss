@@ -14,7 +14,7 @@ namespace PSS.Controllers
 
         public ActionResult Index()
         {
-            var units = db.Units.Where(u => u.IsActive).OrderBy(u => u.Id);
+            var units = db.Units.Where(u => u.IsActive).OrderBy(u => u.Description);
             return View(units.ToList());
         }
 
