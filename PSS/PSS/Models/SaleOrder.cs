@@ -23,7 +23,12 @@ namespace PSS.Models
 
         public override void ReturnOrder()
         {
-            throw new System.NotImplementedException("A devolução do pedido de venda ainda não foi implementado!");
+            base.ReturnOrder();
+
+            foreach (var item in Items)
+            {
+                item.Product.Stock += item.Quantity;
+            }
         }
     }
 }

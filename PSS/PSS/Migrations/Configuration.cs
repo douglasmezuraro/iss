@@ -396,7 +396,8 @@ namespace PSS.Migrations
                 new City { Id = 78, StateId = 73, Name = "Charleston" },
                 new City { Id = 79, StateId = 74, Name = "Olympia" },
                 new City { Id = 80, StateId = 75, Name = "Madison" },
-                new City { Id = 81, StateId = 76, Name = "Cheyenne" });
+                new City { Id = 81, StateId = 76, Name = "Cheyenne" },
+                new City { Id = 82, StateId = 25, Name = "Salto" });
         }
 
         private void SeedUnits()
@@ -468,13 +469,14 @@ namespace PSS.Migrations
         private void SeedCategories()
         {
             db.Categories.AddOrUpdate(c => c.Id,
-                new Category { Id = 1, IsPerishable = false, Name = "Guitarra" },
-                new Category { Id = 2, IsPerishable = false, Name = "Violão" },
-                new Category { Id = 3, IsPerishable = false, Name = "Baixo" },
-                new Category { Id = 4, IsPerishable = false, Name = "Bateria" },
-                new Category { Id = 5, IsPerishable = false, Name = "Teclado" },
-                new Category { Id = 6, IsPerishable = false, Name = "Piano" },
-                new Category { Id = 7, IsPerishable = false, Name = "Saxofone" });
+                new Category { Id = 1, Name = "Guitarra" },
+                new Category { Id = 2, Name = "Violão" },
+                new Category { Id = 3, Name = "Baixo" },
+                new Category { Id = 4, Name = "Bateria" },
+                new Category { Id = 5, Name = "Teclado" },
+                new Category { Id = 6, Name = "Piano" },
+                new Category { Id = 7, Name = "Saxofone" },
+                new Category { Id = 8, Name = "Amplificador" });
         }
 
         private void SeedManufacturers()
@@ -619,7 +621,288 @@ namespace PSS.Migrations
                     Number = 3478,
                     PostalCode = "41650-066",
                     CityId = 5
-                });
+                },
+                new Manufacturer
+                {
+                    Id = 11,
+                    ShortName = "SX",
+                    FullName = "SX Instruments Ltda.",
+                    CNPJ = "12.860.645/0001-83",
+                    Phone = "(11) 3228-1275",
+                    Email = "contato@sx.com.br",
+                    Address = "Avenida Ruy Barbosa, 213 - Vila Mariana - São Paulo-SP",
+                    Complement = null,
+                    Number = 213,
+                    PostalCode = "02612-000",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 12,
+                    ShortName = "Giannini",
+                    FullName = "Giannini Instrumentos Musicais Ltda.",
+                    CNPJ = "54.343.154/0001-05",
+                    Phone = "(11) 3227-4951",
+                    Email = "contato@giannini.com",
+                    Address = "Avenida Tranquillo Giannini, 700 - Distrito Industrial - Salto",
+                    Complement = null,
+                    Number = 700,
+                    PostalCode = "13329-600",
+                    CityId = 82
+                },
+                new Manufacturer
+                {
+                    Id = 13,
+                    ShortName = "Epiphone",
+                    FullName = "The Epiphone Company",
+                    CNPJ = "82.234.408/0001-92",
+                    Phone = "(11) 2190-1281",
+                    Email = "contato@epiphone.com.br",
+                    Address = "Av. Jabaquara, 2049 - Mirandópolis - São Paulo-SP",
+                    Complement = null,
+                    Number = 2049,
+                    PostalCode = "04045-003",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 14,
+                    ShortName = "Squier",
+                    FullName = "Squier Musical Instruments by Fender",
+                    CNPJ = "46.918.108/0001-69",
+                    Phone = "(11) 3222-4922",
+                    Email = "contato@squier.com.br",
+                    Address = "Rua Arandu, 205 - Brooklin Novo - São Paulo-SP",
+                    Complement = "Ed. Berrini Business Center",
+                    Number = 205,
+                    PostalCode = "04562-030",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 15,
+                    ShortName = "Jackson",
+                    FullName = "Jackson Guitars",
+                    CNPJ = "55.743.338/0001-25",
+                    Phone = "(11) 3218-0012",
+                    Email = "contato@jackson.com.br",
+                    Address = "Rua Jacarandá, 9892 - Jabaquara - São Paulo-SP",
+                    Complement = null,
+                    Number = 9892,
+                    PostalCode = "00112-092",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 16,
+                    ShortName = "Schecter",
+                    FullName = "Schecter Guitar Research",
+                    CNPJ = "53.496.743/0001-60",
+                    Phone = "(11) 3222-1219",
+                    Email = "contato@schecter.com.br",
+                    Address = "Avenida das Palmeiras, 1401 - Liberdade - São Paulo-SP",
+                    Complement = null,
+                    Number = 1401,
+                    PostalCode = "00912-982",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 17,
+                    ShortName = "Zildjian",
+                    FullName = "Avedis Zildjian Company",
+                    CNPJ = "06.327.673/0001-37",
+                    Phone = "(41) 3713-2566",
+                    Email = "contato@zildjian.com.br",
+                    Address = "Rua das Acácias, 941 - Barreirinha - Curitiba-PR",
+                    Complement = null,
+                    Number = 941,
+                    PostalCode = "82700-320",
+                    CityId = 16
+                },
+                new Manufacturer
+                {
+                    Id = 18,
+                    ShortName = "Tama Drums",
+                    FullName = "Tama Drums",
+                    CNPJ = "43.243.843/0001-21",
+                    Phone = "(51) 2102-1231",
+                    Email = "contato@tama.com.br",
+                    Address = "Rua Américo Vespucio, 111 - Higienópolis - Porto Alegre-RS",
+                    Complement = null,
+                    Number = 111,
+                    PostalCode = "90550-030",
+                    CityId = 21
+                },
+                new Manufacturer
+                {
+                    Id = 19,
+                    ShortName = "Pearl Drums",
+                    FullName = "Pearl Musical Instrument Company",
+                    CNPJ = "40.430.233/0001-49",
+                    Phone = "(31) 2508-8220",
+                    Email = "contato@pearl-drums.com.br",
+                    Address = "Rua João Camilo de Oliveira Torres, 405 - Mangabeiras - Belo Horizonte-MG",
+                    Complement = null,
+                    Number = 405,
+                    PostalCode = "30210-260",
+                    CityId = 13
+                },
+                new Manufacturer
+                {
+                    Id = 20,
+                    ShortName = "Mapex Drums",
+                    FullName = "Mapex Drums",
+                    CNPJ = "81.243.864/0001-36",
+                    Phone = "(31) 2508-8220",
+                    Email = "contato@mapex.com.br",
+                    Address = "Rua André Bacci, 665 - Conjunto Residencial José Bonifácio - São Paulo-SP",
+                    Complement = null,
+                    Number = 665,
+                    PostalCode = "08255-640",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 21,
+                    ShortName = "Meteoro",
+                    FullName = "Meteoro Amplifiers",
+                    CNPJ = "38.086.573/0001-52",
+                    Phone = "(11) 2549-5247",
+                    Email = "contato@meteoro.com.br",
+                    Address = "Rua José Martins dos Santos, 451 - Jardim Santa Terezinha (Zona Leste) - São Paulo-SP",
+                    Complement = null,
+                    Number = 451,
+                    PostalCode = "08430-110",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 22,
+                    ShortName = "Marshall",
+                    FullName = "Marshall Amplification",
+                    CNPJ = "05.880.512/0001-03",
+                    Phone = "(11) 2700-8751",
+                    Email = "contato@marshall.com.br",
+                    Address = "Rua André Olindo Lednik, 118 - Vila Itaberaba - São Paulo-SP",
+                    Complement = null,
+                    Number = 118,
+                    PostalCode = "02846-150",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 23,
+                    ShortName = "Laney",
+                    FullName = "Laney Amplification",
+                    CNPJ = "37.854.918/0001-08",
+                    Phone = "(41) 3844-8978",
+                    Email = "contato@laney.com.br",
+                    Address = "Rua Jornalista Octávio Secundino, 216 - Bom Retiro - Curitiba-PR",
+                    Complement = null,
+                    Number = 216,
+                    PostalCode = "80520-480",
+                    CityId = 16
+                },
+                new Manufacturer
+                {
+                    Id = 24,
+                    ShortName = "Blackstar",
+                    FullName = "Blackstar Amplification",
+                    CNPJ = "55.889.615/0001-02",
+                    Phone = "(41) 3885-3977",
+                    Email = "contato@blackstar.com.br",
+                    Address = "Rua Reinaldino Schaffenberg de Quadros, 955 - Cristo Rei - Curitiba-PR",
+                    Complement = null,
+                    Number = 955,
+                    PostalCode = "80050-435",
+                    CityId = 16
+                },
+                new Manufacturer
+                {
+                    Id = 25,
+                    ShortName = "Orange",
+                    FullName = "Orange Music Electronic Company",
+                    CNPJ = "28.348.123/0001-37",
+                    Phone = "(48) 3830-1131",
+                    Email = "contato@orange.com.br",
+                    Address = "Rua Ana Luiza Vieira, 344 - Campeche - Florianópolis-SC",
+                    Complement = null,
+                    Number = 344,
+                    PostalCode = "88063-640",
+                    CityId = 24
+                },
+                new Manufacturer
+                {
+                    Id = 26,
+                    ShortName = "Soldano",
+                    FullName = "Soldano Custom Amplification",
+                    CNPJ = "43.954.877/0001-24",
+                    Phone = "(71) 2760-7633",
+                    Email = "contato@soldano.com.br",
+                    Address = "Travessa Jacob de Carvalho, 309 - Águas Claras - Salvador-BA",
+                    Complement = null,
+                    Number = 309,
+                    PostalCode = "41310-330",
+                    CityId = 5
+                },
+                new Manufacturer
+                {
+                    Id = 27,
+                    ShortName = "Peavey",
+                    FullName = "Peavey Electronics Corporation",
+                    CNPJ = "84.186.551/0001-81",
+                    Phone = "(27) 3645-3626",
+                    Email = "contato@peavey.com.br",
+                    Address = "Rua Guilherne Meyer, 784 - Santa Tereza - Vitória-ES",
+                    Complement = null,
+                    Number = 784,
+                    PostalCode = "29026-833",
+                    CityId = 8
+                },
+                new Manufacturer
+                {
+                    Id = 28,
+                    ShortName = "VOX",
+                    FullName = "VOX Ltda.",
+                    CNPJ = "18.205.127/0001-02",
+                    Phone = "(11) 3679-0939",
+                    Email = "contato@vox.com.br",
+                    Address = "Rua Joselyr de Moura Bastos, 550 - City América - São Paulo-SP",
+                    Complement = null,
+                    Number = 550,
+                    PostalCode = "05119-010",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 29,
+                    ShortName = "Mesa Boogie",
+                    FullName = "Mesa Engineering",
+                    CNPJ = "83.139.460/0001-22",
+                    Phone = "(11) 2901-8699",
+                    Email = "contato@mesa-engineering.com.br",
+                    Address = "Rua Antíoco, 253 - Imirim - São Paulo-SP",
+                    Complement = null,
+                    Number = 253,
+                    PostalCode = "02540-090",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 30,
+                    ShortName = "Hiwatt",
+                    FullName = "Hiwatt Amplification",
+                    CNPJ = "37.513.294/0001-65",
+                    Phone = "(11) 2694-6412",
+                    Email = "contato@hiwatt.com.br",
+                    Address = "Estrada de Itapecerica, 158 - Parque Fernanda - São Paulo-SP",
+                    Complement = null,
+                    Number = 158,
+                    PostalCode = "05858-002",
+                    CityId = 25
+                }
+            );
         }
 
         private void SeedProviders()
@@ -773,7 +1056,7 @@ namespace PSS.Migrations
                 new Product
                 {
                     Id = 1,
-                    Description = "Fender Stratocaster Stardard - Artic White",
+                    Description = "Guitarra Fender Stratocaster Stardard - Artic White",
                     PurchasePrice = 1788.00,
                     SalePrice = 5364.00,
                     Stock = 3,
@@ -787,7 +1070,7 @@ namespace PSS.Migrations
                 new Product
                 {
                     Id = 2,
-                    Description = "Gibson Les Paul Traditional - Honery Burst",
+                    Description = "Guitarra Gibson Les Paul Traditional - Honery Burst",
                     PurchasePrice = 2967.00,
                     SalePrice = 8901.00,
                     Stock = 5,
@@ -908,6 +1191,160 @@ namespace PSS.Migrations
                     CategoryId = 1,
                     ManufacturerId = 1,
                     ProviderId = 8,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 11,
+                    Description = "Guitarra Fender Mustang '62 Reissue - Offset Olive Green",
+                    PurchasePrice = 1799.7,
+                    SalePrice = 5399.10,
+                    Stock = 2,
+                    Weight = 3.4,
+                    Expiration = null,
+                    CategoryId = 1,
+                    ManufacturerId = 1,
+                    ProviderId = 2,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 12,
+                    Description = "Amplificador Blackstar S1-104 EL 34/6L6",
+                    PurchasePrice = 1653.30,
+                    SalePrice = 4960.00,
+                    Stock = 4,
+                    Weight = 19.300,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 24,
+                    ProviderId = 3,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 13,
+                    Description = "Amplificador Orange AD30TC - 2x12 30W",
+                    PurchasePrice = 4361.99,
+                    SalePrice = 13085.99,
+                    Stock = 1,
+                    Weight = 17.280,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 25,
+                    ProviderId = 10,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 14,
+                    Description = "Amplificador Orange Dark Terror - 15W",
+                    PurchasePrice = 3200.00,
+                    SalePrice = 5537.99,
+                    Stock = 3,
+                    Weight = 5.160,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 25,
+                    ProviderId = 10,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 15,
+                    Description = "Amplificador Soldano 100w Super Lead Overdrive (SLO-100)",
+                    PurchasePrice = 8699.00,
+                    SalePrice = 12780.99,
+                    Stock = 1,
+                    Weight = 15.800,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 26,
+                    ProviderId = 4,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 16,
+                    Description = "Amplificador Fender Hot Deluxe III - 1x12 40W",
+                    PurchasePrice = 6420.00,
+                    SalePrice = 10734.99,
+                    Stock = 3,
+                    Weight = 20.41,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 1,
+                    ProviderId = 1,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 17,
+                    Description = "Amplificador Peavey 6505 - 120W",
+                    PurchasePrice = 5230.90,
+                    SalePrice = 7799.99,
+                    Stock = 4,
+                    Weight = 8.200,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 27,
+                    ProviderId = 8,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 18,
+                    Description = "Amplificador Vox AC30C2 - 2x12 30W",
+                    PurchasePrice = 7392.99,
+                    SalePrice = 10999.89,
+                    Stock = 6,
+                    Weight = 16.320,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 28,
+                    ProviderId = 7,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 19,
+                    Description = "Amplificador Marshall JVM400 - 110W",
+                    PurchasePrice = 8500.00,
+                    SalePrice = 11690.90,
+                    Stock = 1,
+                    Weight = 22.000,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 22,
+                    ProviderId = 1,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 20,
+                    Description = "Amplificador Mesa Boogie Dual Rectifier - 100W",
+                    PurchasePrice = 5700.90,
+                    SalePrice = 7800.00,
+                    Stock = 1,
+                    Weight = 15.285,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 29,
+                    ProviderId = 1,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 21,
+                    Description = "Amplificador Hiwatt G50CM - 1x12 50W",
+                    PurchasePrice = 1459.00,
+                    SalePrice = 1860.00,
+                    Stock = 12,
+                    Weight = 8.120,
+                    Expiration = null,
+                    CategoryId = 8,
+                    ManufacturerId = 30,
+                    ProviderId = 2,
                     UnitId = 48
                 });
         }

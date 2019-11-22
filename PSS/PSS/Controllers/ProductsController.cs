@@ -19,7 +19,7 @@ namespace PSS.Controllers
                                       .Include(p => p.Provider)
                                       .Include(p => p.Unit)
                                       .Where(p => p.IsActive)
-                                      .OrderBy(p => p.Id);
+                                      .OrderBy(p => p.Description);
 
             return View(products.ToList());
         }

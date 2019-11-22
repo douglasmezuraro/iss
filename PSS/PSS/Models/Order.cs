@@ -82,6 +82,9 @@ namespace PSS.Models
             Freight = null;            
         }
 
-        public abstract void ReturnOrder();
+        public virtual void ReturnOrder()
+        {
+            OrderStatus = OrderStatus.Returned;
+        }
     }
 }
