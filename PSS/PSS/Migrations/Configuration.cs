@@ -402,11 +402,67 @@ namespace PSS.Migrations
         private void SeedUnits()
         {
             db.Units.AddOrUpdate(u => u.Id,
-                new Unit { Id = 1, Abbreviation = "PÇ", Description = "Peça" },
-                new Unit { Id = 2, Abbreviation = "CX", Description = "Caixa" },
-                new Unit { Id = 3, Abbreviation = "PA", Description = "Pacote" },
-                new Unit { Id = 4, Abbreviation = "UN", Description = "Unidade" },
-                new Unit { Id = 5, Abbreviation = "KG", Description = "Kilo" });
+                new Unit { Id = 01, Abbreviation = "AMPOLA", Description = "Ampola" },
+                new Unit { Id = 02, Abbreviation = "BALDE", Description = "Balde" },
+                new Unit { Id = 03, Abbreviation = "BANDEJ", Description = "Bandeja" },
+                new Unit { Id = 04, Abbreviation = "BARRA", Description = "Barra" },
+                new Unit { Id = 05, Abbreviation = "BISNAG", Description = "Bisnaga" },
+                new Unit { Id = 06, Abbreviation = "BLOCO", Description = "Bloco" },
+                new Unit { Id = 07, Abbreviation = "BOBINA", Description = "Bobina" },
+                new Unit { Id = 08, Abbreviation = "BOMB", Description = "Bombona" },
+                new Unit { Id = 09, Abbreviation = "CAPS", Description = "Capsula" },
+                new Unit { Id = 10, Abbreviation = "CART", Description = "Cartela" },
+                new Unit { Id = 11, Abbreviation = "CENTO", Description = "Cento" },
+                new Unit { Id = 12, Abbreviation = "CJ", Description = "Conjunto" },
+                new Unit { Id = 13, Abbreviation = "CM", Description = "Centímetro" },
+                new Unit { Id = 14, Abbreviation = "CM2", Description = "Centímetro Quadrado" },
+                new Unit { Id = 15, Abbreviation = "CX", Description = "Caixa" },
+                new Unit { Id = 16, Abbreviation = "CX2", Description = "Caixa Com 2 Unidades" },
+                new Unit { Id = 17, Abbreviation = "CX3", Description = "Caixa Com 3 Unidades" },
+                new Unit { Id = 18, Abbreviation = "CX5", Description = "Caixa Com 5 Unidades" },
+                new Unit { Id = 19, Abbreviation = "CX10", Description = "Caixa Com 10 Unidades" },
+                new Unit { Id = 20, Abbreviation = "CX15", Description = "Caixa Com 15 Unidades" },
+                new Unit { Id = 21, Abbreviation = "CX20", Description = "Caixa Com 20 Unidades" },
+                new Unit { Id = 22, Abbreviation = "CX25", Description = "Caixa Com 25 Unidades" },
+                new Unit { Id = 23, Abbreviation = "CX50", Description = "Caixa Com 50 Unidades" },
+                new Unit { Id = 24, Abbreviation = "CX100", Description = "Caixa Com 100 Unidades" },
+                new Unit { Id = 25, Abbreviation = "DISP", Description = "Display" },
+                new Unit { Id = 26, Abbreviation = "DUZIA", Description = "Duzia" },
+                new Unit { Id = 27, Abbreviation = "EMBAL", Description = "Embalagem" },
+                new Unit { Id = 28, Abbreviation = "FARDO", Description = "Fardo" },
+                new Unit { Id = 29, Abbreviation = "FOLHA", Description = "Folha" },
+                new Unit { Id = 30, Abbreviation = "FRASCO", Description = "Frasco" },
+                new Unit { Id = 31, Abbreviation = "GALAO", Description = "Galão" },
+                new Unit { Id = 32, Abbreviation = "GF", Description = "Garrafa" },
+                new Unit { Id = 33, Abbreviation = "GRAMAS", Description = "Gramas" },
+                new Unit { Id = 34, Abbreviation = "JOGO", Description = "Jogo" },
+                new Unit { Id = 35, Abbreviation = "KG", Description = "Quilograma" },
+                new Unit { Id = 36, Abbreviation = "KIT", Description = "Kit" },
+                new Unit { Id = 37, Abbreviation = "LATA", Description = "Lata" },
+                new Unit { Id = 38, Abbreviation = "LITRO", Description = "Litro" },
+                new Unit { Id = 39, Abbreviation = "M", Description = "Metro" },
+                new Unit { Id = 40, Abbreviation = "M2", Description = "Metro Quadrado" },
+                new Unit { Id = 41, Abbreviation = "M3", Description = "Metro Cúbico" },
+                new Unit { Id = 42, Abbreviation = "MILHEI", Description = "Milheiro" },
+                new Unit { Id = 43, Abbreviation = "ML", Description = "Mililitro" },
+                new Unit { Id = 44, Abbreviation = "MWH", Description = "Megawatt Hora" },
+                new Unit { Id = 45, Abbreviation = "PACOTE", Description = "Pacote" },
+                new Unit { Id = 46, Abbreviation = "PALETE", Description = "Palete" },
+                new Unit { Id = 47, Abbreviation = "PARES", Description = "Pares" },
+                new Unit { Id = 48, Abbreviation = "PC", Description = "Peça" },
+                new Unit { Id = 49, Abbreviation = "POTE", Description = "Pote" },
+                new Unit { Id = 50, Abbreviation = "K", Description = "Quilate" },
+                new Unit { Id = 51, Abbreviation = "RESMA", Description = "Resma" },
+                new Unit { Id = 52, Abbreviation = "ROLO", Description = "Rolo" },
+                new Unit { Id = 53, Abbreviation = "SACO", Description = "Saco" },
+                new Unit { Id = 54, Abbreviation = "SACOLA", Description = "Sacola" },
+                new Unit { Id = 55, Abbreviation = "TAMBOR", Description = "Tambor" },
+                new Unit { Id = 56, Abbreviation = "TANQUE", Description = "Tanque" },
+                new Unit { Id = 57, Abbreviation = "TON", Description = "Tonelada" },
+                new Unit { Id = 58, Abbreviation = "TUBO", Description = "Tubo" },
+                new Unit { Id = 59, Abbreviation = "UNID", Description = "Unidade" },
+                new Unit { Id = 60, Abbreviation = "VASIL", Description = "Vasilhame" },
+                new Unit { Id = 61, Abbreviation = "VIDRO", Description = "Vidro" });
         }
 
         private void SeedCategories()
@@ -726,7 +782,7 @@ namespace PSS.Migrations
                     CategoryId = 1,
                     ManufacturerId = 1,
                     ProviderId = 2,
-                    UnitId = 1
+                    UnitId = 48
                 },
                 new Product
                 {
@@ -740,7 +796,7 @@ namespace PSS.Migrations
                     CategoryId = 1,
                     ManufacturerId = 2,
                     ProviderId = 2,
-                    UnitId = 1
+                    UnitId = 48
                 },
                 new Product
                 {
@@ -754,7 +810,7 @@ namespace PSS.Migrations
                     CategoryId = 2,
                     ManufacturerId = 3,
                     ProviderId = 1,
-                    UnitId = 1
+                    UnitId = 48
                 },
                 new Product
                 {
@@ -768,7 +824,7 @@ namespace PSS.Migrations
                     CategoryId = 2,
                     ManufacturerId = 4,
                     ProviderId = 1,
-                    UnitId = 1
+                    UnitId = 48
                 },
                 new Product
                 {
@@ -782,7 +838,7 @@ namespace PSS.Migrations
                     CategoryId = 3,
                     ManufacturerId = 1,
                     ProviderId = 1,
-                    UnitId = 1
+                    UnitId = 48
                 },
                 new Product
                 {
@@ -796,7 +852,7 @@ namespace PSS.Migrations
                     CategoryId = 3,
                     ManufacturerId = 7,
                     ProviderId = 4,
-                    UnitId = 1
+                    UnitId = 48
                 },
                 new Product
                 {
@@ -810,7 +866,7 @@ namespace PSS.Migrations
                     CategoryId = 1,
                     ManufacturerId = 1,
                     ProviderId = 5,
-                    UnitId = 1
+                    UnitId = 48
                 },
                 new Product
                 {
@@ -824,7 +880,7 @@ namespace PSS.Migrations
                     CategoryId = 1,
                     ManufacturerId = 1,
                     ProviderId = 6,
-                    UnitId = 1
+                    UnitId = 48
                 },
                 new Product
                 {
@@ -838,7 +894,7 @@ namespace PSS.Migrations
                     CategoryId = 1,
                     ManufacturerId = 2,
                     ProviderId = 7,
-                    UnitId = 1
+                    UnitId = 48
                 },
                 new Product
                 {
@@ -852,7 +908,7 @@ namespace PSS.Migrations
                     CategoryId = 1,
                     ManufacturerId = 1,
                     ProviderId = 8,
-                    UnitId = 1
+                    UnitId = 48
                 });
         }
 

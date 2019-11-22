@@ -15,7 +15,7 @@ namespace PSS.Models
         public string Description { get; set; }
 
         [Required]
-        [StringLength(General.ABREVIATION_LENGTH)]
+        [StringLength(16)]
         [DisplayName("Abreviação")]
         public string Abbreviation { get; set; }
     }
