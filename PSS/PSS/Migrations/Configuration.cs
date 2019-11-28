@@ -476,7 +476,8 @@ namespace PSS.Migrations
                 new Category { Id = 5, Name = "Teclado" },
                 new Category { Id = 6, Name = "Piano" },
                 new Category { Id = 7, Name = "Saxofone" },
-                new Category { Id = 8, Name = "Amplificador" });
+                new Category { Id = 8, Name = "Amplificador" },
+                new Category { Id = 9, Name = "Pedal" });
         }
 
         private void SeedManufacturers()
@@ -901,6 +902,48 @@ namespace PSS.Migrations
                     Number = 158,
                     PostalCode = "05858-002",
                     CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 31,
+                    ShortName = "Boss",
+                    FullName = "Boss Corporation",
+                    CNPJ = "75.841.505/0001-88",
+                    Phone = "(11) 2243-4357",
+                    Email = "contato@boss.com.nr",
+                    Address = "Travessa Manuel Corvalam, 962 - Vila Nova Cachoeirinha - São Paulo-SP",
+                    Complement = null,
+                    Number = 962,
+                    PostalCode = "02613-055",
+                    CityId = 25 
+                },
+                new Manufacturer
+                {
+                    Id = 32,
+                    ShortName = "Electro-Harmonix",
+                    FullName = "Electro-Harmonix",
+                    CNPJ = "61.841.227/0001-54",
+                    Phone = "(11) 2678-1061",
+                    Email = "contato@electro-harmonix.com.br",
+                    Address = "Travessa Ferdinando Pellegrini, 259 - Vila Serralheiro - São Paulo-SP",
+                    Complement = null,
+                    Number = 259,
+                    PostalCode = "02835-100",
+                    CityId = 25
+                },
+                new Manufacturer
+                {
+                    Id = 33,
+                    ShortName = "Fuhrmann",
+                    FullName = "Fuhrmann Efeitos Ltda.",
+                    CNPJ = "78.156.071/0001-75",
+                    Phone = "(11) 2636-7352",
+                    Email = "contato@fuhrmann.com.br",
+                    Address = "Rua Antônio Carlos, 130 - Consolação - São Paulo-SP",
+                    Complement = null,
+                    Number = 130,
+                    PostalCode = "01309-905",
+                    CityId = 25
                 }
             );
         }
@@ -1047,6 +1090,267 @@ namespace PSS.Migrations
                     Number = 1144,
                     PostalCode = "88032-600",
                     CityId = 24
+                },
+                new Provider
+                {
+                    Id = 11,
+                    ShortName = "Super Som",
+                    FullName = "Super Som Instrumentos Musicais",
+                    CNPJ = "41.054.411/0001-47",
+                    Phone = "(44) 3226-8708",
+                    Email = "contato@supersom.com.br",
+                    Address = "Rua Joubert de Carvalho, 306 - Zona 01 - Maringá-PR",
+                    Complement = null,
+                    Number = 306,
+                    PostalCode = "87013-200",
+                    CityId = 28
+                },
+                {
+                    Id = 12,
+                    ShortName = "PlayMusic",
+                    FullName = "PlayMusic Instrumentos Musicais",
+                    CNPJ = "06.310.937/0001-40",
+                    Phone = "(44) 3029-8636",
+                    Email = "contato@playmusic.com.br",
+                    Address = "Rua Joubert de Carvalho, 372 - Zona 01, Maringá-PR",
+                    Complement = null,
+                    Number = 372,
+                    PostalCode = "87013-200",
+                    CityId = 28
+                },
+                {
+                    Id = 13,
+                    ShortName = "Drum Shop",
+                    FullName = "Drum Shop",
+                    CNPJ = "58.868.176/0001-40",
+                    Phone = "(41) 3324-8000",
+                    Email = "contato@drumshop.com.br",
+                    Address = "Rua Desembargador Westphalen, 486 - Centro - Curitiba-PR",
+                    Complement = null,
+                    Number = 486,
+                    PostalCode = "80010-110",
+                    CityId = 16
+                },
+                {
+                    Id = 14,
+                    ShortName = "Plander Instrumentos Musicais",
+                    FullName = "Plander Distribuidora de Instrumentos Musicais, Ltda.",
+                    CNPJ = "51.305.797/0001-76",
+                    Phone = "(41) 3323-3636",
+                    Email = "contato@plander.com.br",
+                    Address = "Rua Alferes Poli, 620 - Centro - Curitiba-PR",
+                    Complement = null,
+                    Number = 620,
+                    PostalCode = "80230-090",
+                    CityId = 16
+                },
+                {
+                    Id = 15,
+                    ShortName = "Audiofex Musical Instruments",
+                    FullName = "Audiofex Instrumentos Musicais, Ltda.",
+                    CNPJ = "85.204.564/0001-07",
+                    Phone = "(41) 3224-0925",
+                    Email = "contato@udiofex.com.br",
+                    Address = "Rua Desembargador Westphalen, 426 - Centro - Curitiba-PR",
+                    Complement = null,
+                    Number = 426,
+                    PostalCode = "80010-110",
+                    CityId = 17
+                },
+                {
+                    Id = 16,
+                    ShortName = "X5 Instrumentos Musicais",
+                    FullName = "X5 Instrumentos Musicais, Ltda. Epp",
+                    CNPJ = "24.491.731/0001-45",
+                    Phone = "(11) 3060-6100",
+                    Email = "contato@x5-instrumentos.com.nr",
+                    Address = "Rua Teodoro Sampaio, 825 - Jardim Paulista - São Paulo-SP",
+                    Complement = null,
+                    Number = 825,
+                    PostalCode = "05405-050",
+                    CityId = 25
+                },
+                {
+                    Id = 17,
+                    ShortName = "Gang Music",
+                    FullName = "Gang Music Instrumentos Musicais, Ltda.",
+                    CNPJ = "42.326.238/0001-51",
+                    Phone = "(11) 3061-5000",
+                    Email = "contato@gang-music.com.br",
+                    Address = "Rua dos Três Irmãos, 201 - Vila Progredior - São Paulo-SP",
+                    Complement = null,
+                    Number = 201,
+                    PostalCode = "05615-190",
+                    CityId = 25
+                },
+                {
+                    Id = 18,
+                    ShortName = "Intermezzo & Spina Instrumentos Musicais",
+                    FullName = "Intermezzo & Spina, Ltda.",
+                    CNPJ = "Intermezzo & Spina",
+                    Phone = "(11) 3078-3200",
+                    Email = "contato@intermezzoespina.com.br",
+                    Address = "Avenida Cidade Jardim, 957 - Jardim Paulistano - São Paulo-SP",
+                    Complement = null,
+                    Number = 957,
+                    PostalCode = "01453-000",
+                    CityId = 25
+                },
+                {
+                    Id = 19,
+                    ShortName = "Copetti Guitars",
+                    FullName = "Copetti Guitars, Ltda.",
+                    CNPJ = "21.835.448/0001-03",
+                    Phone = "(48) 3241-6165",
+                    Email = "contato@copetti-guitars.com.br",
+                    Address = "Avenida Josué di Bernardi, 443 - Campinas, Florianópolis-SC",
+                    Complement = null,
+                    Number = 443,
+                    PostalCode = "88101-200",
+                    CityId = 24
+                },
+                {
+                    Id = 20,
+                    ShortName = "Zandomênico",
+                    FullName = "Zandomênico Instrumentos Musicais, Ltda.",
+                    CNPJ = "24.453.937/0001-80",
+                    Phone = "(48) 3222-4509",
+                    Email = "contato@zandomenico.com.br",
+                    Address = "Rua Conselheiro Mafra, 372 - Centro - Florianópolis-SC",
+                    Complement = null,
+                    Number = 372,
+                    PostalCode = "88010-101",
+                    CityId = 24
+                },
+                                          {
+                    Id = 21,
+                    ShortName = "Caballero Music",
+                    FullName = "Caballero Music Atacado e Distribuidora de Instrumentos Musicais, Ltda.",
+                    CNPJ = "70.376.555/0001-18",
+                    Phone = "(51) 3022-5252",
+                    Email = "contato@caballeromusic.com.br",
+                    Address = "Rua Hoffmann, 226 - Floresta - Porto Alegre-RS",
+                    Complement = null,
+                    Number = 226,
+                    PostalCode = "90220-170",
+                    CityId = 21
+                },
+                {
+                    Id = 22,
+                    ShortName = "Porão Musical",
+                    FullName = "Porão Musical Instrumentos Musicais, Ltda.",
+                    CNPJ = "67.748.544/0001-07",
+                    Phone = "(51) 3022-3100",
+                    Email = "contato@poraomusical.com.br",
+                    Address = "Rua Coronel Vicente, 442 - Centro Histórico - Porto Alegre-RS",
+                    Complement = null,
+                    Number = 442,
+                    PostalCode = "90030-040",
+                    CityId = 21
+                },
+                {
+                    Id = 23,
+                    ShortName = "Guitar Garage",
+                    FullName = "Guitar Garage Distribuidora de Instrumentos Musicais, Ltda.",
+                    CNPJ = "71.441.957/0001-11",
+                    Phone = "(51) 3331-3234",
+                    Email = "contato@guitar-garage.com.br",
+                    Address = "Rua Miguel Tostes, 870 - Rio Branco - Porto Alegre-RS",
+                    Complement = null,
+                    Number = 870,
+                    PostalCode = "90430-061",
+                    CityId = 21
+                },
+                {
+                    Id = 24,
+                    ShortName = "Made in Brazil Music Store",
+                    FullName = "Made in Brazil Music Store, Ltda.",
+                    CNPJ = "93.702.785/0001-25",
+                    Phone = "(61) 3462-1066",
+                    Email = "contato@madeinbrasilmusicstore.com.br",
+                    Address = "Avenida Antônio Nascimento, 421 - Guará - Brasília-DF",
+                    Complement = null,
+                    Number = 421,
+                    PostalCode = "71219-900",
+                    CityId = 7
+                },
+                {
+                    Id = 25,
+                    ShortName = "Music Master",
+                    FullName = "Music Master Distribuidora, Ltda.",
+                    CNPJ = "72.258.535/0001-78",
+                    Phone = "70760-511",
+                    Email = "contato@musicmaster-brasilia.com.br",
+                    Address = "Rua Quito, 566 - Asa Norte - Brasília-DF",
+                    Complement = null,
+                    Number = 566,
+                    PostalCode = "70760-511",
+                    CityId = 7
+                },
+                {
+                    Id = 26,
+                    ShortName = "Protec Instrumentos Musicais",
+                    FullName = "Protec Distribuidora de Instrumentos Musicais",
+                    CNPJ = "33.714.631/0001-21",
+                    Phone = "(61) 3964-2626",
+                    Email = "contato@protec-instrumentos.com.br",
+                    Address = "Avenida Liberdade, 1378 - Santa Felicidade - Brasília-DF",
+                    Complement = null,
+                    Number = 1378,
+                    PostalCode = "70782-122",
+                    CityId = 7
+                },
+                {
+                    Id = 27,
+                    ShortName = "VAM - Vitória Áudio e Música",
+                    FullName = "VAM Distribuidora de Instrumentos Musicais, Ltda.",
+                    CNPJ = "04.411.369/0001-48",
+                    Phone = "(27) 3235-8400",
+                    Email = "contato@vam.com.br",
+                    Address = "Avenida Nossa Sra. da Penha, 2462 - Santa Luíza - Vitória-ES",
+                    Complement = null,
+                    Number = 2462,
+                    PostalCode = "29045-402",
+                    CityId = 8
+                },
+                {
+                    Id = 28,
+                    ShortName = "Backstage Instrumentos",
+                    FullName = "Backstage Instrumentos, Ltda.",
+                    CNPJ = "85.618.673/0001-62",
+                    Phone = "(27) 3225-3648",
+                    Email = "contato@backstage-instrumentos.com.br",
+                    Address = "Avenida Rio Branco, 799 - Santa Lúcia - Vitória-ES",
+                    Complement = null,
+                    Number = 799,
+                    PostalCode = "29056-253",
+                    CityId = 8
+                },
+                {
+                    Id = 29,
+                    ShortName = "Carneiro Instrumentos Musicais",
+                    FullName = "Carneiro Instrumentos Musicais, Ltda.",
+                    CNPJ = "85.751.613/0001-13",
+                    Phone = "(27) 3239-4626",
+                    Email = "contato@carneiro-instrumentos.com.br",
+                    Address = "Avenida Jerônimo Monteiro, 1310 - Vila Velha - Vitória-ES",
+                    Complement = null,
+                    Number = 1310,
+                    PostalCode = "29123-012",
+                    CityId = 8
+                },
+                {
+                    Id = 30,
+                    ShortName = "Musicland",
+                    FullName = "Musicland Distribuidora de Instrumentos Musicais, Ltda.",
+                    CNPJ = "60.071.822/0001-95",
+                    Phone = "(44) 3251-2749",
+                    Email = "contato@musicland-maringa.com.br",
+                    Address = "Avenida Londrina, 7891 - Jardim Aeroporto - Maringá-PR",
+                    Complement = null,
+                    Number = 7891,
+                    PostalCode = "87053-420",
+                    CityId = 28
                 });
         }
 
@@ -1344,6 +1648,62 @@ namespace PSS.Migrations
                     Expiration = null,
                     CategoryId = 8,
                     ManufacturerId = 30,
+                    ProviderId = 2,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 22,
+                    Description = "Pedal Distorção Boss Metal Zone MT-2",
+                    PurchasePrice = 300.00,
+                    SalePrice = 459.00,
+                    Stock = 12,
+                    Weight = 0.400,
+                    Expiration = null,
+                    CategoryId = 9,
+                    ManufacturerId = 31,
+                    ProviderId = 2,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 23,
+                    Description = "Pedal Fuzz Electro-Harmonix Big Muff Pi",
+                    PurchasePrice = 500.90,
+                    SalePrice = 709.10,
+                    Stock = 7,
+                    Weight = 0.650,
+                    Expiration = null,
+                    CategoryId = 9,
+                    ManufacturerId = 32,
+                    ProviderId = 2,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 24,
+                    Description = "Pedal Delay Fuhrmann Analog Echo AE01",
+                    PurchasePrice = 159.90,
+                    SalePrice = 263.42,
+                    Stock = 12,
+                    Weight = 0.450,
+                    Expiration = null,
+                    CategoryId = 9,
+                    ManufacturerId = 33,
+                    ProviderId = 2,
+                    UnitId = 48
+                },
+                new Product
+                {
+                    Id = 25,
+                    Description = "Guitarra SX Stratocaster SST62 - Preta",
+                    PurchasePrice = 500.90,
+                    SalePrice = 828.00,
+                    Stock = 10,
+                    Weight = 3.600,
+                    Expiration = null,
+                    CategoryId = 1,
+                    ManufacturerId = 11,
                     ProviderId = 2,
                     UnitId = 48
                 });
