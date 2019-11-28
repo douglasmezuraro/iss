@@ -1105,6 +1105,7 @@ namespace PSS.Migrations
                     PostalCode = "87013-200",
                     CityId = 28
                 },
+                new Provider
                 {
                     Id = 12,
                     ShortName = "PlayMusic",
@@ -1118,6 +1119,7 @@ namespace PSS.Migrations
                     PostalCode = "87013-200",
                     CityId = 28
                 },
+                new Provider
                 {
                     Id = 13,
                     ShortName = "Drum Shop",
@@ -1131,6 +1133,7 @@ namespace PSS.Migrations
                     PostalCode = "80010-110",
                     CityId = 16
                 },
+                new Provider
                 {
                     Id = 14,
                     ShortName = "Plander Instrumentos Musicais",
@@ -1144,6 +1147,7 @@ namespace PSS.Migrations
                     PostalCode = "80230-090",
                     CityId = 16
                 },
+                new Provider
                 {
                     Id = 15,
                     ShortName = "Audiofex Musical Instruments",
@@ -1157,6 +1161,7 @@ namespace PSS.Migrations
                     PostalCode = "80010-110",
                     CityId = 17
                 },
+                new Provider
                 {
                     Id = 16,
                     ShortName = "X5 Instrumentos Musicais",
@@ -1170,6 +1175,7 @@ namespace PSS.Migrations
                     PostalCode = "05405-050",
                     CityId = 25
                 },
+                new Provider
                 {
                     Id = 17,
                     ShortName = "Gang Music",
@@ -1183,6 +1189,7 @@ namespace PSS.Migrations
                     PostalCode = "05615-190",
                     CityId = 25
                 },
+                new Provider
                 {
                     Id = 18,
                     ShortName = "Intermezzo & Spina Instrumentos Musicais",
@@ -1196,6 +1203,7 @@ namespace PSS.Migrations
                     PostalCode = "01453-000",
                     CityId = 25
                 },
+                new Provider
                 {
                     Id = 19,
                     ShortName = "Copetti Guitars",
@@ -1209,6 +1217,7 @@ namespace PSS.Migrations
                     PostalCode = "88101-200",
                     CityId = 24
                 },
+                new Provider
                 {
                     Id = 20,
                     ShortName = "Zandomênico",
@@ -1222,7 +1231,8 @@ namespace PSS.Migrations
                     PostalCode = "88010-101",
                     CityId = 24
                 },
-                                          {
+                new Provider
+                {
                     Id = 21,
                     ShortName = "Caballero Music",
                     FullName = "Caballero Music Atacado e Distribuidora de Instrumentos Musicais, Ltda.",
@@ -1235,6 +1245,7 @@ namespace PSS.Migrations
                     PostalCode = "90220-170",
                     CityId = 21
                 },
+                new Provider
                 {
                     Id = 22,
                     ShortName = "Porão Musical",
@@ -1248,6 +1259,7 @@ namespace PSS.Migrations
                     PostalCode = "90030-040",
                     CityId = 21
                 },
+                new Provider
                 {
                     Id = 23,
                     ShortName = "Guitar Garage",
@@ -1261,6 +1273,7 @@ namespace PSS.Migrations
                     PostalCode = "90430-061",
                     CityId = 21
                 },
+                new Provider
                 {
                     Id = 24,
                     ShortName = "Made in Brazil Music Store",
@@ -1274,6 +1287,7 @@ namespace PSS.Migrations
                     PostalCode = "71219-900",
                     CityId = 7
                 },
+                new Provider
                 {
                     Id = 25,
                     ShortName = "Music Master",
@@ -1287,6 +1301,7 @@ namespace PSS.Migrations
                     PostalCode = "70760-511",
                     CityId = 7
                 },
+                new Provider
                 {
                     Id = 26,
                     ShortName = "Protec Instrumentos Musicais",
@@ -1300,6 +1315,7 @@ namespace PSS.Migrations
                     PostalCode = "70782-122",
                     CityId = 7
                 },
+                new Provider
                 {
                     Id = 27,
                     ShortName = "VAM - Vitória Áudio e Música",
@@ -1313,6 +1329,7 @@ namespace PSS.Migrations
                     PostalCode = "29045-402",
                     CityId = 8
                 },
+                new Provider
                 {
                     Id = 28,
                     ShortName = "Backstage Instrumentos",
@@ -1326,6 +1343,7 @@ namespace PSS.Migrations
                     PostalCode = "29056-253",
                     CityId = 8
                 },
+                new Provider
                 {
                     Id = 29,
                     ShortName = "Carneiro Instrumentos Musicais",
@@ -1339,6 +1357,7 @@ namespace PSS.Migrations
                     PostalCode = "29123-012",
                     CityId = 8
                 },
+                new Provider
                 {
                     Id = 30,
                     ShortName = "Musicland",
