@@ -1755,7 +1755,7 @@ namespace PSS.Migrations
                     Birth = System.DateTime.Parse("12/06/1978"),
                     Gender = Gender.Female,
                     Phone = "(82) 3836-8906",
-                    Email = "mikael@akerfeldt.com",
+                    Email = "laura.farias@gmail.com",
                     Password = "1",
                     UserType = UserType.Customer,
                     Address = "Rua Atalaia",
