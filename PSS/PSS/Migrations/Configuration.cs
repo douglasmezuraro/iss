@@ -944,8 +944,7 @@ namespace PSS.Migrations
                     Number = 130,
                     PostalCode = "01309-905",
                     CityId = 25
-                }
-            );
+                });
         }
 
         private void SeedProviders()
@@ -1194,7 +1193,7 @@ namespace PSS.Migrations
                     Id = 18,
                     ShortName = "Intermezzo & Spina Instrumentos Musicais",
                     FullName = "Intermezzo & Spina, Ltda.",
-                    CNPJ = "Intermezzo & Spina",
+                    CNPJ = "74.820.152/0001-77",
                     Phone = "(11) 3078-3200",
                     Email = "contato@intermezzoespina.com.br",
                     Address = "Avenida Cidade Jardim, 957 - Jardim Paulistano - São Paulo-SP",
@@ -1293,7 +1292,7 @@ namespace PSS.Migrations
                     ShortName = "Music Master",
                     FullName = "Music Master Distribuidora, Ltda.",
                     CNPJ = "72.258.535/0001-78",
-                    Phone = "70760-511",
+                    Phone = "(61) 3992-2575",
                     Email = "contato@musicmaster-brasilia.com.br",
                     Address = "Rua Quito, 566 - Asa Norte - Brasília-DF",
                     Complement = null,
