@@ -30,10 +30,8 @@ namespace SGCO.Context
 
             modelBuilder.Properties<System.DateTime>().Configure(c => c.HasColumnType("datetime2"));
 
-            modelBuilder.Configurations.Add(new PurchaseOrderConfiguration());
             modelBuilder.Configurations.Add(new PurchaseOrderFreightConfiguration());
             modelBuilder.Configurations.Add(new PurchaseOrderPaymentConfiguration());
-            modelBuilder.Configurations.Add(new SaleOrderConfiguration());
             modelBuilder.Configurations.Add(new SaleOrderFreightConfiguration());
             modelBuilder.Configurations.Add(new SaleOrderPaymentConfiguration());
 
