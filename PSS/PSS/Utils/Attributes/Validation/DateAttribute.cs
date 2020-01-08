@@ -5,6 +5,7 @@ namespace PSS.Utils.Attributes.Validation
 {
     public enum Temporality { Past, Now, Future };
 
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
     public class DateAttribute : ValidationAttribute
     {
         public Temporality Temporality { get; set; }

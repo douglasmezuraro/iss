@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace PSS.Utils.Attributes.Validation
 {
+    [System.AttributeUsage(System.AttributeTargets.All, AllowMultiple = false)]
     public class CEPAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
