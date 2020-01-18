@@ -197,10 +197,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Configuration\PurchaseOrderConfiguration.cs" />
     <Compile Include="Configuration\PurchaseOrderFreightConfiguration.cs" />
     <Compile Include="Configuration\PurchaseOrderPaymentConfiguration.cs" />
-    <Compile Include="Configuration\SaleOrderConfiguration.cs" />
     <Compile Include="Configuration\SaleOrderFreightConfiguration.cs" />
     <Compile Include="Configuration\SaleOrderPaymentConfiguration.cs" />
     <Compile Include="Context\Context.cs" />
