@@ -6,7 +6,7 @@ namespace PSS.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<DBContext>
     {
-        private DBContext db;
+        private DBContext _context;
 
         public Configuration()
         {
@@ -16,7 +16,10 @@ namespace PSS.Migrations
 
         protected override void Seed(DBContext context)
         {
-            db = context;
+            _context = context;
+
+            ResetDatabase();
+            ResetSequences();
 
             SeedCountries();
             SeedStates();
@@ -29,9 +32,49 @@ namespace PSS.Migrations
             SeedUsers();
         }
 
+        private void ResetDatabase()
+        {
+            _context.Database.ExecuteSqlCommand("DELETE FROM Items;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM PurchaseOrderFreights;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM PurchaseOrderPayments;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM PurchaseOrders;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM SaleOrderFreights;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM SaleOrderPayments;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM SaleOrders;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM Products;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM Units;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM Categories;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM Manufacturers;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM Providers;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM Users;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM Cities;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM States;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM Countries;");
+        }
+
+        private void ResetSequences()
+        {
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Categories', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Cities', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Countries', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Items', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Manufacturers', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Products', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Providers', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderFreights', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderPayments', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrders', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderFreights', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderPayments', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrders', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('States', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Units', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Users', RESEED, 0);");
+        }
+
         private void SeedCountries()
         {
-            db.Countries.AddOrUpdate(c => c.Id,
+            _context.Countries.AddOrUpdate(c => c.Id,
                 new Country { Id = 001, Name = "Afeganistão" },
                 new Country { Id = 002, Name = "África do Sul" },
                 new Country { Id = 003, Name = "Albânia" },
@@ -233,7 +276,7 @@ namespace PSS.Migrations
 
         private void SeedStates()
         {
-            db.States.AddOrUpdate(s => s.Id,
+            _context.States.AddOrUpdate(s => s.Id,
                 new State { Id = 01, UF = "AC", CountryId = 26, Name = "Acre" },
                 new State { Id = 02, UF = "AL", CountryId = 26, Name = "Alagoas" },
                 new State { Id = 03, UF = "AP", CountryId = 26, Name = "Amapá" },
@@ -315,7 +358,7 @@ namespace PSS.Migrations
 
         private void SeedCities()
         {
-            db.Cities.AddOrUpdate(c => c.Id,
+            _context.Cities.AddOrUpdate(c => c.Id,
                 new City { Id = 01, StateId = 01, Name = "Rio Branco" },
                 new City { Id = 02, StateId = 02, Name = "Maceió" },
                 new City { Id = 03, StateId = 03, Name = "Macapá" },
@@ -402,7 +445,7 @@ namespace PSS.Migrations
 
         private void SeedUnits()
         {
-            db.Units.AddOrUpdate(u => u.Id,
+            _context.Units.AddOrUpdate(u => u.Id,
                 new Unit { Id = 01, Abbreviation = "AMPOLA", Description = "Ampola" },
                 new Unit { Id = 02, Abbreviation = "BALDE", Description = "Balde" },
                 new Unit { Id = 03, Abbreviation = "BANDEJ", Description = "Bandeja" },
@@ -468,21 +511,21 @@ namespace PSS.Migrations
 
         private void SeedCategories()
         {
-            db.Categories.AddOrUpdate(c => c.Id,
-                new Category { Id = 1, Name = "Guitarra" },
-                new Category { Id = 2, Name = "Violão" },
-                new Category { Id = 3, Name = "Baixo" },
-                new Category { Id = 4, Name = "Bateria" },
-                new Category { Id = 5, Name = "Teclado" },
-                new Category { Id = 6, Name = "Piano" },
-                new Category { Id = 7, Name = "Saxofone" },
-                new Category { Id = 8, Name = "Amplificador" },
-                new Category { Id = 9, Name = "Pedal" });
+            _context.Categories.AddOrUpdate(c => c.Id,
+                new Category { Id = 01, Name = "Guitarra" },
+                new Category { Id = 02, Name = "Violão" },
+                new Category { Id = 03, Name = "Baixo" },
+                new Category { Id = 04, Name = "Bateria" },
+                new Category { Id = 05, Name = "Teclado" },
+                new Category { Id = 06, Name = "Piano" },
+                new Category { Id = 07, Name = "Saxofone" },
+                new Category { Id = 08, Name = "Amplificador" },
+                new Category { Id = 09, Name = "Pedal" });
         }
 
         private void SeedManufacturers()
         {
-            db.Manufacturers.AddOrUpdate(m => m.Id,
+            _context.Manufacturers.AddOrUpdate(m => m.Id,
                 new Manufacturer
                 {
                     Id = 1,
@@ -949,7 +992,7 @@ namespace PSS.Migrations
 
         private void SeedProviders()
         {
-            db.Providers.AddOrUpdate(p => p.Id,
+            _context.Providers.AddOrUpdate(p => p.Id,
                 new Provider
                 {
                     Id = 1,
@@ -1374,7 +1417,7 @@ namespace PSS.Migrations
 
         private void SeedProducts()
         {
-            db.Products.AddOrUpdate(p => p.Id,
+            _context.Products.AddOrUpdate(p => p.Id,
                 new Product
                 {
                     Id = 1,
@@ -1729,7 +1772,7 @@ namespace PSS.Migrations
 
         private void SeedUsers()
         {
-            db.Users.AddOrUpdate(u => u.Id,
+            _context.Users.AddOrUpdate(u => u.Id,
                 new User
                 {
                     Id = 1,

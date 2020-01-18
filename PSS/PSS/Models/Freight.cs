@@ -60,6 +60,5 @@ namespace PSS.Models
 
     public sealed class SaleOrderFreight : Freight
     {
-
     }
 }
