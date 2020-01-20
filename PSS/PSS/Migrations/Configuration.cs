@@ -1428,7 +1428,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender Stratocaster Stardard - Artic White",
                     PurchasePrice = 1788.00,
                     SalePrice = 5364.00,
-                    Stock = 3,
+                    Stock = 5,
                     Weight = 3.6,
                     Expiration = null,
                     CategoryId = 1,
@@ -1456,7 +1456,7 @@ namespace PSS.Migrations
                     Description = "Violão Tagima Dallas T - Sunburst",
                     PurchasePrice = 209.33,
                     SalePrice = 628.00,
-                    Stock = 10,
+                    Stock = 5,
                     Weight = 1.2,
                     Expiration = null,
                     CategoryId = 2,
@@ -1470,7 +1470,7 @@ namespace PSS.Migrations
                     Description = "Violão Takamine EF340S TT & TLD",
                     PurchasePrice = 3207.00,
                     SalePrice = 9621.00,
-                    Stock = 1,
+                    Stock = 5,
                     Weight = 1.5,
                     Expiration = null,
                     CategoryId = 2,
@@ -1484,7 +1484,7 @@ namespace PSS.Migrations
                     Description = "Baixo Fender Precision Bass Deluxe 4072 Ash",
                     PurchasePrice = 3447.00,
                     SalePrice = 10341.00,
-                    Stock = 3,
+                    Stock = 5,
                     Weight = 2.4,
                     Expiration = null,
                     CategoryId = 3,
@@ -1498,7 +1498,7 @@ namespace PSS.Migrations
                     Description = "Baixo MusicMan Sterling Ray 5",
                     PurchasePrice = 1200.00,
                     SalePrice = 3600.00,
-                    Stock = 24,
+                    Stock = 5,
                     Weight = 2.7,
                     Expiration = null,
                     CategoryId = 3,
@@ -1526,7 +1526,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender Telecaster B-Bender American Standard",
                     PurchasePrice = 2000.00,
                     SalePrice = 6000.00,
-                    Stock = 2,
+                    Stock = 5,
                     Weight = 2.8,
                     Expiration = null,
                     CategoryId = 1,
@@ -1540,7 +1540,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Gibson SG Faded Worn Brown",
                     PurchasePrice = 2120.00,
                     SalePrice = 6360.00,
-                    Stock = 7,
+                    Stock = 5,
                     Weight = 3.5,
                     Expiration = null,
                     CategoryId = 1,
@@ -1554,7 +1554,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender Mustang Olympic White",
                     PurchasePrice = 1624.00,
                     SalePrice = 4872.00,
-                    Stock = 1,
+                    Stock = 5,
                     Weight = 3,
                     Expiration = null,
                     CategoryId = 1,
@@ -1568,7 +1568,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender Mustang '62 Reissue - Offset Olive Green",
                     PurchasePrice = 1799.7,
                     SalePrice = 5399.10,
-                    Stock = 10,
+                    Stock = 5,
                     Weight = 3.4,
                     Expiration = null,
                     CategoryId = 1,
@@ -1582,7 +1582,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Blackstar S1-104 EL 34/6L6",
                     PurchasePrice = 1653.30,
                     SalePrice = 4960.00,
-                    Stock = 4,
+                    Stock = 5,
                     Weight = 19.300,
                     Expiration = null,
                     CategoryId = 8,
@@ -1596,7 +1596,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Orange AD30TC - 2x12 30W",
                     PurchasePrice = 4361.99,
                     SalePrice = 13085.99,
-                    Stock = 1,
+                    Stock = 5,
                     Weight = 17.280,
                     Expiration = null,
                     CategoryId = 8,
@@ -1610,7 +1610,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Orange Dark Terror - 15W",
                     PurchasePrice = 3200.00,
                     SalePrice = 5537.99,
-                    Stock = 3,
+                    Stock = 5,
                     Weight = 5.160,
                     Expiration = null,
                     CategoryId = 8,
@@ -1624,7 +1624,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Soldano 100w Super Lead Overdrive (SLO-100)",
                     PurchasePrice = 8699.00,
                     SalePrice = 12780.99,
-                    Stock = 1,
+                    Stock = 5,
                     Weight = 15.800,
                     Expiration = null,
                     CategoryId = 8,
@@ -1638,7 +1638,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Fender Hot Deluxe III - 1x12 40W",
                     PurchasePrice = 6420.00,
                     SalePrice = 10734.99,
-                    Stock = 3,
+                    Stock = 5,
                     Weight = 20.41,
                     Expiration = null,
                     CategoryId = 8,
@@ -1652,7 +1652,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Peavey 6505 - 120W",
                     PurchasePrice = 5230.90,
                     SalePrice = 7799.99,
-                    Stock = 4,
+                    Stock = 5,
                     Weight = 8.200,
                     Expiration = null,
                     CategoryId = 8,
@@ -1666,7 +1666,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Vox AC30C2 - 2x12 30W",
                     PurchasePrice = 7392.99,
                     SalePrice = 10999.89,
-                    Stock = 6,
+                    Stock = 5,
                     Weight = 16.320,
                     Expiration = null,
                     CategoryId = 8,
@@ -1680,7 +1680,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Marshall JVM400 - 110W",
                     PurchasePrice = 8500.00,
                     SalePrice = 11690.90,
-                    Stock = 1,
+                    Stock = 5,
                     Weight = 22.000,
                     Expiration = null,
                     CategoryId = 8,
@@ -1694,7 +1694,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Mesa Boogie Dual Rectifier - 100W",
                     PurchasePrice = 5700.90,
                     SalePrice = 7800.00,
-                    Stock = 1,
+                    Stock = 5,
                     Weight = 15.285,
                     Expiration = null,
                     CategoryId = 8,
@@ -1708,7 +1708,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Hiwatt G50CM - 1x12 50W",
                     PurchasePrice = 1459.00,
                     SalePrice = 1860.00,
-                    Stock = 12,
+                    Stock = 5,
                     Weight = 8.120,
                     Expiration = null,
                     CategoryId = 8,
@@ -1722,7 +1722,7 @@ namespace PSS.Migrations
                     Description = "Pedal Distorção Boss Metal Zone MT-2",
                     PurchasePrice = 300.00,
                     SalePrice = 459.00,
-                    Stock = 12,
+                    Stock = 5,
                     Weight = 0.400,
                     Expiration = null,
                     CategoryId = 9,
@@ -1736,7 +1736,7 @@ namespace PSS.Migrations
                     Description = "Pedal Fuzz Electro-Harmonix Big Muff Pi",
                     PurchasePrice = 500.90,
                     SalePrice = 709.10,
-                    Stock = 7,
+                    Stock = 5,
                     Weight = 0.650,
                     Expiration = null,
                     CategoryId = 9,
@@ -1750,7 +1750,7 @@ namespace PSS.Migrations
                     Description = "Pedal Delay Fuhrmann Analog Echo AE01",
                     PurchasePrice = 159.90,
                     SalePrice = 263.42,
-                    Stock = 12,
+                    Stock = 5,
                     Weight = 0.450,
                     Expiration = null,
                     CategoryId = 9,
@@ -1764,7 +1764,7 @@ namespace PSS.Migrations
                     Description = "Guitarra SX Stratocaster SST62 - Preta",
                     PurchasePrice = 500.90,
                     SalePrice = 828.00,
-                    Stock = 10,
+                    Stock = 5,
                     Weight = 3.600,
                     Expiration = null,
                     CategoryId = 1,
@@ -2060,7 +2060,7 @@ namespace PSS.Migrations
                 new Item
                 {
                     Id = 1,
-                    Quantity = 3,
+                    Quantity = 5,
                     ProductId = 1,
                     SaleOrderId = null,
                     PurchaseOrderId = 1
@@ -2068,7 +2068,7 @@ namespace PSS.Migrations
                 new Item
                 {
                     Id = 2,
-                    Quantity = 1,
+                    Quantity = 5,
                     ProductId = 2,
                     SaleOrderId = null,
                     PurchaseOrderId = 1
@@ -2076,7 +2076,7 @@ namespace PSS.Migrations
                 new Item
                 {
                     Id = 3,
-                    Quantity = 2,
+                    Quantity = 5,
                     ProductId = 3,
                     SaleOrderId = null,
                     PurchaseOrderId = 1
@@ -2084,6 +2084,182 @@ namespace PSS.Migrations
                 new Item
                 {
                     Id = 4,
+                    Quantity = 5,
+                    ProductId = 4,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 5,
+                    Quantity = 5,
+                    ProductId = 5,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 6,
+                    Quantity = 5,
+                    ProductId = 6,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 7,
+                    Quantity = 5,
+                    ProductId = 7,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 8,
+                    Quantity = 5,
+                    ProductId = 8,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 9,
+                    Quantity = 5,
+                    ProductId = 9,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 10,
+                    Quantity = 5,
+                    ProductId = 10,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 11,
+                    Quantity = 5,
+                    ProductId = 11,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 12,
+                    Quantity = 5,
+                    ProductId = 12,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 13,
+                    Quantity = 5,
+                    ProductId = 13,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 14,
+                    Quantity = 5,
+                    ProductId = 14,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 15,
+                    Quantity = 5,
+                    ProductId = 15,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 16,
+                    Quantity = 5,
+                    ProductId = 16,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 17,
+                    Quantity = 5,
+                    ProductId = 17,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 18,
+                    Quantity = 5,
+                    ProductId = 18,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 19,
+                    Quantity = 5,
+                    ProductId = 19,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 20,
+                    Quantity = 5,
+                    ProductId = 20,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 21,
+                    Quantity = 5,
+                    ProductId = 21,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 22,
+                    Quantity = 5,
+                    ProductId = 22,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 23,
+                    Quantity = 5,
+                    ProductId = 23,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 24,
+                    Quantity = 5,
+                    ProductId = 24,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 25,
+                    Quantity = 5,
+                    ProductId = 25,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 26,
                     Quantity = 10,
                     ProductId = 10,
                     SaleOrderId = null,
@@ -2091,7 +2267,7 @@ namespace PSS.Migrations
                 },
                 new Item
                 {
-                    Id = 5,
+                    Id = 27,
                     Quantity = 1,
                     ProductId = 9,
                     SaleOrderId = null,
@@ -2099,7 +2275,7 @@ namespace PSS.Migrations
                 },
                 new Item
                 {
-                    Id = 6,
+                    Id = 28,
                     Quantity = 1,
                     ProductId = 8,
                     SaleOrderId = null,
@@ -2107,7 +2283,7 @@ namespace PSS.Migrations
                 },
                 new Item
                 {
-                    Id = 7,
+                    Id = 29,
                     Quantity = 2,
                     ProductId = 7,
                     SaleOrderId = null,
@@ -2115,7 +2291,7 @@ namespace PSS.Migrations
                 },
                 new Item
                 {
-                    Id = 8,
+                    Id = 30,
                     Quantity = 3,
                     ProductId = 6,
                     SaleOrderId = null,
@@ -2123,7 +2299,7 @@ namespace PSS.Migrations
                 },
                 new Item
                 {
-                    Id = 9,
+                    Id = 31,
                     Quantity = 5,
                     ProductId = 5,
                     SaleOrderId = null,
@@ -2131,7 +2307,7 @@ namespace PSS.Migrations
                 },
                 new Item
                 {
-                    Id = 10,
+                    Id = 32,
                     Quantity = 1,
                     ProductId = 4,
                     SaleOrderId = null,
@@ -2139,7 +2315,7 @@ namespace PSS.Migrations
                 },
                 new Item
                 {
-                    Id = 11,
+                    Id = 33,
                     Quantity = 1,
                     ProductId = 3,
                     SaleOrderId = null,
@@ -2147,7 +2323,7 @@ namespace PSS.Migrations
                 },
                 new Item
                 {
-                    Id = 12,
+                    Id = 34,
                     Quantity = 1,
                     ProductId = 4,
                     SaleOrderId = null,
@@ -2155,7 +2331,7 @@ namespace PSS.Migrations
                 },
                 new Item
                 {
-                    Id = 13,
+                    Id = 35,
                     Quantity = 1,
                     ProductId = 5,
                     SaleOrderId = null,
