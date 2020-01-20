@@ -31,11 +31,9 @@ namespace PSS.Models
 
     public sealed class PurchaseOrderPayment : Payment
     {
-
     }
 
     public sealed class SaleOrderPayment : Payment
     {
-
     }
 }

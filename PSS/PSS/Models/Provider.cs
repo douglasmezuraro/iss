@@ -7,6 +7,5 @@ namespace PSS.Models
     [DisplayName("Fornecedores")]
     public sealed class Provider : LegalPerson
     {
-
     }
 }

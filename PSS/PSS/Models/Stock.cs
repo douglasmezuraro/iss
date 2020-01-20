@@ -24,6 +24,6 @@ namespace PSS.Models
         [ScaffoldColumn(false)]
         public int? ProductId { get; set; }
 
-        public static List<Stock> InitialStock() => new List<Stock> { new Stock { Quantity = 0, Date = System.DateTime.Now } };
+        public static List<Stock> InitialStock() => new List<Stock> { new Stock { Quantity = 0, Date = DateTime.Now } };
     }
 }

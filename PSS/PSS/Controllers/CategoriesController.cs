@@ -9,13 +9,13 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class CategoriesController : Controller
+    public sealed class CategoriesController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
-            var categories = db.Categories.Where(c => c.IsActive).OrderBy(c => c.Name);
+            var categories = _context.Categories.Where(c => c.IsActive).OrderBy(c => c.Name);
             return View(categories.ToList());
         }
 
@@ -26,7 +26,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Category category = db.Categories.Find(id);
+            Category category = _context.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -46,8 +46,8 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
+                _context.Categories.Add(category);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -62,7 +62,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Category category = db.Categories.Find(id);
+            Category category = _context.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -77,8 +77,8 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(category).State = EntityState.Modified;
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -93,7 +93,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Category category = db.Categories.Find(id);
+            Category category = _context.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -106,10 +106,10 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
+            Category category = _context.Categories.Find(id);
             category.IsActive = false;
-            db.Entry(category).State = EntityState.Modified;
-            db.SaveChanges();
+            _context.Entry(category).State = EntityState.Modified;
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -118,7 +118,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

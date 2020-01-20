@@ -9,13 +9,13 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class StatesController : Controller
+    public sealed class StatesController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
-            var states = db.States.Include(s => s.Country).Where(s => s.IsActive).OrderBy(s => s.Name);
+            var states = _context.States.Include(s => s.Country).Where(s => s.IsActive).OrderBy(s => s.Name);
             return View(states.ToList());
         }
 
@@ -26,7 +26,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            State state = db.States.Find(id);
+            State state = _context.States.Find(id);
             if (state == null)
             {
                 return HttpNotFound();
@@ -37,7 +37,7 @@ namespace PSS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.CountryId = new SelectList(db.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name");
+            ViewBag.CountryId = new SelectList(_context.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name");
             return View();
         }
 
@@ -47,13 +47,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.States.Add(state);
-                db.SaveChanges();
+                _context.States.Add(state);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", state.CountryId);
+            ViewBag.CountryId = new SelectList(_context.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", state.CountryId);
 
             return View(state);
         }
@@ -65,13 +65,13 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            State state = db.States.Find(id);
+            State state = _context.States.Find(id);
             if (state == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", state.CountryId);
+            ViewBag.CountryId = new SelectList(_context.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", state.CountryId);
 
             return View(state);
         }
@@ -82,12 +82,12 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(state).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(state).State = EntityState.Modified;
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", state.CountryId);
+            ViewBag.CountryId = new SelectList(_context.Countries.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", state.CountryId);
 
             return View(state);
         }
@@ -99,7 +99,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            State state = db.States.Find(id);
+            State state = _context.States.Find(id);
             if (state == null)
             {
                 return HttpNotFound();
@@ -112,10 +112,10 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            State state = db.States.Find(id);
+            State state = _context.States.Find(id);
             state.IsActive = false;
-            db.Entry(state).State = EntityState.Modified;
-            db.SaveChanges();
+            _context.Entry(state).State = EntityState.Modified;
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -124,7 +124,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

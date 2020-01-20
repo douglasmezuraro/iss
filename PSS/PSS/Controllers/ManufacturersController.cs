@@ -8,13 +8,13 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class ManufacturersController : Controller
+    public sealed class ManufacturersController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
-            var manufacturers = db.Manufacturers.Include(m => m.City).Where(m => m.IsActive).OrderBy(m => m.ShortName);
+            var manufacturers = _context.Manufacturers.Include(m => m.City).Where(m => m.IsActive).OrderBy(m => m.ShortName);
             return View(manufacturers.ToList());
         }
 
@@ -25,20 +25,20 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Manufacturer manufacturer = db.Manufacturers.Find(id);
+            Manufacturer manufacturer = _context.Manufacturers.Find(id);
             if (manufacturer == null)
             {
                 return HttpNotFound();
             }
 
-            manufacturer.City = db.Cities.Find(manufacturer.CityId);
+            manufacturer.City = _context.Cities.Find(manufacturer.CityId);
 
             return View(manufacturer);
         }
 
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
             return View();
         }
 
@@ -48,13 +48,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Manufacturers.Add(manufacturer);
-                db.SaveChanges();
+                _context.Manufacturers.Add(manufacturer);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", manufacturer.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", manufacturer.CityId);
 
             return View(manufacturer);
         }
@@ -66,13 +66,13 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Manufacturer manufacturer = db.Manufacturers.Find(id);
+            Manufacturer manufacturer = _context.Manufacturers.Find(id);
             if (manufacturer == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", manufacturer.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", manufacturer.CityId);
 
             return View(manufacturer);
         }
@@ -83,13 +83,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             { 
-                db.Entry(manufacturer).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(manufacturer).State = EntityState.Modified;
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", manufacturer.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", manufacturer.CityId);
 
             return View(manufacturer);
         }
@@ -101,7 +101,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Manufacturer manufacturer = db.Manufacturers.Find(id);
+            Manufacturer manufacturer = _context.Manufacturers.Find(id);
             if (manufacturer == null)
             {
                 return HttpNotFound();
@@ -114,10 +114,10 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Manufacturer manufacturer = db.Manufacturers.Find(id);
+            Manufacturer manufacturer = _context.Manufacturers.Find(id);
             manufacturer.IsActive = false;
-            db.Entry(manufacturer).State = EntityState.Modified;
-            db.SaveChanges();
+            _context.Entry(manufacturer).State = EntityState.Modified;
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -126,7 +126,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

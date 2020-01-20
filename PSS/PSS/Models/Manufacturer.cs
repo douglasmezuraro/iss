@@ -7,6 +7,5 @@ namespace PSS.Models
     [DisplayName("Fabricantes")]
     public sealed class Manufacturer : LegalPerson
     {
-
     }
 }

@@ -9,13 +9,13 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class ProvidersController : Controller
+    public sealed class ProvidersController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
-            var providers = db.Providers.Include(p => p.City).Where(p => p.IsActive).OrderBy(p => p.ShortName);
+            var providers = _context.Providers.Include(p => p.City).Where(p => p.IsActive).OrderBy(p => p.ShortName);
             return View(providers.ToList());
         }
 
@@ -26,20 +26,20 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Provider provider = db.Providers.Find(id);
+            Provider provider = _context.Providers.Find(id);
             if (provider == null)
             {
                 return HttpNotFound();
             }
 
-            provider.City = db.Cities.Find(provider.CityId);
+            provider.City = _context.Cities.Find(provider.CityId);
 
             return View(provider);
         }
 
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
             return View();
         }
 
@@ -49,13 +49,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             { 
-                db.Providers.Add(provider);
-                db.SaveChanges();
+                _context.Providers.Add(provider);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", provider.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", provider.CityId);
 
             return View(provider);
         }
@@ -67,13 +67,13 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Provider provider = db.Providers.Find(id);
+            Provider provider = _context.Providers.Find(id);
             if (provider == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", provider.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", provider.CityId);
 
             return View(provider);
         }
@@ -84,13 +84,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             { 
-                db.Entry(provider).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(provider).State = EntityState.Modified;
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", provider.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", provider.CityId);
 
             return View(provider);
         }
@@ -102,13 +102,13 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Provider provider = db.Providers.Find(id);
+            Provider provider = _context.Providers.Find(id);
             if (provider == null)
             {
                 return HttpNotFound();
             }
 
-            provider.City = db.Cities.Find(provider.CityId);
+            provider.City = _context.Cities.Find(provider.CityId);
 
             return View(provider);
         }
@@ -117,10 +117,10 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Provider provider = db.Providers.Find(id);
+            Provider provider = _context.Providers.Find(id);
             provider.IsActive = false;
-            db.Entry(provider).State = EntityState.Modified;
-            db.SaveChanges();
+            _context.Entry(provider).State = EntityState.Modified;
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -128,7 +128,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

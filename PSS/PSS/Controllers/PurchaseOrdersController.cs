@@ -9,26 +9,19 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class PurchaseOrdersController : Controller
+    public sealed class PurchaseOrdersController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
-            var orders = db.PurchaseOrders.Include(p => p.User)
-                                                  .Include(p => p.Freight)
-                                                  .Include(p => p.Payment)
-                                                  .Include(p => p.Items.Select(i => i.Product))
-                                                  .Where(p => p.IsActive)
-                                                  .Where(p => p.UserId == Global.User.Id)
-                                                  .OrderBy(p => p.Date);
-           // foreach (var order in orders)
-           // {
-               // foreach (var item in order.Items)
-               // {
-             //       item.Product.Stocks = db.Stocks.Where(s => s.ProductId == item.ProductId).ToList();
-           //     }
-         //   }
+            var orders = _context.PurchaseOrders.Include(p => p.User)
+                                                .Include(p => p.Freight)
+                                                .Include(p => p.Payment)
+                                                .Include(p => p.Items.Select(i => i.Product))
+                                                .Where(p => p.IsActive)
+                                                .Where(p => p.UserId == Global.User.Id)
+                                                .OrderBy(p => p.Date);
 
             return View(orders.ToList());
         }
@@ -40,7 +33,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PurchaseOrder order = db.PurchaseOrders.Find(id); 
+            PurchaseOrder order = _context.PurchaseOrders.Find(id); 
             if (order == null)
             {
                 return HttpNotFound();
@@ -51,14 +44,14 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
-            int PaymentId = order.PaymentId; //TODO: Gambiarra até entender porque o find do pagamento está alterando o
-            int FreightId = order.FreightId; //      FreightId do objeto "order"
+            int PaymentId = order.PaymentId; //TODO: Gambiarra até entender porque o find do pagamento está alterando o FreightId do objeto "order"
+            int FreightId = order.FreightId;    
             
-            order.Payment = db.PurchaseOrderPayments.Find(PaymentId);
-            order.Freight = db.PurchaseOrderFreights.Find(FreightId);
-            order.Freight.City = db.Cities.Find(order.Freight.CityId);
-            order.User = db.Users.Find(order.UserId);
-            order.Items = db.Items.Include(i => i.Product).Where(o => o.PurchaseOrderId == order.Id).ToList();
+            order.Payment = _context.PurchaseOrderPayments.Find(PaymentId);
+            order.Freight = _context.PurchaseOrderFreights.Find(FreightId);
+            order.Freight.City = _context.Cities.Find(order.Freight.CityId);
+            order.User = _context.Users.Find(order.UserId);
+            order.Items = _context.Items.Include(i => i.Product).Where(o => o.PurchaseOrderId == order.Id).ToList();
 
             return View(order);
         }
@@ -70,7 +63,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "O carrinho de compras está vazio.");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
 
             return View(new PurchaseOrder());
         }
@@ -83,24 +76,24 @@ namespace PSS.Controllers
             {
                 foreach (var item in order.Items)
                 {
-                    item.Product.Stocks = db.Stocks.Where(s => s.ProductId == item.ProductId).ToList();
+                    item.Product.Stocks = _context.Stocks.Where(s => s.ProductId == item.ProductId).ToList();
                 }
 
                 order.FinalizeOrder();
 
-                db.PurchaseOrders.Add(order);
+                _context.PurchaseOrders.Add(order);
 
                  foreach (var item in order.Items)
                  {
-                     db.Entry(item.Product).State = EntityState.Modified;
+                     _context.Entry(item.Product).State = EntityState.Modified;
                  }
 
-                db.SaveChanges();
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", order.Freight.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", order.Freight.CityId);
 
             return View(order);
         }
@@ -112,7 +105,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PurchaseOrder order = db.PurchaseOrders.Find(id);
+            PurchaseOrder order = _context.PurchaseOrders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -124,9 +117,9 @@ namespace PSS.Controllers
             }
           
             order.CancelOrder();
-            db.Entry(order).Property(o => o.OrderStatus).IsModified = true;
+            _context.Entry(order).Property(o => o.OrderStatus).IsModified = true;
 
-            db.SaveChanges();
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -138,7 +131,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PurchaseOrder order = db.PurchaseOrders.Find(id);
+            PurchaseOrder order = _context.PurchaseOrders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -170,7 +163,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

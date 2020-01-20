@@ -9,13 +9,13 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class SaleOrdersController : Controller
+    public sealed class SaleOrdersController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
-            var orders = db.SaleOrders.Include(p => p.User)
+            var orders = _context.SaleOrders.Include(p => p.User)
                                       .Include(p => p.Freight)
                                       .Include(p => p.Payment)
                                       .Include(p => p.Items.Select(i => i.Product))
@@ -27,7 +27,7 @@ namespace PSS.Controllers
             {
                 foreach (var item in order.Items)
                 {
-                    var stocks = db.Stocks.Where(s => s.ProductId == item.ProductId);
+                    var stocks = _context.Stocks.Where(s => s.ProductId == item.ProductId);
 
                     foreach (var stock in stocks)
                     {
@@ -46,7 +46,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            SaleOrder order = db.SaleOrders.Find(id);
+            SaleOrder order = _context.SaleOrders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -57,11 +57,11 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
-            order.Freight = db.SaleOrderFreights.Find(order.FreightId);
-            order.Freight.City = db.Cities.Find(order.Freight.CityId);
-            order.Payment = db.SaleOrderPayments.Find(order.PaymentId);
-            order.User = db.Users.Find(order.UserId);
-            order.Items = db.Items.Include(i => i.Product).Where(o => o.SaleOrderId == order.Id).ToList();
+            order.Freight = _context.SaleOrderFreights.Find(order.FreightId);
+            order.Freight.City = _context.Cities.Find(order.Freight.CityId);
+            order.Payment = _context.SaleOrderPayments.Find(order.PaymentId);
+            order.User = _context.Users.Find(order.UserId);
+            order.Items = _context.Items.Include(i => i.Product).Where(o => o.SaleOrderId == order.Id).ToList();
 
             return View(order);
         }
@@ -84,14 +84,14 @@ namespace PSS.Controllers
             {
                 foreach (var item in order.Items)
                 {
-                    item.Product.Stocks = db.Stocks.Where(s => s.ProductId == item.ProductId).ToList();
+                    item.Product.Stocks = _context.Stocks.Where(s => s.ProductId == item.ProductId).ToList();
                 }
 
                 order.FinalizeOrder();
 
-                db.SaleOrders.Add(order);
+                _context.SaleOrders.Add(order);
 
-                db.SaveChanges();
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -106,7 +106,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            SaleOrder order = db.SaleOrders.Find(id);
+            SaleOrder order = _context.SaleOrders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -118,8 +118,8 @@ namespace PSS.Controllers
             }
 
             order.CancelOrder();
-            db.Entry(order).State = EntityState.Modified;
-            db.SaveChanges();
+            _context.Entry(order).State = EntityState.Modified;
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -131,7 +131,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            SaleOrder order = db.SaleOrders.Find(id);
+            SaleOrder order = _context.SaleOrders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -163,7 +163,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

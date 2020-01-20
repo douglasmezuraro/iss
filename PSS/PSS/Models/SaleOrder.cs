@@ -28,7 +28,7 @@ namespace PSS.Models
                 item.Product.Stocks.Add(
                     new Stock
                     {
-                        Quantity = item.Product.Stocks.OrderBy(s => s.Id).Last().Quantity - item.Quantity,
+                        Quantity = item.Product.Stocks.OrderBy(s => s.Id).LastOrDefault().Quantity - item.Quantity,
                         Out = item.Quantity,
                         Date = System.DateTime.Now
                     });
@@ -44,7 +44,7 @@ namespace PSS.Models
                 item.Product.Stocks.Add(
                     new Stock
                     {
-                        Quantity = item.Product.Stocks.OrderBy(s => s.Id).Last().Quantity + item.Quantity,
+                        Quantity = item.Product.Stocks.OrderBy(s => s.Id).LastOrDefault().Quantity + item.Quantity,
                         In = item.Quantity,
                         Date = System.DateTime.Now
                     });

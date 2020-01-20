@@ -8,13 +8,13 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class CountriesController : Controller
+    public sealed class CountriesController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
         
         public ActionResult Index()
         {
-            var countries = db.Countries.Where(c => c.IsActive).OrderBy(c => c.Name);
+            var countries = _context.Countries.Where(c => c.IsActive).OrderBy(c => c.Name);
             return View(countries.ToList());
         }
        
@@ -25,7 +25,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Country country = db.Countries.Find(id);
+            Country country = _context.Countries.Find(id);
             if (country == null)
             {
                 return HttpNotFound();
@@ -45,8 +45,8 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Countries.Add(country);
-                db.SaveChanges();
+                _context.Countries.Add(country);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -61,7 +61,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Country country = db.Countries.Find(id);
+            Country country = _context.Countries.Find(id);
             if (country == null)
             {
                 return HttpNotFound();
@@ -76,8 +76,8 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(country).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(country).State = EntityState.Modified;
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -92,7 +92,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Country country = db.Countries.Find(id);
+            Country country = _context.Countries.Find(id);
             if (country == null)
             {
                 return HttpNotFound();
@@ -105,10 +105,10 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Country country = db.Countries.Find(id);
+            Country country = _context.Countries.Find(id);
             country.IsActive = false;
-            db.Entry(country).State = EntityState.Modified;          
-            db.SaveChanges();
+            _context.Entry(country).State = EntityState.Modified;          
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -117,7 +117,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

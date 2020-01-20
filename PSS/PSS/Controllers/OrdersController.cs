@@ -4,18 +4,18 @@ using PSS.Utils;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class OrdersController : Controller
+    public sealed class OrdersController : Controller
     {
-        private Controller controller = new OrderControllerFactory().CreateController();
+        private readonly Controller _controller = new OrderControllerFactory().CreateController();
 
         public ActionResult Index()
         {
-            return RedirectToAction("Index", controller.ToString());
+            return RedirectToAction("Index", _controller.ToString());
         }
 
         public ActionResult Create()
         {
-            return RedirectToAction("Create", controller.ToString());
+            return RedirectToAction("Create", _controller.ToString());
         }
     }
 }

@@ -1,20 +1,20 @@
-﻿using System.Data;
+﻿using PSS.Models;
+using PSS.Utils;
+using SGCO.Context;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using PSS.Models;
-using SGCO.Context;
-using PSS.Utils;
 using System.Web.Security;
 using System.Web.Script.Serialization;
 using System.Web;
 
 namespace PSS.Controllers
 {
-    public class UsersController : Controller
+    public sealed class UsersController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         [Authorize]
         public ActionResult Index()
@@ -24,7 +24,7 @@ namespace PSS.Controllers
                 return RedirectToAction("Login");
             }
 
-            var users = db.Users.Include(u => u.City).Where(u => u.IsActive).OrderBy(u => u.Name);
+            var users = _context.Users.Include(u => u.City).Where(u => u.IsActive).OrderBy(u => u.Name);
 
             if (Global.User.UserType == UserType.Customer)
             {
@@ -42,20 +42,20 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User user = db.Users.Find(id);
+            User user = _context.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
 
-            user.City = db.Cities.Find(user.CityId);
+            user.City = _context.Cities.Find(user.CityId);
 
             return View(user);
         }
        
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
 
             return View();
         }
@@ -67,13 +67,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
+                _context.Users.Add(user);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", user.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", user.CityId);
 
             return View(user);
         }
@@ -91,13 +91,13 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
-            User user = db.Users.Find(id);
+            User user = _context.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", user.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", user.CityId);
 
             return View(user);
         }
@@ -109,13 +109,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(user).State = EntityState.Modified;
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", user.CityId);
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", user.CityId);
 
             return View(user);
         }
@@ -133,13 +133,13 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
-            User user = db.Users.Find(id);
+            User user = _context.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
 
-            user.City = db.Cities.Find(user.CityId);
+            user.City = _context.Cities.Find(user.CityId);
 
             return View(user);
         }
@@ -149,10 +149,10 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
+            User user = _context.Users.Find(id);
             user.IsActive = false;
-            db.Entry(user).State = EntityState.Modified;
-            db.SaveChanges();
+            _context.Entry(user).State = EntityState.Modified;
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -168,7 +168,7 @@ namespace PSS.Controllers
         [AllowAnonymous]
         public ActionResult Login(User user)
         {
-            var model = db.Users.Where(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password)).FirstOrDefault();
+            var model = _context.Users.Where(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password)).FirstOrDefault();
 
             if (model == null)
             {
@@ -236,7 +236,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

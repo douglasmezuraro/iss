@@ -4,14 +4,13 @@ using System.Web.Mvc;
 using PSS.Models;
 using SGCO.Context;
 using PSS.Utils;
-using System.Collections.Generic;
 
 namespace PSS.Controllers
 {
     [Authorize]
-    public class CartController : Controller
+    public sealed class CartController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
@@ -24,9 +23,9 @@ namespace PSS.Controllers
 
             if (model == null)
             {
-                item.Product = db.Products.Find(item.ProductId);
-                item.Product.Category = db.Categories.Find(item.Product.CategoryId);
-                item.Product.Unit = db.Units.Find(item.Product.UnitId);
+                item.Product = _context.Products.Find(item.ProductId);
+                item.Product.Category = _context.Categories.Find(item.Product.CategoryId);
+                item.Product.Unit = _context.Units.Find(item.Product.UnitId);
       
                 Global.User.Cart.Items.Add(item);
             }

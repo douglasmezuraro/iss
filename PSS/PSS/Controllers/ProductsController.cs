@@ -8,22 +8,22 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class ProductsController : Controller
+    public sealed class ProductsController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Category)
-                                      .Include(p => p.Manufacturer)
-                                      .Include(p => p.Provider)
-                                      .Include(p => p.Unit)                        
-                                      .Where(p => p.IsActive)
-                                      .OrderBy(p => p.Description).ToList();
+            var products = _context.Products.Include(p => p.Category)
+                                            .Include(p => p.Manufacturer)
+                                            .Include(p => p.Provider)
+                                            .Include(p => p.Unit)                        
+                                            .Where(p => p.IsActive)
+                                            .OrderBy(p => p.Description).ToList();
 
             foreach (var product in products)
             {
-                product.Stocks = db.Stocks.Where(s => s.ProductId == product.Id).ToList();
+                product.Stocks = _context.Stocks.Where(s => s.ProductId == product.Id).ToList();
             }
 
             return View(products);
@@ -36,27 +36,27 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Product product = db.Products.Find(id);
+            Product product = _context.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
 
-            product.Category = db.Categories.Find(product.CategoryId);
-            product.Manufacturer = db.Manufacturers.Find(product.ManufacturerId);
-            product.Provider = db.Providers.Find(product.ProviderId);
-            product.Unit = db.Units.Find(product.UnitId);
-            product.Stocks.AddRange(db.Stocks.Where(s => s.ProductId == product.Id).ToArray());
+            product.Category = _context.Categories.Find(product.CategoryId);
+            product.Manufacturer = _context.Manufacturers.Find(product.ManufacturerId);
+            product.Provider = _context.Providers.Find(product.ProviderId);
+            product.Unit = _context.Units.Find(product.UnitId);
+            product.Stocks.AddRange(_context.Stocks.Where(s => s.ProductId == product.Id).ToArray());
 
             return View(product);
         }
 
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers.Where(m => m.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName");
-            ViewBag.ProviderId = new SelectList(db.Providers.Where(p => p.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName");
-            ViewBag.UnitId = new SelectList(db.Units.Where(u => u.IsActive).OrderBy(c => c.Description), "Id", "Description");
+            ViewBag.CategoryId = new SelectList(_context.Categories.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
+            ViewBag.ManufacturerId = new SelectList(_context.Manufacturers.Where(m => m.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName");
+            ViewBag.ProviderId = new SelectList(_context.Providers.Where(p => p.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName");
+            ViewBag.UnitId = new SelectList(_context.Units.Where(u => u.IsActive).OrderBy(c => c.Description), "Id", "Description");
 
             return View();
         }
@@ -67,16 +67,16 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
+                _context.Products.Add(product);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", product.CategoryId);
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers.Where(m => m.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ManufacturerId);
-            ViewBag.ProviderId = new SelectList(db.Providers.Where(p => p.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ProviderId);
-            ViewBag.UnitId = new SelectList(db.Units.Where(u => u.IsActive).OrderBy(c => c.Description), "Id", "Description", product.UnitId);
+            ViewBag.CategoryId = new SelectList(_context.Categories.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", product.CategoryId);
+            ViewBag.ManufacturerId = new SelectList(_context.Manufacturers.Where(m => m.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ManufacturerId);
+            ViewBag.ProviderId = new SelectList(_context.Providers.Where(p => p.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ProviderId);
+            ViewBag.UnitId = new SelectList(_context.Units.Where(u => u.IsActive).OrderBy(c => c.Description), "Id", "Description", product.UnitId);
 
             return View(product);
         }
@@ -88,16 +88,16 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Product product = db.Products.Find(id);
+            Product product = _context.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", product.CategoryId);
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers.Where(m => m.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ManufacturerId);
-            ViewBag.ProviderId = new SelectList(db.Providers.Where(p => p.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ProviderId);
-            ViewBag.UnitId = new SelectList(db.Units.Where(u => u.IsActive).OrderBy(c => c.Description), "Id", "Description", product.UnitId);
+            ViewBag.CategoryId = new SelectList(_context.Categories.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", product.CategoryId);
+            ViewBag.ManufacturerId = new SelectList(_context.Manufacturers.Where(m => m.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ManufacturerId);
+            ViewBag.ProviderId = new SelectList(_context.Providers.Where(p => p.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ProviderId);
+            ViewBag.UnitId = new SelectList(_context.Units.Where(u => u.IsActive).OrderBy(c => c.Description), "Id", "Description", product.UnitId);
 
             return View(product);
         }
@@ -109,16 +109,16 @@ namespace PSS.Controllers
             if (ModelState.IsValid)
             {
                 product.Stocks = null;
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(product).State = EntityState.Modified;
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", product.CategoryId);
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers.Where(m => m.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ManufacturerId);
-            ViewBag.ProviderId = new SelectList(db.Providers.Where(p => p.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ProviderId);
-            ViewBag.UnitId = new SelectList(db.Units.Where(u => u.IsActive).OrderBy(c => c.Description), "Id", "Description", product.UnitId);
+            ViewBag.CategoryId = new SelectList(_context.Categories.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", product.CategoryId);
+            ViewBag.ManufacturerId = new SelectList(_context.Manufacturers.Where(m => m.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ManufacturerId);
+            ViewBag.ProviderId = new SelectList(_context.Providers.Where(p => p.IsActive).OrderBy(c => c.ShortName), "Id", "ShortName", product.ProviderId);
+            ViewBag.UnitId = new SelectList(_context.Units.Where(u => u.IsActive).OrderBy(c => c.Description), "Id", "Description", product.UnitId);
 
             return View(product);
         }
@@ -130,17 +130,17 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Product product = db.Products.Find(id);
+            Product product = _context.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
 
-            product.Category = db.Categories.Find(product.CategoryId);
-            product.Manufacturer = db.Manufacturers.Find(product.ManufacturerId);
-            product.Provider = db.Providers.Find(product.ProviderId);
-            product.Unit = db.Units.Find(product.UnitId);
-            product.Stocks.AddRange(db.Stocks.Where(s => s.ProductId == product.Id).ToArray());
+            product.Category = _context.Categories.Find(product.CategoryId);
+            product.Manufacturer = _context.Manufacturers.Find(product.ManufacturerId);
+            product.Provider = _context.Providers.Find(product.ProviderId);
+            product.Unit = _context.Units.Find(product.UnitId);
+            product.Stocks.AddRange(_context.Stocks.Where(s => s.ProductId == product.Id).ToArray());
 
             return View(product);
         }
@@ -149,10 +149,10 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Products.Find(id);
+            Product product = _context.Products.Find(id);
             product.IsActive = false;
-            db.Entry(product).State = EntityState.Modified;
-            db.SaveChanges();
+            _context.Entry(product).State = EntityState.Modified;
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -161,7 +161,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

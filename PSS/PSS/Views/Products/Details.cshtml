@@ -41,7 +41,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Stocks.OrderBy(s => s.Id).Last().Quantity)
+            @Html.DisplayFor(model => model.Stocks.OrderBy(s => s.Id).LastOrDefault().Quantity)
         </dd>
 
         <dt>

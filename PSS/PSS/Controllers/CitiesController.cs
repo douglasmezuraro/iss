@@ -9,13 +9,13 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class CitiesController : Controller
+    public sealed class CitiesController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
-            var cities = db.Cities.Include(c => c.State).Include(c => c.State.Country).Where(c => c.IsActive).OrderBy(c => c.Name);
+            var cities = _context.Cities.Include(c => c.State).Include(c => c.State.Country).Where(c => c.IsActive).OrderBy(c => c.Name);
             return View(cities.ToList());
         }
 
@@ -26,20 +26,20 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            City city = db.Cities.Find(id);
+            City city = _context.Cities.Find(id);
             if (city == null)
             {
                 return HttpNotFound();
             }
 
-            city.State = db.States.Find(city.StateId);
+            city.State = _context.States.Find(city.StateId);
 
             return View(city);
         }
 
         public ActionResult Create()
         {
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name");
+            ViewBag.StateId = new SelectList(_context.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name");
             return View();
         }
 
@@ -49,13 +49,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Cities.Add(city);
-                db.SaveChanges();
+                _context.Cities.Add(city);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", city.StateId);
+            ViewBag.StateId = new SelectList(_context.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", city.StateId);
 
             return View(city);
         }
@@ -67,13 +67,13 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            City city = db.Cities.Find(id);
+            City city = _context.Cities.Find(id);
             if (city == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", city.StateId);
+            ViewBag.StateId = new SelectList(_context.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", city.StateId);
 
             return View(city);
         }
@@ -84,13 +84,13 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(city).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(city).State = EntityState.Modified;
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StateId = new SelectList(db.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", city.StateId);
+            ViewBag.StateId = new SelectList(_context.States.Where(s => s.IsActive).OrderBy(s => s.Name), "Id", "Name", city.StateId);
 
             return View(city);
         }
@@ -102,7 +102,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            City city = db.Cities.Find(id);
+            City city = _context.Cities.Find(id);
             if (city == null)
             {
                 return HttpNotFound();
@@ -115,10 +115,10 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            City city = db.Cities.Find(id);
+            City city = _context.Cities.Find(id);
             city.IsActive = false;
-            db.Entry(city).State = EntityState.Modified;
-            db.SaveChanges();
+            _context.Entry(city).State = EntityState.Modified;
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -126,7 +126,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

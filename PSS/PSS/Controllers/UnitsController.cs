@@ -8,13 +8,13 @@ using SGCO.Context;
 namespace PSS.Controllers
 {
     [Authorize]
-    public class UnitsController : Controller
+    public sealed class UnitsController : Controller
     {
-        private DBContext db = new DBContext();
+        private readonly DBContext _context = new DBContext();
 
         public ActionResult Index()
         {
-            var units = db.Units.Where(u => u.IsActive).OrderBy(u => u.Description);
+            var units = _context.Units.Where(u => u.IsActive).OrderBy(u => u.Description);
             return View(units.ToList());
         }
 
@@ -25,7 +25,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Unit unit = db.Units.Find(id);
+            Unit unit = _context.Units.Find(id);
             if (unit == null)
             {
                 return HttpNotFound();
@@ -45,8 +45,8 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Units.Add(unit);
-                db.SaveChanges();
+                _context.Units.Add(unit);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -61,7 +61,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Unit unit = db.Units.Find(id);
+            Unit unit = _context.Units.Find(id);
 
             if (unit == null)
             {
@@ -77,8 +77,8 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(unit).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(unit).State = EntityState.Modified;
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -93,7 +93,7 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Unit unit = db.Units.Find(id);
+            Unit unit = _context.Units.Find(id);
 
             if (unit == null)
             {
@@ -106,10 +106,10 @@ namespace PSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Unit unit = db.Units.Find(id);
+            Unit unit = _context.Units.Find(id);
             unit.IsActive = false;
-            db.Entry(unit).State = EntityState.Modified;         
-            db.SaveChanges();
+            _context.Entry(unit).State = EntityState.Modified;         
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -118,7 +118,7 @@ namespace PSS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
