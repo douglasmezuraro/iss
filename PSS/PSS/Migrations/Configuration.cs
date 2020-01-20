@@ -2032,7 +2032,10 @@ namespace PSS.Migrations
                     OrderStatus = OrderStatus.Finished,
                     UserId = 1,
                     FreightId = 1,
-                    PaymentId = 1
+                    PaymentId = 1,
+                    Payment = null,
+                    Items = null,
+                    Freight = null
                 },
                 new PurchaseOrder
                 {
@@ -2041,7 +2044,10 @@ namespace PSS.Migrations
                     OrderStatus = OrderStatus.Finished,
                     UserId = 1,
                     FreightId = 2,
-                    PaymentId = 2
+                    PaymentId = 2,
+                    Payment = null,
+                    Items = null,
+                    Freight = null
                 },
                 new PurchaseOrder
                 {
@@ -2050,7 +2056,10 @@ namespace PSS.Migrations
                     OrderStatus = OrderStatus.Finished,
                     UserId = 10,
                     FreightId = 3,
-                    PaymentId = 3
+                    PaymentId = 3,
+                    Payment = null,
+                    Items = null,
+                    Freight = null
                 });
         }
 
