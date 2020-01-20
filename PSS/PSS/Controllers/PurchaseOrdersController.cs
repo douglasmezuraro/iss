@@ -1,10 +1,10 @@
+using PSS.Models;
+using PSS.Utils;
+using SGCO.Context;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using PSS.Models;
-using PSS.Utils;
-using SGCO.Context;
 
 namespace PSS.Controllers
 {
@@ -22,6 +22,19 @@ namespace PSS.Controllers
                                                 .Where(p => p.IsActive)
                                                 .Where(p => p.UserId == Global.User.Id)
                                                 .OrderBy(p => p.Date);
+
+            foreach (var order in orders)
+            {
+                foreach (var item in order.Items)
+                {
+                    var stocks = _context.Stocks.Where(s => s.ProductId == item.ProductId);
+
+                    foreach (var stock in stocks)
+                    {
+                        item.Product.Stocks.Add(stock);
+                    }
+                }
+            }                                                
 
             return View(orders.ToList());
         }
@@ -117,8 +130,8 @@ namespace PSS.Controllers
             }
           
             order.CancelOrder();
-            _context.Entry(order).Property(o => o.OrderStatus).IsModified = true;
 
+            _context.Entry(order).Property(o => o.OrderStatus).IsModified = true;
             _context.SaveChanges();
 
             return RedirectToAction("Index");

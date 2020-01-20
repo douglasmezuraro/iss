@@ -1,10 +1,10 @@
-﻿using System.Data.Entity;
+﻿using PSS.Models;
+using PSS.Utils;
+using SGCO.Context;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using PSS.Models;
-using PSS.Utils;
-using SGCO.Context;
 
 namespace PSS.Controllers
 {
@@ -57,9 +57,12 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
-            order.Freight = _context.SaleOrderFreights.Find(order.FreightId);
+            int PaymentId = order.PaymentId; //TODO: Gambiarra até entender porque o find do pagamento está alterando o FreightId do objeto "order"
+            int FreightId = order.FreightId;    
+            
+            order.Payment = _context.SaleOrderPayments.Find(PaymentId);
+            order.Freight = _context.SaleOrderFreights.Find(FreightId);
             order.Freight.City = _context.Cities.Find(order.Freight.CityId);
-            order.Payment = _context.SaleOrderPayments.Find(order.PaymentId);
             order.User = _context.Users.Find(order.UserId);
             order.Items = _context.Items.Include(i => i.Product).Where(o => o.SaleOrderId == order.Id).ToList();
 
@@ -73,7 +76,9 @@ namespace PSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "O carrinho de compras está vazio.");
             }
 
-            return View();
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name");
+
+            return View(new SaleOrder());
         }
 
         [HttpPost]
@@ -91,10 +96,17 @@ namespace PSS.Controllers
 
                 _context.SaleOrders.Add(order);
 
+                 foreach (var item in order.Items)
+                 {
+                     _context.Entry(item.Product).State = EntityState.Modified;
+                 }
+
                 _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
+
+            ViewBag.CityId = new SelectList(_context.Cities.Where(c => c.IsActive).OrderBy(c => c.Name), "Id", "Name", order.Freight.CityId);
 
             return View(order);
         }
@@ -118,6 +130,7 @@ namespace PSS.Controllers
             }
 
             order.CancelOrder();
+            
             _context.Entry(order).State = EntityState.Modified;
             _context.SaveChanges();
 
