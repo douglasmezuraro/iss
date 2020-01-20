@@ -30,6 +30,10 @@ namespace PSS.Migrations
             SeedProviders();
             SeedProducts();
             SeedUsers();
+            SeedPurchaseOrderFreights();
+            SeedPurchaseOrderPayments();
+            SeedPurchaseOrders();
+            SeedPurchaseOrderItems();
         }
 
         private void ResetDatabase()
@@ -54,22 +58,22 @@ namespace PSS.Migrations
 
         private void ResetSequences()
         {
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Categories', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Cities', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Countries', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Items', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Manufacturers', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Products', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Providers', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderFreights', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderPayments', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrders', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderFreights', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderPayments', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrders', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('States', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Units', RESEED, 0);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Users', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Categories', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Cities', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Countries', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Items', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Manufacturers', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Products', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Providers', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderFreights', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderPayments', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrders', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderFreights', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderPayments', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrders', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('States', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Units', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Users', RESEED, 1);");
         }
 
         private void SeedCountries()
@@ -1494,7 +1498,7 @@ namespace PSS.Migrations
                     Description = "Baixo MusicMan Sterling Ray 5",
                     PurchasePrice = 1200.00,
                     SalePrice = 3600.00,
-                    Stock = 12,
+                    Stock = 24,
                     Weight = 2.7,
                     Expiration = null,
                     CategoryId = 3,
@@ -1564,7 +1568,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender Mustang '62 Reissue - Offset Olive Green",
                     PurchasePrice = 1799.7,
                     SalePrice = 5399.10,
-                    Stock = 2,
+                    Stock = 10,
                     Weight = 3.4,
                     Expiration = null,
                     CategoryId = 1,
@@ -1942,6 +1946,220 @@ namespace PSS.Migrations
                     Number = 406,
                     PostalCode = "74030-100",
                     CityId = 9
+                });
+        }
+
+        private void SeedPurchaseOrderFreights()
+        {
+            _context.PurchaseOrderFreights.AddOrUpdate(f => f.Id,
+                new PurchaseOrderFreight
+                {
+                    Id = 1,
+                    DeliveryDate = System.DateTime.Now.AddDays(1),
+                    Price = 53.90,
+                    FreightType = FreightType.PostOffice,
+                    Address = "Rua Toledo",
+                    Number = 812,
+                    PostalCode = "87053-518",
+                    Complement = null,
+                    Reference = null,
+                    CityId = 28
+                },
+                new PurchaseOrderFreight
+                {
+                    Id = 2,
+                    DeliveryDate = System.DateTime.Now.AddDays(1),
+                    Price = 25.00,
+                    FreightType = FreightType.ShippingCompany,
+                    Address = "Rua Tietê",
+                    Number = 222,
+                    PostalCode = "87020-210",
+                    Complement = "Edifício Higienópolis, Apto. 303",
+                    Reference = null,
+                    CityId = 28
+                },
+                new PurchaseOrderFreight
+                {
+                    Id = 3,
+                    DeliveryDate = System.DateTime.Now.AddDays(1),
+                    Price = 120.00,
+                    FreightType = FreightType.PostOffice,
+                    Address = "Avenida Araguaia",
+                    Number = 406,
+                    PostalCode = "74030-100",
+                    Complement = null,
+                    Reference = "Em frente a padaria",
+                    CityId = 9
+                });
+        }
+
+        private void SeedPurchaseOrderPayments()
+        {
+            _context.PurchaseOrderPayments.AddOrUpdate(p => p.Id,
+                new PurchaseOrderPayment
+                {
+                    Id = 1,
+                    Name = "Douglas Mezuraro",
+                    Number = "5502094255457702",
+                    Month = Month.September,
+                    Year = 2027
+                },
+                new PurchaseOrderPayment
+                {
+                    Id = 2,
+                    Name = "Douglas Mezuraro",
+                    Number = "5502094255457702",
+                    Month = Month.September,
+                    Year = 2027
+                },
+                new PurchaseOrderPayment
+                {
+                    Id = 3,
+                    Name = "Antônia Giovanna Nair Novaes",
+                    Number = "5173456625164730",
+                    Month = Month.December,
+                    Year = 2021
+                });
+        }
+
+        private void SeedPurchaseOrders()
+        {
+            _context.PurchaseOrders.AddOrUpdate(o => o.Id,
+                new PurchaseOrder
+                {
+                    Id = 1,
+                    Date = System.DateTime.Now.AddDays(1),
+                    OrderStatus = OrderStatus.Finished,
+                    UserId = 1,
+                    FreightId = 1,
+                    PaymentId = 1
+                },
+                new PurchaseOrder
+                {
+                    Id = 2,
+                    Date = System.DateTime.Now.AddDays(1),
+                    OrderStatus = OrderStatus.Finished,
+                    UserId = 1,
+                    FreightId = 2,
+                    PaymentId = 2
+                },
+                new PurchaseOrder
+                {
+                    Id = 3,
+                    Date = System.DateTime.Now.AddDays(1),
+                    OrderStatus = OrderStatus.Finished,
+                    UserId = 10,
+                    FreightId = 3,
+                    PaymentId = 3
+                });
+        }
+
+        private void SeedPurchaseOrderItems()
+        {
+            _context.Items.AddOrUpdate(i => i.Id,
+                new Item
+                {
+                    Id = 1,
+                    Quantity = 3,
+                    ProductId = 1,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 2,
+                    Quantity = 1,
+                    ProductId = 2,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 3,
+                    Quantity = 2,
+                    ProductId = 3,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 1
+                },
+                new Item
+                {
+                    Id = 4,
+                    Quantity = 10,
+                    ProductId = 10,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 2,
+                },
+                new Item
+                {
+                    Id = 5,
+                    Quantity = 1,
+                    ProductId = 9,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 2
+                },
+                new Item
+                {
+                    Id = 6,
+                    Quantity = 1,
+                    ProductId = 8,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 2
+                },
+                new Item
+                {
+                    Id = 7,
+                    Quantity = 2,
+                    ProductId = 7,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 2
+                },
+                new Item
+                {
+                    Id = 8,
+                    Quantity = 3,
+                    ProductId = 6,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 2
+                },
+                new Item
+                {
+                    Id = 9,
+                    Quantity = 5,
+                    ProductId = 5,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 2
+                },
+                new Item
+                {
+                    Id = 10,
+                    Quantity = 1,
+                    ProductId = 4,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 2
+                },
+                new Item
+                {
+                    Id = 11,
+                    Quantity = 1,
+                    ProductId = 3,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 3
+                },
+                new Item
+                {
+                    Id = 12,
+                    Quantity = 1,
+                    ProductId = 4,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 3
+                },
+                new Item
+                {
+                    Id = 13,
+                    Quantity = 1,
+                    ProductId = 5,
+                    SaleOrderId = null,
+                    PurchaseOrderId = 3
                 });
         }
     }

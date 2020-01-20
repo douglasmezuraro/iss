@@ -12,6 +12,11 @@ namespace PSS.Models
     {
         public Order()
         {
+            if (Global.User == null)
+            {
+                return;
+            }
+
             UserId = Global.User.Id;
 
             foreach (var Item in Global.User.Cart.Items)
@@ -25,7 +30,7 @@ namespace PSS.Models
             Freight.Number = Global.User.Number;
             Freight.PostalCode = Global.User.PostalCode;
             Freight.Reference = Global.User.Reference;
-            Freight.Price = 100;
+            Freight.Price = Global.User.FreightPrice;
         }
 
         [ReadOnly(true)]

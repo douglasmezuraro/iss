@@ -53,7 +53,8 @@
             @Html.ActionLink(View.Edit, Actions.Edit, new { id = item.Id }) |
             @Html.ActionLink(View.Details, Actions.Details, new { id = item.Id }) |
             @Html.ActionLink(View.Delete, Actions.Delete, new { id = item.Id }) |
-            @Html.ActionLink(View.AddToCart, Actions.AddToCart, "Cart", new Item { ProductId = item.Id, Quantity = 1, IsActive = true }, null)
+            @Html.ActionLink(View.AddToCart, Actions.AddToCart, "Cart", new Item { ProductId = item.Id, Quantity = 1, IsActive = true }, null) |
+            @Html.ActionLink(View.ViewStock, Actions.ViewStock, "Stock", new { id = item.Id }, null)
         </td>
     </tr>
     }

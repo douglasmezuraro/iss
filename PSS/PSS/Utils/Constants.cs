@@ -26,6 +26,7 @@
         public const string Login = "Login";
         public const string Logout = "Logout";
         public const string AddToCart = "Comprar";
+        public const string ViewStock = "Ver estoque";
     }
 
     public static class Actions
@@ -43,5 +44,6 @@
         public const string Login = "Login";
         public const string Logout = "Logout";
         public const string AddToCart = "AddToCart";
+        public const string ViewStock = "Details";
     }
 }
