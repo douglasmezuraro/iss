@@ -1,7 +1,6 @@
 ﻿using PSS.Utils.Constants;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PSS.Models
 {

@@ -22,6 +22,20 @@ namespace PSS.Controllers
                                       .Where(p => p.IsActive)
                                       .Where(p => p.UserId == Global.User.Id)
                                       .OrderBy(p => p.Date);
+
+            foreach (var order in orders)
+            {
+                foreach (var item in order.Items)
+                {
+                    var stocks = db.Stocks.Where(s => s.ProductId == item.ProductId);
+
+                    foreach (var stock in stocks)
+                    {
+                        item.Product.Stocks.Add(stock);
+                    }
+                }
+            }
+
             return View(orders.ToList());
         }
 
@@ -68,18 +82,14 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
+                foreach (var item in order.Items)
+                {
+                    item.Product.Stocks = db.Stocks.Where(s => s.ProductId == item.ProductId).ToList();
+                }
+
                 order.FinalizeOrder();
 
                 db.SaleOrders.Add(order);
-
-                foreach (var item in order.Items)
-                {
-                    var product = db.Products.Find(item.ProductId);
-
-                    product.Stock = item.Product.Stock;
-                    db.Entry(item.Product).State = EntityState.Detached;
-                    db.Entry(product).State = EntityState.Modified;
-                }
 
                 db.SaveChanges();
 

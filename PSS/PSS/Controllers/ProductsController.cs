@@ -17,11 +17,16 @@ namespace PSS.Controllers
             var products = db.Products.Include(p => p.Category)
                                       .Include(p => p.Manufacturer)
                                       .Include(p => p.Provider)
-                                      .Include(p => p.Unit)
+                                      .Include(p => p.Unit)                        
                                       .Where(p => p.IsActive)
-                                      .OrderBy(p => p.Description);
+                                      .OrderBy(p => p.Description).ToList();
 
-            return View(products.ToList());
+            foreach (var product in products)
+            {
+                product.Stocks = db.Stocks.Where(s => s.ProductId == product.Id).ToList();
+            }
+
+            return View(products);
         }
 
         public ActionResult Details(int? id)
@@ -41,6 +46,7 @@ namespace PSS.Controllers
             product.Manufacturer = db.Manufacturers.Find(product.ManufacturerId);
             product.Provider = db.Providers.Find(product.ProviderId);
             product.Unit = db.Units.Find(product.UnitId);
+            product.Stocks.AddRange(db.Stocks.Where(s => s.ProductId == product.Id).ToArray());
 
             return View(product);
         }
@@ -102,6 +108,7 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
+                product.Stocks = null;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -133,6 +140,7 @@ namespace PSS.Controllers
             product.Manufacturer = db.Manufacturers.Find(product.ManufacturerId);
             product.Provider = db.Providers.Find(product.ProviderId);
             product.Unit = db.Units.Find(product.UnitId);
+            product.Stocks.AddRange(db.Stocks.Where(s => s.ProductId == product.Id).ToArray());
 
             return View(product);
         }

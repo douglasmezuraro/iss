@@ -23,6 +23,7 @@ namespace SGCO.Context
         public DbSet<State> States { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PSS.Reports.Models.Stock>
+﻿@model IEnumerable<PSS.Models.Stock>
 @using PSS.Utils.Constants
 
 @{
@@ -13,22 +13,16 @@
             @Html.DisplayNameFor(model => model.Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Quantity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Actual)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Entry)
+            @Html.DisplayNameFor(model => model.In)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Out)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Previous)
         </th>
         <th></th>
     </tr>
@@ -40,22 +34,16 @@
             @Html.DisplayFor(modelItem => item.Id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @Html.DisplayFor(modelItem => item.Quantity)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Actual)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Entry)
+            @Html.DisplayFor(modelItem => item.In)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Out)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Previous)
         </td>
     </tr>
     }

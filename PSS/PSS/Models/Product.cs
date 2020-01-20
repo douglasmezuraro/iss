@@ -1,5 +1,6 @@
 ﻿using PSS.Utils;
 using PSS.Utils.Constants;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,10 +25,6 @@ namespace PSS.Models
         [DisplayName("Preço de venda")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         public double SalePrice { get; set; }
-
-        [Required]
-        [DisplayName("Estoque")]
-        public int Stock { get; set; }
 
         [Required]
         [DisplayName("Peso (KG)")]
@@ -71,5 +68,8 @@ namespace PSS.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = General.REAL_VALUE_MASK)]
         [DisplayName("Preço unitário")]
         public double Price => Global.User.UserType == UserType.Admin ? PurchasePrice : SalePrice;
+
+        [DisplayName("Estoque")]
+        public List<Stock> Stocks { get; set; } = new List<Stock>();
     }
 }

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using PSS.Models;
 using SGCO.Context;
 using PSS.Utils;
+using System.Collections.Generic;
 
 namespace PSS.Controllers
 {
@@ -25,8 +26,8 @@ namespace PSS.Controllers
             {
                 item.Product = db.Products.Find(item.ProductId);
                 item.Product.Category = db.Categories.Find(item.Product.CategoryId);
-                item.Product.Unit = db.Units.Find(item.Product.UnitId);             
-
+                item.Product.Unit = db.Units.Find(item.Product.UnitId);
+      
                 Global.User.Cart.Items.Add(item);
             }
             else

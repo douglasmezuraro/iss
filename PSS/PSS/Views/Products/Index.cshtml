@@ -17,7 +17,7 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Stock)
+            @Html.DisplayNameFor(model => model.Stocks.SingleOrDefault().Quantity)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Stock)
+            @Html.DisplayFor(modelItem => item.Stocks.OrderBy(s => s.Id).LastOrDefault().Quantity)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)

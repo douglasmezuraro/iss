@@ -17,10 +17,19 @@ namespace PSS.Controllers
         {
             var orders = db.PurchaseOrders.Include(p => p.User)
                                                   .Include(p => p.Freight)
+                                                  .Include(p => p.Payment)
                                                   .Include(p => p.Items.Select(i => i.Product))
                                                   .Where(p => p.IsActive)
                                                   .Where(p => p.UserId == Global.User.Id)
                                                   .OrderBy(p => p.Date);
+           // foreach (var order in orders)
+           // {
+               // foreach (var item in order.Items)
+               // {
+             //       item.Product.Stocks = db.Stocks.Where(s => s.ProductId == item.ProductId).ToList();
+           //     }
+         //   }
+
             return View(orders.ToList());
         }
 
@@ -72,18 +81,19 @@ namespace PSS.Controllers
         {
             if (ModelState.IsValid)
             {
+                foreach (var item in order.Items)
+                {
+                    item.Product.Stocks = db.Stocks.Where(s => s.ProductId == item.ProductId).ToList();
+                }
+
                 order.FinalizeOrder();
 
                 db.PurchaseOrders.Add(order);
 
-                foreach (var item in order.Items)
-                {
-                    var product = db.Products.Find(item.ProductId);
-
-                    product.Stock = item.Product.Stock;
-                    db.Entry(item.Product).State = EntityState.Detached;
-                    db.Entry(product).State = EntityState.Modified;
-                }
+                 foreach (var item in order.Items)
+                 {
+                     db.Entry(item.Product).State = EntityState.Modified;
+                 }
 
                 db.SaveChanges();
 

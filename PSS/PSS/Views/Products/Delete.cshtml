@@ -69,11 +69,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Stock)
+            @Html.DisplayNameFor(model => model.Stocks.SingleOrDefault().Quantity)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Stock)
+            @Html.DisplayFor(model => model.Stocks.OrderBy(s =>s.Date).LastOrDefault().Quantity)
         </dd>
 
         <dt>

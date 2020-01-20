@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace PSS.Models
 {
@@ -17,7 +19,19 @@ namespace PSS.Models
 
             foreach (var item in Items)
             {
-                item.Product.Stock += item.Quantity;
+                if ((item.Product.Stocks == null) || (item.Product.Stocks.Count == 0))
+                {
+                    item.Product.Stocks = new List<Stock> { new Stock { Quantity = item.Quantity, In = item.Quantity, Date = System.DateTime.Now } };
+                    return;
+                }
+
+                item.Product.Stocks.Add(
+                    new Stock
+                    {
+                        Quantity = item.Product.Stocks.OrderBy(s => s.Id).Last().Quantity + item.Quantity,
+                        In = item.Quantity,
+                        Date = System.DateTime.Now
+                    });                
             }            
         }
 
@@ -27,7 +41,13 @@ namespace PSS.Models
 
             foreach (var item in Items)
             {
-                item.Product.Stock -= item.Quantity;
+                item.Product.Stocks.Add(
+                    new Stock
+                    {
+                        Quantity = item.Product.Stocks.OrderBy(s => s.Id).Last().Quantity - item.Quantity,
+                        Out = item.Quantity,
+                        Date = System.DateTime.Now
+                    });
             }
         }
     }

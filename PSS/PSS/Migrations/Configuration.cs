@@ -1,6 +1,7 @@
 using PSS.Models;
 using SGCO.Context;
 using System.Data.Entity.Migrations;
+using System.Collections.Generic;
 
 namespace PSS.Migrations
 {
@@ -28,7 +29,7 @@ namespace PSS.Migrations
             SeedCategories();
             SeedManufacturers();
             SeedProviders();
-            SeedProducts();
+            SeedProducts();        
             SeedUsers();
             SeedPurchaseOrderFreights();
             SeedPurchaseOrderPayments();
@@ -45,6 +46,7 @@ namespace PSS.Migrations
             _context.Database.ExecuteSqlCommand("DELETE FROM SaleOrderFreights;");
             _context.Database.ExecuteSqlCommand("DELETE FROM SaleOrderPayments;");
             _context.Database.ExecuteSqlCommand("DELETE FROM SaleOrders;");
+            _context.Database.ExecuteSqlCommand("DELETE FROM Stock;");
             _context.Database.ExecuteSqlCommand("DELETE FROM Products;");
             _context.Database.ExecuteSqlCommand("DELETE FROM Units;");
             _context.Database.ExecuteSqlCommand("DELETE FROM Categories;");
@@ -58,22 +60,23 @@ namespace PSS.Migrations
 
         private void ResetSequences()
         {
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Categories', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Cities', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Countries', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Items', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Manufacturers', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Products', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Providers', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderFreights', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderPayments', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrders', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderFreights', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderPayments', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrders', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('States', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Units', RESEED, 1);");
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Users', RESEED, 1);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Categories', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Cities', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Countries', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Items', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Manufacturers', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Stock', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Products', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Providers', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderFreights', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrderPayments', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('PurchaseOrders', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderFreights', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrderPayments', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('SaleOrders', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('States', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Units', RESEED, 0);");
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('Users', RESEED, 0);");
         }
 
         private void SeedCountries()
@@ -962,7 +965,7 @@ namespace PSS.Migrations
                     Complement = null,
                     Number = 962,
                     PostalCode = "02613-055",
-                    CityId = 25 
+                    CityId = 25
                 },
                 new Manufacturer
                 {
@@ -1428,7 +1431,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender Stratocaster Stardard - Artic White",
                     PurchasePrice = 1788.00,
                     SalePrice = 5364.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 3.6,
                     Expiration = null,
                     CategoryId = 1,
@@ -1442,7 +1445,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Gibson Les Paul Traditional - Honery Burst",
                     PurchasePrice = 2967.00,
                     SalePrice = 8901.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 4.2,
                     Expiration = null,
                     CategoryId = 1,
@@ -1456,7 +1459,7 @@ namespace PSS.Migrations
                     Description = "Violão Tagima Dallas T - Sunburst",
                     PurchasePrice = 209.33,
                     SalePrice = 628.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 1.2,
                     Expiration = null,
                     CategoryId = 2,
@@ -1470,7 +1473,7 @@ namespace PSS.Migrations
                     Description = "Violão Takamine EF340S TT & TLD",
                     PurchasePrice = 3207.00,
                     SalePrice = 9621.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 1.5,
                     Expiration = null,
                     CategoryId = 2,
@@ -1484,7 +1487,7 @@ namespace PSS.Migrations
                     Description = "Baixo Fender Precision Bass Deluxe 4072 Ash",
                     PurchasePrice = 3447.00,
                     SalePrice = 10341.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 2.4,
                     Expiration = null,
                     CategoryId = 3,
@@ -1498,7 +1501,7 @@ namespace PSS.Migrations
                     Description = "Baixo MusicMan Sterling Ray 5",
                     PurchasePrice = 1200.00,
                     SalePrice = 3600.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 2.7,
                     Expiration = null,
                     CategoryId = 3,
@@ -1512,7 +1515,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender JazzMaster '59 Reissue",
                     PurchasePrice = 1150.00,
                     SalePrice = 3450.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 2.9,
                     Expiration = null,
                     CategoryId = 1,
@@ -1526,7 +1529,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender Telecaster B-Bender American Standard",
                     PurchasePrice = 2000.00,
                     SalePrice = 6000.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 2.8,
                     Expiration = null,
                     CategoryId = 1,
@@ -1540,7 +1543,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Gibson SG Faded Worn Brown",
                     PurchasePrice = 2120.00,
                     SalePrice = 6360.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 3.5,
                     Expiration = null,
                     CategoryId = 1,
@@ -1554,7 +1557,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender Mustang Olympic White",
                     PurchasePrice = 1624.00,
                     SalePrice = 4872.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 3,
                     Expiration = null,
                     CategoryId = 1,
@@ -1568,7 +1571,7 @@ namespace PSS.Migrations
                     Description = "Guitarra Fender Mustang '62 Reissue - Offset Olive Green",
                     PurchasePrice = 1799.7,
                     SalePrice = 5399.10,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 3.4,
                     Expiration = null,
                     CategoryId = 1,
@@ -1582,7 +1585,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Blackstar S1-104 EL 34/6L6",
                     PurchasePrice = 1653.30,
                     SalePrice = 4960.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 19.300,
                     Expiration = null,
                     CategoryId = 8,
@@ -1596,7 +1599,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Orange AD30TC - 2x12 30W",
                     PurchasePrice = 4361.99,
                     SalePrice = 13085.99,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 17.280,
                     Expiration = null,
                     CategoryId = 8,
@@ -1610,7 +1613,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Orange Dark Terror - 15W",
                     PurchasePrice = 3200.00,
                     SalePrice = 5537.99,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 5.160,
                     Expiration = null,
                     CategoryId = 8,
@@ -1624,7 +1627,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Soldano 100w Super Lead Overdrive (SLO-100)",
                     PurchasePrice = 8699.00,
                     SalePrice = 12780.99,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 15.800,
                     Expiration = null,
                     CategoryId = 8,
@@ -1638,7 +1641,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Fender Hot Deluxe III - 1x12 40W",
                     PurchasePrice = 6420.00,
                     SalePrice = 10734.99,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 20.41,
                     Expiration = null,
                     CategoryId = 8,
@@ -1652,7 +1655,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Peavey 6505 - 120W",
                     PurchasePrice = 5230.90,
                     SalePrice = 7799.99,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 8.200,
                     Expiration = null,
                     CategoryId = 8,
@@ -1666,7 +1669,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Vox AC30C2 - 2x12 30W",
                     PurchasePrice = 7392.99,
                     SalePrice = 10999.89,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 16.320,
                     Expiration = null,
                     CategoryId = 8,
@@ -1680,7 +1683,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Marshall JVM400 - 110W",
                     PurchasePrice = 8500.00,
                     SalePrice = 11690.90,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 22.000,
                     Expiration = null,
                     CategoryId = 8,
@@ -1694,7 +1697,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Mesa Boogie Dual Rectifier - 100W",
                     PurchasePrice = 5700.90,
                     SalePrice = 7800.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 15.285,
                     Expiration = null,
                     CategoryId = 8,
@@ -1708,7 +1711,7 @@ namespace PSS.Migrations
                     Description = "Amplificador Hiwatt G50CM - 1x12 50W",
                     PurchasePrice = 1459.00,
                     SalePrice = 1860.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 8.120,
                     Expiration = null,
                     CategoryId = 8,
@@ -1722,7 +1725,7 @@ namespace PSS.Migrations
                     Description = "Pedal Distorção Boss Metal Zone MT-2",
                     PurchasePrice = 300.00,
                     SalePrice = 459.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 0.400,
                     Expiration = null,
                     CategoryId = 9,
@@ -1736,7 +1739,7 @@ namespace PSS.Migrations
                     Description = "Pedal Fuzz Electro-Harmonix Big Muff Pi",
                     PurchasePrice = 500.90,
                     SalePrice = 709.10,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 0.650,
                     Expiration = null,
                     CategoryId = 9,
@@ -1750,7 +1753,7 @@ namespace PSS.Migrations
                     Description = "Pedal Delay Fuhrmann Analog Echo AE01",
                     PurchasePrice = 159.90,
                     SalePrice = 263.42,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 0.450,
                     Expiration = null,
                     CategoryId = 9,
@@ -1764,7 +1767,7 @@ namespace PSS.Migrations
                     Description = "Guitarra SX Stratocaster SST62 - Preta",
                     PurchasePrice = 500.90,
                     SalePrice = 828.00,
-                    Stock = 5,
+                    Stocks = Stock.InitialStock(),
                     Weight = 3.600,
                     Expiration = null,
                     CategoryId = 1,
