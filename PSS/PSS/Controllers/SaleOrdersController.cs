@@ -145,6 +145,13 @@ namespace PSS.Controllers
             }
 
             SaleOrder order = _context.SaleOrders.Find(id);
+            order.Items = _context.Items.Where(i => i.SaleOrderId == order.Id).Include(i => i.Product).ToList();
+
+            foreach (var item in order.Items)
+            {
+                item.Product.Stocks = _context.Stocks.Where(s => s.ProductId == item.ProductId).ToList();
+            }
+
             if (order == null)
             {
                 return HttpNotFound();
@@ -156,6 +163,21 @@ namespace PSS.Controllers
             }
 
             order.ReturnOrder();
+
+            foreach (var item in order.Items)
+            {
+                foreach (var stock in item.Product.Stocks)
+                {
+                    if (stock.Id == 0)
+                    {
+                        _context.Entry(stock).State = EntityState.Added;
+                    }
+                }                
+            }
+
+            _context.Entry(order).Property(o => o.OrderStatus).IsModified = true;
+            _context.Entry(order).State = EntityState.Detached;
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }

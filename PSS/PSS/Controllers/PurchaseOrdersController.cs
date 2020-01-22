@@ -157,6 +157,9 @@ namespace PSS.Controllers
 
             order.ReturnOrder();
 
+            _context.Entry(order).State = EntityState.Modified;
+            _context.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

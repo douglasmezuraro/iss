@@ -49,6 +49,6 @@ namespace PSS.Models
         [DisplayName("Cidade")]
         public City City { get; set; }
 
-        public double FreightPrice => new System.Random().Next(50, 150);
+        public double FreightPrice => 50; // TODO: Implementar alguma API
     }
 }
